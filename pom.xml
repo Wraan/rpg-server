@@ -19,6 +19,24 @@
         <spring-cloud.version>2.0.1.RELEASE</spring-cloud.version>
 	</properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <activatedProperties>docker</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
+
 	<dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,7 +81,13 @@
 	</dependencies>
 
 	<build>
-        <finalName>authorization-server</finalName>
+        <finalName>rpg-server</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
