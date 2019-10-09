@@ -2,7 +2,7 @@ package com.rpg.service;
 
 import com.rpg.model.security.AuthUserDetails;
 import com.rpg.model.security.User;
-import com.rpg.repository.UserDetailRepository;
+import com.rpg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
@@ -20,9 +20,7 @@ import java.util.Optional;
 public class MyUserDetailServiceImpl implements UserDetailsService, MyUserDetailsService {
 
     @Autowired
-    private UserDetailRepository userDetailRepository;
-    @Autowired
-    private RoleService roleService;
+    private UserRepository userRepository;
     @Bean
     protected PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -31,7 +29,7 @@ public class MyUserDetailServiceImpl implements UserDetailsService, MyUserDetail
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<User> optionalUser = userDetailRepository.findByUsername(username);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
 
         optionalUser.orElseThrow(() -> new UsernameNotFoundException("Username or password is wrong"));
 
@@ -41,6 +39,6 @@ public class MyUserDetailServiceImpl implements UserDetailsService, MyUserDetail
     }
 
     public List<User> saveAll(List<User> users) {
-        return userDetailRepository.saveAll(users);
+        return userRepository.saveAll(users);
     }
 }

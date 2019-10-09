@@ -8,6 +8,5 @@ import java.util.List;
 public interface MyUserDetailsService {
 
     UserDetails loadUserByUsername(String username);
-    //User register(UserCreateDto userCreateDto);
     List<User> saveAll(List<User> users);
 }
