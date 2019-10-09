@@ -21,10 +21,6 @@ public class MyUserDetailServiceImpl implements UserDetailsService, MyUserDetail
 
     @Autowired
     private UserRepository userRepository;
-    @Bean
-    protected PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

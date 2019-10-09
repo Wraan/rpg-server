@@ -20,7 +20,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(Predicates.or(PathSelectors.ant("/api/**"),
-                        PathSelectors.ant("/oauth/token")))
+                        PathSelectors.ant("/oauth/token"),
+                        PathSelectors.ant("/register")))
                 .build();
     }
 }
