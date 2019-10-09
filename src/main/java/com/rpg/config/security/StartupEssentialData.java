@@ -9,12 +9,17 @@ import com.rpg.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Component
+@EnableScheduling
 public class StartupEssentialData implements ApplicationRunner {
 
     @Autowired
@@ -25,6 +30,10 @@ public class StartupEssentialData implements ApplicationRunner {
 
     @Autowired
     private RoleService roleService;
+
+    @Lazy
+    @Autowired
+    private SimpMessagingTemplate template;
 
 
     @Override
@@ -62,5 +71,12 @@ public class StartupEssentialData implements ApplicationRunner {
                         true, Arrays.asList(roleService.findByName("USER")))
         );
         userDetailsService.saveAll(users);
+    }
+
+    @Scheduled(fixedDelay = 5000)
+    public void sendMessage(){
+        template.convertAndSend("/ws/message", "If you see this message very 5 seconds " +
+                "everything is working fine :)");
+
     }
 }
