@@ -1,7 +1,7 @@
 package com.rpg.controller;
 
 import com.rpg.dto.UserRegistrationFormDto;
-import com.rpg.service.UserService;
+import com.rpg.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,6 @@ public class AuthenticationController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
-
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 }

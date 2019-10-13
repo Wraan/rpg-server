@@ -1,11 +1,11 @@
-package com.rpg.service;
+package com.rpg.service.security;
 
 import com.rpg.dto.UserRegistrationFormDto;
 import com.rpg.exception.CredentialsFormatException;
 import com.rpg.exception.EmailAlreadyExistsException;
 import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.security.User;
-import com.rpg.repository.UserRepository;
+import com.rpg.repository.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

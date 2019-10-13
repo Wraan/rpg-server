@@ -27,10 +27,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
             "/js/**",
             "/error/**",
             "/",
+            "/api/**"
     };
 
     private static final String[] LOGGED_MATCHERS = {
-            "/api/**"
     };
 
     private static final String[] ADMIN_MATCHERS = {

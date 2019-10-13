@@ -1,11 +1,10 @@
-package com.rpg.model.dnd;
+package com.rpg.model.dnd.abilities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class Feature {
+@Entity
+@Table(name = "skills")
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +12,15 @@ public class Feature {
     private String name;
     @Column(length = 4095)
     private String description;
+    private String abilityScore;
 
-    public Feature() {
+    public Skill() {
     }
 
-    public Feature(String name, String description) {
+    public Skill(String name, String description, String abilityScore) {
         this.name = name;
         this.description = description;
+        this.abilityScore = abilityScore;
     }
 
     public long getId() {
@@ -44,5 +45,13 @@ public class Feature {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAbilityScore() {
+        return abilityScore;
+    }
+
+    public void setAbilityScore(String abilityScore) {
+        this.abilityScore = abilityScore;
     }
 }

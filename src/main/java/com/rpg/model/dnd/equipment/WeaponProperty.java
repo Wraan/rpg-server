@@ -1,10 +1,10 @@
-package com.rpg.model.dnd;
+package com.rpg.model.dnd.equipment;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "traits")
-public class Trait {
+@Table(name = "weapon_properties")
+public class WeaponProperty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +13,10 @@ public class Trait {
     @Column(length = 4095)
     private String description;
 
-    public Trait() {
+    public WeaponProperty() {
     }
 
-    public Trait(String name, String description) {
+    public WeaponProperty(String name, String description) {
         this.name = name;
         this.description = description;
     }

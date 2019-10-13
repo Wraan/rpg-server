@@ -1,7 +1,7 @@
-package com.rpg.service;
+package com.rpg.service.security;
 
 import com.rpg.model.security.Role;
-import com.rpg.repository.RoleRepository;
+import com.rpg.repository.security.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

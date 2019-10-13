@@ -1,26 +1,25 @@
-package com.rpg.model.dnd;
+package com.rpg.model.dnd.types;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "skills")
-public class Skill {
+@Table(name = "magic_schools")
+public class MagicSchool {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
     @Column(length = 4095)
     private String description;
-    private String abilityScore;
 
-    public Skill() {
+    public MagicSchool() {
     }
 
-    public Skill(String name, String description, String abilityScore) {
+    public MagicSchool(String name, String description) {
         this.name = name;
         this.description = description;
-        this.abilityScore = abilityScore;
     }
 
     public long getId() {
@@ -45,13 +44,5 @@ public class Skill {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getAbilityScore() {
-        return abilityScore;
-    }
-
-    public void setAbilityScore(String abilityScore) {
-        this.abilityScore = abilityScore;
     }
 }

@@ -14,7 +14,7 @@
     "material": "Powdered rhubarb leaf and an adder's stomach.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -31,7 +31,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -49,7 +49,7 @@
     "material": "A tiny strip of white cloth.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -67,7 +67,7 @@
     "material": "A tiny bell and a piece of fine silver wire.",
     "ritual": true,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -84,7 +84,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -102,7 +102,7 @@
     "material": "A morsel of food.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -120,7 +120,7 @@
     "material": "A morsel of food.",
     "ritual": true,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -137,7 +137,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 24 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -155,7 +155,7 @@
     "material": "A drop of blood, a piece of flesh, and a pinch of bone dust.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -172,7 +172,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -189,7 +189,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -207,7 +207,7 @@
     "material": "A pinch of powdered iron or iron filings.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -225,7 +225,7 @@
     "material": "Either a lump of alum soaked in vinegar for the antipathy effect or a drop of honey for the sympathy effect.",
     "ritual": false,
     "duration": "10 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -243,7 +243,7 @@
     "material": "A bit of bat fur.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -261,7 +261,7 @@
     "material": "An eggshell and a snakeskin glove.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -279,7 +279,7 @@
     "material": "Gold dust worth at least 25gp, which the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -297,7 +297,7 @@
     "material": "A miniature platinum sword with a grip and pommel of copper and zinc, worth 250 gp.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -315,7 +315,7 @@
     "material": "A small square of silk.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -333,7 +333,7 @@
     "material": "For each creature you affect with this spell, you must provide one jacinth worth at least 1,000gp and one ornately carved bar of silver worth at least 100gp, all of which the spell consumes.",
     "ritual": false,
     "duration": "Special",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -351,7 +351,7 @@
     "material": "Specially marked sticks, bones, or similar tokens worth at least 25gp.",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -369,7 +369,7 @@
     "material": "An agate worth at least 1,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "8 hours"
   },
   {
@@ -387,7 +387,7 @@
     "material": "A drop of blood.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -405,7 +405,7 @@
     "material": "An item distasteful to the target.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -423,7 +423,7 @@
     "material": "A handful of oak bark.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -440,7 +440,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -457,7 +457,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -475,7 +475,7 @@
     "material": "A piece of tentacle from a giant octopus or a giant squid",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -492,7 +492,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -510,7 +510,7 @@
     "material": "A sprinkling of holy water.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -527,7 +527,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -544,7 +544,7 @@
     "components": "V",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -561,7 +561,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -578,7 +578,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -595,7 +595,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -612,7 +612,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -629,7 +629,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -646,7 +646,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -664,7 +664,7 @@
     "material": "A bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -681,7 +681,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -698,7 +698,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -716,7 +716,7 @@
     "material": "The powder of a crushed black pearl worth at least 500 gp.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -734,7 +734,7 @@
     "material": "A focus worth at least 100gp, either a jeweled horn for hearing or a glass eye for seeing.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "10 minutes"
   },
   {
@@ -752,7 +752,7 @@
     "material": "A diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold a Medium creature, such as a huge urn, coffin, mud-filled cyst in the ground, or crystal container filled with salt water.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -769,7 +769,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -787,7 +787,7 @@
     "material": "A pinch of powder or sand that is colored red, yellow, and blue.",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -804,7 +804,7 @@
     "components": "V",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -822,7 +822,7 @@
     "material": "Incense and a vial of holy or unholy water.",
     "ritual": true,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -839,7 +839,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -857,7 +857,7 @@
     "material": "A pinch of soot and salt.",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -874,7 +874,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -892,7 +892,7 @@
     "material": "A small crystal or glass cone.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -910,7 +910,7 @@
     "material": "Three walnut shells.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -927,7 +927,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -944,7 +944,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 minute"
   },
   {
@@ -962,7 +962,7 @@
     "material": "Burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 minute"
   },
   {
@@ -979,7 +979,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 minute"
   },
   {
@@ -996,7 +996,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 minute"
   },
   {
@@ -1014,7 +1014,7 @@
     "material": "One holly berry per creature summoned.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1031,7 +1031,7 @@
     "components": "V",
     "ritual": true,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -1048,7 +1048,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "7 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1066,7 +1066,7 @@
     "material": "A statuette of yourself carved from ivory and decorated with gems worth at least 1,500 gp.",
     "ritual": false,
     "duration": "10 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -1084,7 +1084,7 @@
     "material": "Ruby dust worth 50 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1102,7 +1102,7 @@
     "material": "A drop of water and a pinch of dust.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1120,7 +1120,7 @@
     "material": "Burning incense and bits of earth and wood mixed in water.",
     "ritual": false,
     "duration": "Up to 8 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "10 minutes"
   },
   {
@@ -1137,7 +1137,7 @@
     "components": "S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 reaction"
   },
   {
@@ -1154,7 +1154,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1172,7 +1172,7 @@
     "material": "One clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150 gp black onyx stone for each corpse.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -1190,7 +1190,7 @@
     "material": "A drop of water if creating water, or a few grains of sand if destroying it.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1208,7 +1208,7 @@
     "material": "A tiny piece of matter of the same type of the item you plan to create.",
     "ritual": false,
     "duration": "Special",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -1225,7 +1225,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1243,7 +1243,7 @@
     "material": "A bit of phosphorus or wychwood, or a glowworm.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1261,7 +1261,7 @@
     "material": "Bat fur and a drop of pitch or piece of coal.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1279,7 +1279,7 @@
     "material": "Either a pinch of dried carrot or an agate.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1296,7 +1296,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1313,7 +1313,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1331,7 +1331,7 @@
     "material": "A tiny ball of bat guano and sulfur.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1348,7 +1348,7 @@
     "components": "S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1365,7 +1365,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1382,7 +1382,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1400,7 +1400,7 @@
     "material": "A yew leaf.",
     "ritual": true,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1418,7 +1418,7 @@
     "material": "A copper coin.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1435,7 +1435,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1452,7 +1452,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1470,7 +1470,7 @@
     "material": "A lodestone and a pinch of dust.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1488,7 +1488,7 @@
     "material": "Holy water or powdered silver and iron.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1505,7 +1505,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1523,7 +1523,7 @@
     "material": "Incense and a sacrificial offering appropriate to your religion, together worth at least 25gp, which the spell consumes.",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1540,7 +1540,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -1557,7 +1557,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -1574,7 +1574,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1591,7 +1591,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1608,7 +1608,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1626,7 +1626,7 @@
     "material": "A handful of sand, a dab of ink, and a writing quill plucked from a sleeping bird.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -1643,7 +1643,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1661,7 +1661,7 @@
     "material": "A pinch of dirt, a piece of rock, and a lump of clay.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1678,7 +1678,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1696,7 +1696,7 @@
     "material": "Fur or a feather from a beast.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1714,7 +1714,7 @@
     "material": "A pinch iron powder.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1731,7 +1731,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1748,7 +1748,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1765,7 +1765,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1782,7 +1782,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -1799,7 +1799,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1816,7 +1816,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -1833,7 +1833,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1851,7 +1851,7 @@
     "material": "A tiny silver whistle, a piece of bone, and a thread",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1869,7 +1869,7 @@
     "material": "A small amount of alcohol or distilled spirits.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1887,7 +1887,7 @@
     "material": "A white feather or the heart of a hen.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -1905,7 +1905,7 @@
     "material": "A small feather or a piece of down.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 reaction"
   },
   {
@@ -1923,7 +1923,7 @@
     "material": "A handful of clay, crystal, glass, or mineral spheres.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1941,7 +1941,7 @@
     "material": "10gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier.",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -1958,7 +1958,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -1975,7 +1975,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -1993,7 +1993,7 @@
     "material": "A set of divinatory tools--such as bones, ivory sticks, cards, teeth, or carved runes--worth 100gp and an object from the location you wish to find.",
     "ritual": false,
     "duration": "Up to 24 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 minute"
   },
   {
@@ -2010,7 +2010,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2027,7 +2027,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2045,7 +2045,7 @@
     "material": "A little phosphorus or a firefly.",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2062,7 +2062,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2080,7 +2080,7 @@
     "material": "A tiny ball of bat guano and sulfur.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2098,7 +2098,7 @@
     "material": "Leaf of sumac.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -2116,7 +2116,7 @@
     "material": "Pinch of sulfur.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2134,7 +2134,7 @@
     "material": "A bit of tallow, a pinch of brimstone, and a dusting of powdered iron.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2152,7 +2152,7 @@
     "material": "A pinch of lime, water, and earth.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2170,7 +2170,7 @@
     "material": "A drop of mercury.",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2188,7 +2188,7 @@
     "material": "A wing feather from any bird.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2205,7 +2205,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2223,7 +2223,7 @@
     "material": "A sprinkling of holy water, rare incense, and powdered ruby worth at least 1,000 gp.",
     "ritual": true,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -2241,7 +2241,7 @@
     "material": "Ruby dust worth 1,500 gp.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2259,7 +2259,7 @@
     "material": "A hummingbird feather.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -2277,7 +2277,7 @@
     "material": "A leather strap, bound around the arm or a similar appendage.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2295,7 +2295,7 @@
     "material": "A small crystal sphere.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2313,7 +2313,7 @@
     "material": "A bit of gauze and a wisp of smoke.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2331,7 +2331,7 @@
     "material": "A diamond worth at least 5,000gp.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2348,7 +2348,7 @@
     "components": "V",
     "ritual": false,
     "duration": "30 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -2366,7 +2366,7 @@
     "material": "A pinch of salt and one copper piece placed on each of the corpse's eyes, which must remain there for the duration.",
     "ritual": true,
     "duration": "10 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2383,7 +2383,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2400,7 +2400,7 @@
     "components": "V",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2418,7 +2418,7 @@
     "material": "A glass or crystal bead that shatters when the spell ends.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2436,7 +2436,7 @@
     "material": "Incense and powdered diamond worth at least 200 gp, the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -2454,7 +2454,7 @@
     "material": "A sprig of mistletoe.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2472,7 +2472,7 @@
     "material": "A bit of pork rind or butter.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2489,7 +2489,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2507,7 +2507,7 @@
     "material": "Diamond dust worth at least 100gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2524,7 +2524,7 @@
     "components": "V",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2542,7 +2542,7 @@
     "material": "Burning incense, a small measure of brimstone and oil, a knotted string, a small amount of umber hulk blood, and a small silver rod worth at least 10 gp.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -2559,7 +2559,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2576,7 +2576,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2594,7 +2594,7 @@
     "material": "A legume seed.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2612,7 +2612,7 @@
     "material": "Herbs, oils, and incense worth at least 1,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "24 hours"
   },
   {
@@ -2630,7 +2630,7 @@
     "material": "A stone, a twig, and a bit of green plant.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -2647,7 +2647,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2665,7 +2665,7 @@
     "material": "A shaving of licorice root.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2682,7 +2682,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2699,7 +2699,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -2717,7 +2717,7 @@
     "material": "A piece of iron and a flame.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2734,7 +2734,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 reaction"
   },
   {
@@ -2752,7 +2752,7 @@
     "material": "A gem-encrusted bowl worth at least 1,000gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -2769,7 +2769,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2787,7 +2787,7 @@
     "material": "Tiny tarts and a feather that is waved in the air.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2805,7 +2805,7 @@
     "material": "A small piece of iron.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2823,7 +2823,7 @@
     "material": "A small, straight piece of iron.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2841,7 +2841,7 @@
     "material": "A tiny reliquary worth at least 1,000gp containing a sacred relic, such as a scrap of cloth from a saint's robe or a piece of parchment from a religious text.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2858,7 +2858,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -2876,7 +2876,7 @@
     "material": "A glowing stick of incense or a crystal vial filled with phosphorescent material.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2894,7 +2894,7 @@
     "material": "A pinch of dust and a few drops of water.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -2912,7 +2912,7 @@
     "material": "A pearl worth at least 100gp and an owl feather.",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -2930,7 +2930,7 @@
     "material": "A lead-based ink worth at least 10gp, which this spell consumes.",
     "ritual": true,
     "duration": "10 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -2948,7 +2948,7 @@
     "material": "A vellum depiction or a carved statuette in the likeness of the target, and a special component that varies according to the version of the spell you choose, worth at least 500gp per Hit Die of the target.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -2965,7 +2965,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -2982,7 +2982,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3000,7 +3000,7 @@
     "material": "A few grains of sugar, some kernels of grain, and a smear of fat.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3018,7 +3018,7 @@
     "material": "A sapphire worth 1,000 gp.",
     "ritual": true,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3036,7 +3036,7 @@
     "material": "An eyelash encased in gum arabic.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3053,7 +3053,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3071,7 +3071,7 @@
     "material": "A grasshopper's hind leg.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3088,7 +3088,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3106,7 +3106,7 @@
     "material": "Incense worth 250 inches that fate consumes and four sticks of ivory worth 50 gp each.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -3123,7 +3123,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3141,7 +3141,7 @@
     "material": "Either a small leather loop or a piece of golden wire bent into a cup shape with a long shank on one end.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3159,7 +3159,7 @@
     "material": "A firefly or phosphorescent moss.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3177,7 +3177,7 @@
     "material": "A bit of fur and a rod of amber, crystal, or glass.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3195,7 +3195,7 @@
     "material": "A bit of fur from a bloodhound.",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3213,7 +3213,7 @@
     "material": "A bit of fur from a bloodhound.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3231,7 +3231,7 @@
     "material": "A forked twig.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3249,7 +3249,7 @@
     "material": "A pinch of dirt.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3267,7 +3267,7 @@
     "material": "A piece of cured leather.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3284,7 +3284,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3302,7 +3302,7 @@
     "material": "Holy water or powdered silver and iron worth at least 100 gp, which the spell consumes.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3320,7 +3320,7 @@
     "material": "A gem, crystal, reliquary, or some other ornamental container worth at least 500 gp.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3337,7 +3337,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3355,7 +3355,7 @@
     "material": "A honeycomb and jade dust of at least 10 inches, the spell consumes.",
     "ritual": true,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3372,7 +3372,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -3390,7 +3390,7 @@
     "material": "A miniature portal carved from ivory, a small piece of polished marble, and a tiny silver spoon, each item worth at least 5 gp.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3408,7 +3408,7 @@
     "material": "A bit of fleece.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3425,7 +3425,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3442,7 +3442,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3459,7 +3459,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -3477,7 +3477,7 @@
     "material": "A snake's tongue and either a bit of honeycomb or a drop of sweet oil.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3494,7 +3494,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3511,7 +3511,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3529,7 +3529,7 @@
     "material": "Two lodestones.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3547,7 +3547,7 @@
     "material": "A short piece of copper wire.",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3564,7 +3564,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3581,7 +3581,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3599,7 +3599,7 @@
     "material": "A bit of fleece.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3616,7 +3616,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "10 days",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -3633,7 +3633,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3650,7 +3650,7 @@
     "components": "S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3667,7 +3667,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -3684,7 +3684,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3702,7 +3702,7 @@
     "material": "Several seeds of any moonseed plant and a piece of opalescent feldspar.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3720,7 +3720,7 @@
     "material": "An iron blade and a small bag containing a mixture of soils--clay, loam, and sand.",
     "ritual": false,
     "duration": "Up to 2 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3738,7 +3738,7 @@
     "material": "A pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3756,7 +3756,7 @@
     "material": "Ashes from a burned leaf of mistletoe and a sprig of spruce.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3774,7 +3774,7 @@
     "material": "A pinch of sesame seeds.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3791,7 +3791,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3808,7 +3808,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -3825,7 +3825,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -3843,7 +3843,7 @@
     "material": "A jewel worth at least 1,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -3861,7 +3861,7 @@
     "material": "A forked, metal rod worth at least 250 gp, attuned to a particular plane of existence.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3878,7 +3878,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3895,7 +3895,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3913,7 +3913,7 @@
     "material": "A caterpillar cocoon.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -3930,7 +3930,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3947,7 +3947,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3964,7 +3964,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -3981,7 +3981,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -3998,7 +3998,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4015,7 +4015,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4033,7 +4033,7 @@
     "material": "A thin sheet of lead, a piece of opaque glass, a wad of cotton or cloth, and powdered chrysolite.",
     "ritual": false,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "10 minutes"
   },
   {
@@ -4050,7 +4050,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4068,7 +4068,7 @@
     "material": "A bit of fleece and jade dust worth at least 25 gp.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4086,7 +4086,7 @@
     "material": "A small replica of you made from materials worth at least 5 gp.",
     "ritual": false,
     "duration": "Up to 24 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4103,7 +4103,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4121,7 +4121,7 @@
     "material": "Holy water or powdered silver and iron, which the spell consumes.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4138,7 +4138,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4155,7 +4155,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4173,7 +4173,7 @@
     "material": "A diamond worth at least 500gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -4190,7 +4190,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4207,7 +4207,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4225,7 +4225,7 @@
     "material": "A prayer wheel and holy water.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -4243,7 +4243,7 @@
     "material": "Rare oils and unguents worth at least 1,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -4260,7 +4260,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4278,7 +4278,7 @@
     "material": "A hemispherical piece of clear crystal and a matching hemispherical piece of gum arabic.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4296,7 +4296,7 @@
     "material": "A miniature cloak.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4314,7 +4314,7 @@
     "material": "A diamond worth at least 1,000gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -4332,7 +4332,7 @@
     "material": "A lodestone and iron filings.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4350,7 +4350,7 @@
     "material": "Diamonds worth 300gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4368,7 +4368,7 @@
     "material": "Powdered corn extract and a twisted loop of parchment.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4385,7 +4385,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4403,7 +4403,7 @@
     "material": "A small silver mirror.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -4420,7 +4420,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4438,7 +4438,7 @@
     "material": "A focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "10 minutes"
   },
   {
@@ -4456,7 +4456,7 @@
     "material": "An exquisite chest, 3 feet by 2 feet by 2 feet, constructed from rare materials worth at least 5,000 gp, and a Tiny replica made from the same materials worth at least 50 gp.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4474,7 +4474,7 @@
     "material": "A dash of talc and a small amount of silver powder.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4491,7 +4491,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4509,7 +4509,7 @@
     "material": "A short piece of fine copper wire.",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4527,7 +4527,7 @@
     "material": "A powder composed of diamond, emerald, ruby, and sapphire dust worth at least 5,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4545,7 +4545,7 @@
     "material": "A jade circlet worth at least 1,500 gp, which you must place on your head before you cast the spell.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4563,7 +4563,7 @@
     "material": "A burst of mica.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4580,7 +4580,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 reaction"
   },
   {
@@ -4598,7 +4598,7 @@
     "material": "A small parchment with a bit of holy text written on it.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 bonus action"
   },
   {
@@ -4616,7 +4616,7 @@
     "material": "Mistletoe, a shamrock leaf, and a club or quarterstaff.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -4633,7 +4633,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4650,7 +4650,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4668,7 +4668,7 @@
     "material": "A bit of fleece.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4686,7 +4686,7 @@
     "material": "Snow or ice in quantities sufficient to made a life-size copy of the duplicated creature; some hair, fingernail clippings, or other piece of that creature's body placed inside the snow or ice; and powdered ruby worth 1,500 gp, sprinkled over the duplicate and consumed by the spell.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "12 hours"
   },
   {
@@ -4704,7 +4704,7 @@
     "material": "A pinch of fine sand, rose petals, or a cricket.",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4722,7 +4722,7 @@
     "material": "A pinch of dust and a few drops of water.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4740,7 +4740,7 @@
     "material": "A drop of molasses.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4757,7 +4757,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4774,7 +4774,7 @@
     "components": "V S",
     "ritual": true,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4792,7 +4792,7 @@
     "material": "Burning incense.",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4809,7 +4809,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4827,7 +4827,7 @@
     "material": "A drop of bitumen and a spider.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4845,7 +4845,7 @@
     "material": "Seven sharp spines or seven twigs cut peak.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4863,7 +4863,7 @@
     "material": "A holy symbol.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4880,7 +4880,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 bonus action"
   },
   {
@@ -4898,7 +4898,7 @@
     "material": "A rotten egg or several skunk cabbage leaves.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4916,7 +4916,7 @@
     "material": "Soft clay, to be crudely worked into the desired shape for the stone object.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -4934,7 +4934,7 @@
     "material": "Diamond dust worth 100 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4951,7 +4951,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4969,7 +4969,7 @@
     "material": "A snake's tongue and either a bit of honeycomb or a drop of sweet oil.",
     "ritual": false,
     "duration": "Up to 8 hours",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -4987,7 +4987,7 @@
     "material": "A magnifying glass.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5005,7 +5005,7 @@
     "material": "Fire and a piece of sunstone.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5023,7 +5023,7 @@
     "material": "Mercury, phosphorus, and powdered diamond and opal with a total value of at least 1,000 gp, which the spell consumes.",
     "ritual": false,
     "duration": "Until dispelled",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -5040,7 +5040,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5058,7 +5058,7 @@
     "material": "Pieces of eggshell from two different kinds of creatures",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5075,7 +5075,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5093,7 +5093,7 @@
     "material": "Rare chalks and inks infused with precious gems with 50 gp, which the spell consumes.",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -5110,7 +5110,7 @@
     "components": "V",
     "ritual": false,
     "duration": "1 minute",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5127,7 +5127,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5144,7 +5144,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5162,7 +5162,7 @@
     "material": "A small crystal bead.",
     "ritual": true,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -5180,7 +5180,7 @@
     "material": "A small clay model of a ziggurat.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5197,7 +5197,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "1 round",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5214,7 +5214,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5232,7 +5232,7 @@
     "material": "A drop of mercury, a dollop of gum arabic, and a wisp of smoke.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5250,7 +5250,7 @@
     "material": "A sprinkle of holy water and diamonds worth at least 25,000gp, which the spell consumes.",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 hour"
   },
   {
@@ -5268,7 +5268,7 @@
     "material": "An ointment for the eyes that costs 25gp; is made from mushroom powder, saffron, and fat; and is consumed by the spell.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5285,7 +5285,7 @@
     "components": "S",
     "ritual": false,
     "duration": "Up to 1 round",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5303,7 +5303,7 @@
     "material": "A piece of string and a bit of wood.",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5320,7 +5320,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5337,7 +5337,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5355,7 +5355,7 @@
     "material": "A small piece of phosphorus.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5373,7 +5373,7 @@
     "material": "A pinch of powder made by crushing a clear gemstone.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5391,7 +5391,7 @@
     "material": "A small piece of quartz.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5409,7 +5409,7 @@
     "material": "A small block of granite.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5427,7 +5427,7 @@
     "material": "A handful of thorns.",
     "ritual": false,
     "duration": "Up to 10 minutes",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5445,7 +5445,7 @@
     "material": "A pair of platinum rings worth at least 50gp each, which you and the target must wear for the duration.",
     "ritual": false,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5463,7 +5463,7 @@
     "material": "A short piece of reed or straw.",
     "ritual": true,
     "duration": "24 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5481,7 +5481,7 @@
     "material": "A piece of cork.",
     "ritual": true,
     "duration": "1 hour",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5499,7 +5499,7 @@
     "material": "A bit of spiderweb.",
     "ritual": false,
     "duration": "Up to 1 hour",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5516,7 +5516,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5534,7 +5534,7 @@
     "material": "Fire and holy water.",
     "ritual": false,
     "duration": "8 hours",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 minute"
   },
   {
@@ -5552,7 +5552,7 @@
     "material": "A tiny fan and a feather of exotic origin.",
     "ritual": false,
     "duration": "Up to 1 minute",
-    "concetration": true,
+    "concentration": true,
     "castingTime": "1 action"
   },
   {
@@ -5569,7 +5569,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5586,7 +5586,7 @@
     "components": "V",
     "ritual": false,
     "duration": "Instantaneous",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   },
   {
@@ -5603,7 +5603,7 @@
     "components": "V S",
     "ritual": false,
     "duration": "10 minutes",
-    "concetration": false,
+    "concentration": false,
     "castingTime": "1 action"
   }
 ]

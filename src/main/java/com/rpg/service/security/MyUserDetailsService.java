@@ -1,4 +1,4 @@
-package com.rpg.service;
+package com.rpg.service.security;
 
 import com.rpg.model.security.User;
 import org.springframework.security.core.userdetails.UserDetails;

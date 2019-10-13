@@ -1,4 +1,4 @@
-package com.rpg.service;
+package com.rpg.service.security;
 
 import com.rpg.dto.UserRegistrationFormDto;
 

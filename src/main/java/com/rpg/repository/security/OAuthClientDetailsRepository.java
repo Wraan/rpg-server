@@ -1,4 +1,4 @@
-package com.rpg.repository;
+package com.rpg.repository.security;
 
 import com.rpg.model.security.OAuthClientDetails;
 import org.springframework.data.jpa.repository.JpaRepository;

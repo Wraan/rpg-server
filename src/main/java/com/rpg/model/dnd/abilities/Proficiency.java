@@ -1,24 +1,24 @@
-package com.rpg.model.dnd;
+package com.rpg.model.dnd.abilities;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "weapon_properties")
-public class WeaponProperty {
+@Table(name = "proficiencies")
+public class Proficiency {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    @Column(length = 4095)
-    private String description;
 
-    public WeaponProperty() {
+    private String name;
+    private String type;
+
+    public Proficiency() {
     }
 
-    public WeaponProperty(String name, String description) {
+    public Proficiency(String name, String type) {
         this.name = name;
-        this.description = description;
+        this.type = type;
     }
 
     public long getId() {
@@ -37,11 +37,11 @@ public class WeaponProperty {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
 }

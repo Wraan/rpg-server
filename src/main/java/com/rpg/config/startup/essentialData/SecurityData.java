@@ -1,11 +1,11 @@
-package com.rpg.config.security;
+package com.rpg.config.startup.essentialData;
 
 import com.rpg.model.security.OAuthClientDetails;
 import com.rpg.model.security.Role;
 import com.rpg.model.security.User;
-import com.rpg.repository.OAuthClientDetailsRepository;
-import com.rpg.service.MyUserDetailsService;
-import com.rpg.service.RoleService;
+import com.rpg.repository.security.OAuthClientDetailsRepository;
+import com.rpg.service.security.MyUserDetailsService;
+import com.rpg.service.security.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Component
 @EnableScheduling
-public class StartupSecurityEssentialData implements ApplicationRunner {
+public class SecurityData implements ApplicationRunner {
 
     @Autowired
     private OAuthClientDetailsRepository oauthClientDetailsRepository;
