@@ -1,0 +1,1039 @@
+[
+  {
+    "id": 1,
+    "name": "Club",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "1 sp"
+  },
+  {
+    "id": 2,
+    "name": "Dagger",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      },
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 1,
+    "cost": "2 gp"
+  },
+  {
+    "id": 3,
+    "name": "Greatclub",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 10,
+    "cost": "2 sp"
+  },
+  {
+    "id": 4,
+    "name": "Handaxe",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "5 gp"
+  },
+  {
+    "id": 5,
+    "name": "Javelin",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 30,
+    "longThrowRange": 120,
+    "properties": [
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "5 sp"
+  },
+  {
+    "id": 6,
+    "name": "Light hammer",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "2 gp"
+  },
+  {
+    "id": 7,
+    "name": "Mace",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 4,
+    "cost": "5 gp"
+  },
+  {
+    "id": 8,
+    "name": "Quarterstaff",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Versatile",
+        "id": "10"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 4,
+    "cost": "2 sp"
+  },
+  {
+    "id": 9,
+    "name": "Sickle",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "1 gp"
+  },
+  {
+    "id": 10,
+    "name": "Spear",
+    "category": "Simple",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Versatile",
+        "id": "10"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 3,
+    "cost": "1 gp"
+  },
+  {
+    "id": 11,
+    "name": "Crossbow, light",
+    "category": "Simple",
+    "weaponRange": "Ranged",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 80,
+    "longRange": 320,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Loading",
+        "id": "5"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 5,
+    "cost": "25 gp"
+  },
+  {
+    "id": 12,
+    "name": "Dart",
+    "category": "Simple",
+    "weaponRange": "Ranged",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 20,
+    "longRange": 60,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      },
+      {
+        "name": "Thrown",
+        "id": "8"
+      }
+    ],
+    "weight": 0.25,
+    "cost": "5 cp"
+  },
+  {
+    "id": 13,
+    "name": "Shortbow",
+    "category": "Simple",
+    "weaponRange": "Ranged",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 80,
+    "longRange": 320,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 2,
+    "cost": "25 gp"
+  },
+  {
+    "id": 14,
+    "name": "Sling",
+    "category": "Simple",
+    "weaponRange": "Ranged",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 30,
+    "longRange": 120,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      }
+    ],
+    "weight": 0,
+    "cost": "1 sp"
+  },
+  {
+    "id": 15,
+    "name": "Battleaxe",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Versatile",
+        "id": "10"
+      }
+    ],
+    "weight": 4,
+    "cost": "10 gp"
+  },
+  {
+    "id": 16,
+    "name": "Flail",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [],
+    "weight": 2,
+    "cost": "10 gp"
+  },
+  {
+    "id": 17,
+    "name": "Glaive",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d10",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Reach",
+        "id": "6"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 6,
+    "cost": "20 gp"
+  },
+  {
+    "id": 18,
+    "name": "Greataxe",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d12",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 7,
+    "cost": "30 gp"
+  },
+  {
+    "id": 19,
+    "name": "Greatsword",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "2d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 6,
+    "cost": "50 gp"
+  },
+  {
+    "id": 20,
+    "name": "Halberd",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d10",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Reach",
+        "id": "6"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 6,
+    "cost": "20 gp"
+  },
+  {
+    "id": 21,
+    "name": "Lance",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d12",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Reach",
+        "id": "6"
+      },
+      {
+        "name": "Special",
+        "id": "7"
+      }
+    ],
+    "weight": 6,
+    "cost": "10 gp"
+  },
+  {
+    "id": 22,
+    "name": "Longsword",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Versatile",
+        "id": "10"
+      }
+    ],
+    "weight": 3,
+    "cost": "15 gp"
+  },
+  {
+    "id": 23,
+    "name": "Maul",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "2d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 10,
+    "cost": "10 gp"
+  },
+  {
+    "id": 24,
+    "name": "Morningstar",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [],
+    "weight": 4,
+    "cost": "15 gp"
+  },
+  {
+    "id": 25,
+    "name": "Pike",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d10",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Reach",
+        "id": "6"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 18,
+    "cost": "5 gp"
+  },
+  {
+    "id": 26,
+    "name": "Rapier",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      }
+    ],
+    "weight": 2,
+    "cost": "25 gp"
+  },
+  {
+    "id": 27,
+    "name": "Scimitar",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      },
+      {
+        "name": "Light",
+        "id": "4"
+      }
+    ],
+    "weight": 3,
+    "cost": "25 gp"
+  },
+  {
+    "id": 28,
+    "name": "Shortsword",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      },
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Monk",
+        "id": "11"
+      }
+    ],
+    "weight": 2,
+    "cost": "10 gp"
+  },
+  {
+    "id": 29,
+    "name": "Trident",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": 20,
+    "longThrowRange": 60,
+    "properties": [
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Versatile",
+        "id": "10"
+      }
+    ],
+    "weight": 4,
+    "cost": "5 gp"
+  },
+  {
+    "id": 30,
+    "name": "War pick",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [],
+    "weight": 2,
+    "cost": "5 gp"
+  },
+  {
+    "id": 31,
+    "name": "Warhammer",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Bludgeoning",
+      "id": "2"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Versatile",
+        "id": "10"
+      }
+    ],
+    "weight": 2,
+    "cost": "15 gp"
+  },
+  {
+    "id": 32,
+    "name": "Whip",
+    "category": "Martial",
+    "weaponRange": "Melee",
+    "damageDice": "1d4",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": null,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Finesse",
+        "id": "2"
+      },
+      {
+        "name": "Reach",
+        "id": "6"
+      }
+    ],
+    "weight": 3,
+    "cost": "2 gp"
+  },
+  {
+    "id": 33,
+    "name": "Blowgun",
+    "category": "Martial",
+    "weaponRange": "Ranged",
+    "damageDice": "1d1",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 25,
+    "longRange": 100,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Loading",
+        "id": "5"
+      }
+    ],
+    "weight": 1,
+    "cost": "10 gp"
+  },
+  {
+    "id": 34,
+    "name": "Crossbow, hand",
+    "category": "Martial",
+    "weaponRange": "Ranged",
+    "damageDice": "1d6",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 30,
+    "longRange": 120,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Loading",
+        "id": "5"
+      }
+    ],
+    "weight": 3,
+    "cost": "75 gp"
+  },
+  {
+    "id": 35,
+    "name": "Crossbow, heavy",
+    "category": "Martial",
+    "weaponRange": "Ranged",
+    "damageDice": "1d10",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 100,
+    "longRange": 400,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Light",
+        "id": "4"
+      },
+      {
+        "name": "Loading",
+        "id": "5"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 18,
+    "cost": "50 gp"
+  },
+  {
+    "id": 36,
+    "name": "Longbow",
+    "category": "Martial",
+    "weaponRange": "Ranged",
+    "damageDice": "1d8",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Piercing",
+      "id": "8"
+    },
+    "normalRange": 150,
+    "longRange": 600,
+    "normalThrowRange": null,
+    "longThrowRange": null,
+    "properties": [
+      {
+        "name": "Ammunition",
+        "id": "1"
+      },
+      {
+        "name": "Heavy",
+        "id": "3"
+      },
+      {
+        "name": "Two-Handed",
+        "id": "9"
+      }
+    ],
+    "weight": 2,
+    "cost": "50 gp"
+  },
+  {
+    "id": 37,
+    "name": "Net",
+    "category": "Martial",
+    "weaponRange": "Ranged",
+    "damageDice": "1d0",
+    "damageBonus": 0,
+    "damageType": {
+      "name": "Slashing",
+      "id": "12"
+    },
+    "normalRange": 5,
+    "longRange": 15,
+    "normalThrowRange": 5,
+    "longThrowRange": 15,
+    "properties": [
+      {
+        "name": "Thrown",
+        "id": "8"
+      },
+      {
+        "name": "Special",
+        "id": "7"
+      }
+    ],
+    "weight": 3,
+    "cost": "1 gp"
+  }
+]

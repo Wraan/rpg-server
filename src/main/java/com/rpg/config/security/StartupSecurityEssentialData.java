@@ -20,7 +20,7 @@ import java.util.List;
 
 @Component
 @EnableScheduling
-public class StartupEssentialData implements ApplicationRunner {
+public class StartupSecurityEssentialData implements ApplicationRunner {
 
     @Autowired
     private OAuthClientDetailsRepository oauthClientDetailsRepository;

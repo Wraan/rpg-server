@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "name": "Camel",
+    "description": "",
+    "weight": null,
+    "cost": "50 gp"
+  },
+  {
+    "id": 2,
+    "name": "Donkey",
+    "description": "",
+    "weight": null,
+    "cost": "8 gp"
+  },
+  {
+    "id": 3,
+    "name": "Mule",
+    "description": "",
+    "weight": null,
+    "cost": "8 gp"
+  },
+  {
+    "id": 4,
+    "name": "Elephant",
+    "description": "",
+    "weight": null,
+    "cost": "200 gp"
+  },
+  {
+    "id": 5,
+    "name": "Horse, draft",
+    "description": "",
+    "weight": null,
+    "cost": "50 gp"
+  },
+  {
+    "id": 6,
+    "name": "Horse, riding",
+    "description": "",
+    "weight": null,
+    "cost": "75 gp"
+  },
+  {
+    "id": 7,
+    "name": "Mastiff",
+    "description": "",
+    "weight": null,
+    "cost": "25 gp"
+  },
+  {
+    "id": 8,
+    "name": "Pony",
+    "description": "",
+    "weight": null,
+    "cost": "30 gp"
+  },
+  {
+    "id": 9,
+    "name": "Warhorse",
+    "description": "",
+    "weight": null,
+    "cost": "400 gp"
+  },
+  {
+    "id": 10,
+    "name": "Barding: Padded",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 16,
+    "cost": "20 gp"
+  },
+  {
+    "id": 11,
+    "name": "Barding: Leather",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 20,
+    "cost": "40 gp"
+  },
+  {
+    "id": 12,
+    "name": "Barding: Studded Leather",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 26,
+    "cost": "180 gp"
+  },
+  {
+    "id": 13,
+    "name": "Barding: Hide",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 24,
+    "cost": "40 gp"
+  },
+  {
+    "id": 14,
+    "name": "Barding: Chain shirt",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 40,
+    "cost": "200 gp"
+  },
+  {
+    "id": 15,
+    "name": "Barding: Scale mail",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 90,
+    "cost": "200 gp"
+  },
+  {
+    "id": 16,
+    "name": "Barding: Breastplate",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 40,
+    "cost": "1600 gp"
+  },
+  {
+    "id": 17,
+    "name": "Barding: Half plate",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 80,
+    "cost": "3000 gp"
+  },
+  {
+    "id": 18,
+    "name": "Barding: Ring mail",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 80,
+    "cost": "12 gp"
+  },
+  {
+    "id": 19,
+    "name": "Barding: Chain mail",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 110,
+    "cost": "300 gp"
+  },
+  {
+    "id": 20,
+    "name": "Barding: Splint",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 120,
+    "cost": "800 gp"
+  },
+  {
+    "id": 21,
+    "name": "Barding: Plate",
+    "description": "Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much.",
+    "weight": 130,
+    "cost": "6000 gp"
+  },
+  {
+    "id": 22,
+    "name": "Bit and bridle",
+    "description": "",
+    "weight": 1,
+    "cost": "2 gp"
+  },
+  {
+    "id": 23,
+    "name": "Carriage",
+    "description": "",
+    "weight": 600,
+    "cost": "100 gp"
+  },
+  {
+    "id": 24,
+    "name": "Cart",
+    "description": "",
+    "weight": 200,
+    "cost": "15 gp"
+  },
+  {
+    "id": 25,
+    "name": "Chariot",
+    "description": "",
+    "weight": 100,
+    "cost": "250 gp"
+  },
+  {
+    "id": 26,
+    "name": "Animal Feed (1 day)",
+    "description": "",
+    "weight": 10,
+    "cost": "5 cp"
+  },
+  {
+    "id": 27,
+    "name": "Saddle, Exotic",
+    "description": "A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted. An exotic saddle is required for riding any aquatic or flying mount.",
+    "weight": 50,
+    "cost": "60 gp"
+  },
+  {
+    "id": 28,
+    "name": "Saddle, Military",
+    "description": "A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted. An exotic saddle is required for riding any aquatic or flying mount.",
+    "weight": 30,
+    "cost": "20 gp"
+  },
+  {
+    "id": 29,
+    "name": "Saddle, Pack",
+    "description": "A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted. An exotic saddle is required for riding any aquatic or flying mount.",
+    "weight": 15,
+    "cost": "5 gp"
+  },
+  {
+    "id": 30,
+    "name": "Riding",
+    "description": "",
+    "weight": 25,
+    "cost": "10 gp"
+  },
+  {
+    "id": 31,
+    "name": "Saddlebags",
+    "description": "",
+    "weight": 8,
+    "cost": "4 gp"
+  },
+  {
+    "id": 32,
+    "name": "Sled",
+    "description": "",
+    "weight": 300,
+    "cost": "20 gp"
+  },
+  {
+    "id": 33,
+    "name": "Stabling (1 day)",
+    "description": "",
+    "weight": null,
+    "cost": "5 sp"
+  },
+  {
+    "id": 34,
+    "name": "Wagon",
+    "description": "",
+    "weight": 400,
+    "cost": "35 gp"
+  },
+  {
+    "id": 35,
+    "name": "Galley",
+    "description": "",
+    "weight": null,
+    "cost": "30000 gp"
+  },
+  {
+    "id": 36,
+    "name": "Keelboat",
+    "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+    "weight": null,
+    "cost": "3000 gp"
+  },
+  {
+    "id": 37,
+    "name": "Longship",
+    "description": "",
+    "weight": null,
+    "cost": "10000 gp"
+  },
+  {
+    "id": 38,
+    "name": "Rowboat",
+    "description": "Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land.",
+    "weight": null,
+    "cost": "50 gp"
+  },
+  {
+    "id": 39,
+    "name": "Sailing ship",
+    "description": "",
+    "weight": null,
+    "cost": "10000 gp"
+  },
+  {
+    "id": 40,
+    "name": "Warship",
+    "description": "",
+    "weight": null,
+    "cost": "25000 gp"
+  }
+]

@@ -1,0 +1,612 @@
+[
+  {
+    "id": 1,
+    "name": "Light armor",
+    "type": "Armor"
+  },
+  {
+    "id": 2,
+    "name": "Medium armor",
+    "type": "Armor"
+  },
+  {
+    "id": 3,
+    "name": "Heavy armor",
+    "type": "Armor"
+  },
+  {
+    "id": 4,
+    "name": "All armor",
+    "type": "Armor"
+  },
+  {
+    "id": 5,
+    "name": "Padded",
+    "type": "Armor"
+  },
+  {
+    "id": 6,
+    "name": "Leather",
+    "type": "Armor"
+  },
+  {
+    "id": 7,
+    "name": "Studded Leather",
+    "type": "Armor"
+  },
+  {
+    "id": 8,
+    "name": "Hide",
+    "type": "Armor"
+  },
+  {
+    "id": 9,
+    "name": "Chain Shirt",
+    "type": "Armor"
+  },
+  {
+    "id": 10,
+    "name": "Scale Mail",
+    "type": "Armor"
+  },
+  {
+    "id": 11,
+    "name": "Breastplate",
+    "type": "Armor"
+  },
+  {
+    "id": 12,
+    "name": "Half Plate",
+    "type": "Armor"
+  },
+  {
+    "id": 13,
+    "name": "Ring Mail",
+    "type": "Armor"
+  },
+  {
+    "id": 14,
+    "name": "Chain Mail",
+    "type": "Armor"
+  },
+  {
+    "id": 15,
+    "name": "Splint",
+    "type": "Armor"
+  },
+  {
+    "id": 16,
+    "name": "Plate",
+    "type": "Armor"
+  },
+  {
+    "id": 17,
+    "name": "Shield",
+    "type": "Armor"
+  },
+  {
+    "id": 18,
+    "name": "Shields",
+    "type": "Armor"
+  },
+  {
+    "id": 19,
+    "name": "Simple weapons",
+    "type": "Weapons"
+  },
+  {
+    "id": 20,
+    "name": "Martial weapons",
+    "type": "Weapons"
+  },
+  {
+    "id": 21,
+    "name": "Clubs",
+    "type": "Weapons"
+  },
+  {
+    "id": 22,
+    "name": "Daggers",
+    "type": "Weapons"
+  },
+  {
+    "id": 23,
+    "name": "Greatclubs",
+    "type": "Weapons"
+  },
+  {
+    "id": 24,
+    "name": "Handaxes",
+    "type": "Weapons"
+  },
+  {
+    "id": 25,
+    "name": "Javelins",
+    "type": "Weapons"
+  },
+  {
+    "id": 26,
+    "name": "Light hammers",
+    "type": "Weapons"
+  },
+  {
+    "id": 27,
+    "name": "Maces",
+    "type": "Weapons"
+  },
+  {
+    "id": 28,
+    "name": "Quarterstaffs",
+    "type": "Weapons"
+  },
+  {
+    "id": 29,
+    "name": "Sickles",
+    "type": "Weapons"
+  },
+  {
+    "id": 30,
+    "name": "Spears",
+    "type": "Weapons"
+  },
+  {
+    "id": 31,
+    "name": "Crossbows, light",
+    "type": "Weapons"
+  },
+  {
+    "id": 32,
+    "name": "Darts",
+    "type": "Weapons"
+  },
+  {
+    "id": 33,
+    "name": "Shortbows",
+    "type": "Weapons"
+  },
+  {
+    "id": 34,
+    "name": "Slings",
+    "type": "Weapons"
+  },
+  {
+    "id": 35,
+    "name": "Battleaxes",
+    "type": "Weapons"
+  },
+  {
+    "id": 36,
+    "name": "Flails",
+    "type": "Weapons"
+  },
+  {
+    "id": 37,
+    "name": "Glaives",
+    "type": "Weapons"
+  },
+  {
+    "id": 38,
+    "name": "Greataxes",
+    "type": "Weapons"
+  },
+  {
+    "id": 39,
+    "name": "Greatswords",
+    "type": "Weapons"
+  },
+  {
+    "id": 40,
+    "name": "Halberds",
+    "type": "Weapons"
+  },
+  {
+    "id": 41,
+    "name": "Lances",
+    "type": "Weapons"
+  },
+  {
+    "id": 42,
+    "name": "Longswords",
+    "type": "Weapons"
+  },
+  {
+    "id": 43,
+    "name": "Mauls",
+    "type": "Weapons"
+  },
+  {
+    "id": 44,
+    "name": "Morningstars",
+    "type": "Weapons"
+  },
+  {
+    "id": 45,
+    "name": "Pikes",
+    "type": "Weapons"
+  },
+  {
+    "id": 46,
+    "name": "Rapiers",
+    "type": "Weapons"
+  },
+  {
+    "id": 47,
+    "name": "Scimitars",
+    "type": "Weapons"
+  },
+  {
+    "id": 48,
+    "name": "Shortswords",
+    "type": "Weapons"
+  },
+  {
+    "id": 49,
+    "name": "Tridents",
+    "type": "Weapons"
+  },
+  {
+    "id": 50,
+    "name": "War picks",
+    "type": "Weapons"
+  },
+  {
+    "id": 51,
+    "name": "Warhammers",
+    "type": "Weapons"
+  },
+  {
+    "id": 52,
+    "name": "Whips",
+    "type": "Weapons"
+  },
+  {
+    "id": 53,
+    "name": "Blowguns",
+    "type": "Weapons"
+  },
+  {
+    "id": 54,
+    "name": "Crossbows, hand",
+    "type": "Weapons"
+  },
+  {
+    "id": 55,
+    "name": "Crossbows, heavy",
+    "type": "Weapons"
+  },
+  {
+    "id": 56,
+    "name": "Longbows",
+    "type": "Weapons"
+  },
+  {
+    "id": 57,
+    "name": "Nets",
+    "type": "Weapons"
+  },
+  {
+    "id": 58,
+    "name": "Alchemist's supplies",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 59,
+    "name": "Brewer's supplies",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 60,
+    "name": "Calligrapher's supplies",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 61,
+    "name": "Carpenter's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 62,
+    "name": "Cartographer's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 63,
+    "name": "Cobbler's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 64,
+    "name": "Cook's utensils",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 65,
+    "name": "Glassblower's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 66,
+    "name": "Jeweler's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 67,
+    "name": "Leatherworker's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 68,
+    "name": "Mason's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 69,
+    "name": "Painter's supplies",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 70,
+    "name": "Potter's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 71,
+    "name": "Smith's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 72,
+    "name": "Tinker's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 73,
+    "name": "Weaver's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 74,
+    "name": "Woodcarver's tools",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 75,
+    "name": "Disguise kit",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 76,
+    "name": "Forgery kit",
+    "type": "Artisan's Tools"
+  },
+  {
+    "id": 77,
+    "name": "Dice Set",
+    "type": "Gaming Sets"
+  },
+  {
+    "id": 78,
+    "name": "Dragonchess set",
+    "type": "Gaming Sets"
+  },
+  {
+    "id": 79,
+    "name": "Playing card set",
+    "type": "Gaming Sets"
+  },
+  {
+    "id": 80,
+    "name": "Three-Dragon Ante set",
+    "type": "Gaming Sets"
+  },
+  {
+    "id": 81,
+    "name": "Bagpipes",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 82,
+    "name": "Drum",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 83,
+    "name": "Dulcimer",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 84,
+    "name": "Flute",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 85,
+    "name": "Lute",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 86,
+    "name": "Lyre",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 87,
+    "name": "Horn",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 88,
+    "name": "Pan flute",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 89,
+    "name": "Shawm",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 90,
+    "name": "Viol",
+    "type": "Musical Instruments"
+  },
+  {
+    "id": 91,
+    "name": "Disguise Kit",
+    "type": "Other"
+  },
+  {
+    "id": 92,
+    "name": "Forgery Kit",
+    "type": "Other"
+  },
+  {
+    "id": 93,
+    "name": "Herbalism Kit",
+    "type": "Other"
+  },
+  {
+    "id": 94,
+    "name": "Navigator's Tools",
+    "type": "Other"
+  },
+  {
+    "id": 95,
+    "name": "Poisoner's Kit",
+    "type": "Other"
+  },
+  {
+    "id": 96,
+    "name": "Thieves' Tools",
+    "type": "Other"
+  },
+  {
+    "id": 97,
+    "name": "Land Vehicles",
+    "type": "Vehicles"
+  },
+  {
+    "id": 98,
+    "name": "Water Vehicles",
+    "type": "Vehicles"
+  },
+  {
+    "id": 99,
+    "name": "Saving Throw: STR",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 100,
+    "name": "Saving Throw: DEX",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 101,
+    "name": "Saving Throw: CON",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 102,
+    "name": "Saving Throw: INT",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 103,
+    "name": "Saving Throw: WIS",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 104,
+    "name": "Saving Throw: CHA",
+    "type": "Saving Throws"
+  },
+  {
+    "id": 105,
+    "name": "Skill: Acrobatics",
+    "type": "Skills"
+  },
+  {
+    "id": 106,
+    "name": "Skill: Animal Handling",
+    "type": "Skills"
+  },
+  {
+    "id": 107,
+    "name": "Skill: Arcana",
+    "type": "Skills"
+  },
+  {
+    "id": 108,
+    "name": "Skill: Athletics",
+    "type": "Skills"
+  },
+  {
+    "id": 109,
+    "name": "Skill: Deception",
+    "type": "Skills"
+  },
+  {
+    "id": 110,
+    "name": "Skill: History",
+    "type": "Skills"
+  },
+  {
+    "id": 111,
+    "name": "Skill: Insight",
+    "type": "Skills"
+  },
+  {
+    "id": 112,
+    "name": "Skill: Intimidation",
+    "type": "Skills"
+  },
+  {
+    "id": 113,
+    "name": "Skill: Investigation",
+    "type": "Skills"
+  },
+  {
+    "id": 114,
+    "name": "Skill: Medicine",
+    "type": "Skills"
+  },
+  {
+    "id": 115,
+    "name": "Skill: Nature",
+    "type": "Skills"
+  },
+  {
+    "id": 116,
+    "name": "Skill: Perception",
+    "type": "Skills"
+  },
+  {
+    "id": 117,
+    "name": "Skill: Performance",
+    "type": "Skills"
+  },
+  {
+    "id": 118,
+    "name": "Skill: Persuasion",
+    "type": "Skills"
+  },
+  {
+    "id": 119,
+    "name": "Skill: Religion",
+    "type": "Skills"
+  },
+  {
+    "id": 120,
+    "name": "Skill: Sleight of Hand",
+    "type": "Skills"
+  },
+  {
+    "id": 121,
+    "name": "Skill: Stealth",
+    "type": "Skills"
+  },
+  {
+    "id": 122,
+    "name": "Skill: Survival",
+    "type": "Skills"
+  }
+]

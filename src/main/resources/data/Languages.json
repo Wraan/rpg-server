@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Common",
+    "type": "Standard",
+    "script": "Common"
+  },
+  {
+    "id": 2,
+    "name": "Dwarvish",
+    "type": "Standard",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 3,
+    "name": "Elvish",
+    "type": "Standard",
+    "script": "Elvish"
+  },
+  {
+    "id": 4,
+    "name": "Giant",
+    "type": "Standard",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 5,
+    "name": "Gnomish",
+    "type": "Standard",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 6,
+    "name": "Goblin",
+    "type": "Standard",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 7,
+    "name": "Halfling",
+    "type": "Standard",
+    "script": "Common"
+  },
+  {
+    "id": 8,
+    "name": "Orc",
+    "type": "Standard",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 9,
+    "name": "Abyssal",
+    "type": "Exotic",
+    "script": "Infernal"
+  },
+  {
+    "id": 10,
+    "name": "Celestial",
+    "type": "Exotic",
+    "script": "Celestial"
+  },
+  {
+    "id": 11,
+    "name": "Draconic",
+    "type": "Exotic",
+    "script": "Draconic"
+  },
+  {
+    "id": 12,
+    "name": "Deep Speech",
+    "type": "Exotic",
+    "script": "none"
+  },
+  {
+    "id": 13,
+    "name": "Infernal",
+    "type": "Exotic",
+    "script": "Infernal"
+  },
+  {
+    "id": 14,
+    "name": "Primordial",
+    "type": "Exotic",
+    "script": "Dwarvish"
+  },
+  {
+    "id": 15,
+    "name": "Sylvan",
+    "type": "Exotic",
+    "script": "Elvish"
+  },
+  {
+    "id": 16,
+    "name": "Undercommon",
+    "type": "Exotic",
+    "script": "Elvish"
+  }
+]

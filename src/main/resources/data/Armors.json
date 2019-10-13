@@ -1,0 +1,171 @@
+[
+  {
+    "id": 1,
+    "name": "Padded",
+    "armorClass": {
+      "base": 11,
+      "dex_bonus": true,
+      "max_bonus": null
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": true,
+    "weight": 8,
+    "cost": "5 gp"
+  },
+  {
+    "id": 2,
+    "name": "Leather",
+    "armorClass": {
+      "base": 11,
+      "dex_bonus": true,
+      "max_bonus": null
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 10,
+    "cost": "10 gp"
+  },
+  {
+    "id": 3,
+    "name": "Studded Leather",
+    "armorClass": {
+      "base": 12,
+      "dex_bonus": true,
+      "max_bonus": null
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 13,
+    "cost": "45 gp"
+  },
+  {
+    "id": 4,
+    "name": "Hide",
+    "armorClass": {
+      "base": 12,
+      "dex_bonus": true,
+      "max_bonus": 2
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 12,
+    "cost": "10 gp"
+  },
+  {
+    "id": 5,
+    "name": "Chain Shirt",
+    "armorClass": {
+      "base": 13,
+      "dex_bonus": true,
+      "max_bonus": 2
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 20,
+    "cost": "50 gp"
+  },
+  {
+    "id": 6,
+    "name": "Scale Mail",
+    "armorClass": {
+      "base": 14,
+      "dex_bonus": true,
+      "max_bonus": 2
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": true,
+    "weight": 45,
+    "cost": "50 gp"
+  },
+  {
+    "id": 7,
+    "name": "Breastplate",
+    "armorClass": {
+      "base": 14,
+      "dex_bonus": true,
+      "max_bonus": 2
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 20,
+    "cost": "400 gp"
+  },
+  {
+    "id": 8,
+    "name": "Half Plate",
+    "armorClass": {
+      "base": 15,
+      "dex_bonus": true,
+      "max_bonus": 2
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": true,
+    "weight": 40,
+    "cost": "750 gp"
+  },
+  {
+    "id": 9,
+    "name": "Ring Mail",
+    "armorClass": {
+      "base": 14,
+      "dex_bonus": false,
+      "max_bonus": null
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": true,
+    "weight": 40,
+    "cost": "30 gp"
+  },
+  {
+    "id": 10,
+    "name": "Chain Mail",
+    "armorClass": {
+      "base": 16,
+      "dex_bonus": false,
+      "max_bonus": null
+    },
+    "strMinimum": 13,
+    "stealthDisadvantage": true,
+    "weight": 55,
+    "cost": "75 gp"
+  },
+  {
+    "id": 11,
+    "name": "Splint",
+    "armorClass": {
+      "base": 17,
+      "dex_bonus": false,
+      "max_bonus": null
+    },
+    "strMinimum": 15,
+    "stealthDisadvantage": true,
+    "weight": 60,
+    "cost": "200 gp"
+  },
+  {
+    "id": 12,
+    "name": "Plate",
+    "armorClass": {
+      "base": 18,
+      "dex_bonus": false,
+      "max_bonus": null
+    },
+    "strMinimum": 15,
+    "stealthDisadvantage": true,
+    "weight": 65,
+    "cost": "1500 gp"
+  },
+  {
+    "id": 13,
+    "name": "Shield",
+    "armorClass": {
+      "base": 2,
+      "dex_bonus": false,
+      "max_bonus": null
+    },
+    "strMinimum": 0,
+    "stealthDisadvantage": false,
+    "weight": 6,
+    "cost": "10 gp"
+  }
+]
