@@ -1,4 +1,4 @@
-package com.rpg.dto;
+package com.rpg.dto.dnd;
 
 public class SpellJson {
 

@@ -4,8 +4,8 @@
     "name": "Padded",
     "armorClass": {
       "base": 11,
-      "dex_bonus": true,
-      "max_bonus": null
+      "dexBonus": true,
+      "maxBonus": 0
     },
     "strMinimum": 0,
     "stealthDisadvantage": true,
@@ -17,8 +17,8 @@
     "name": "Leather",
     "armorClass": {
       "base": 11,
-      "dex_bonus": true,
-      "max_bonus": null
+      "dexBonus": true,
+      "maxBonus": 0
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,
@@ -30,8 +30,8 @@
     "name": "Studded Leather",
     "armorClass": {
       "base": 12,
-      "dex_bonus": true,
-      "max_bonus": null
+      "dexBonus": true,
+      "maxBonus": 0
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,
@@ -43,8 +43,8 @@
     "name": "Hide",
     "armorClass": {
       "base": 12,
-      "dex_bonus": true,
-      "max_bonus": 2
+      "dexBonus": true,
+      "maxBonus": 2
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,
@@ -56,8 +56,8 @@
     "name": "Chain Shirt",
     "armorClass": {
       "base": 13,
-      "dex_bonus": true,
-      "max_bonus": 2
+      "dexBonus": true,
+      "maxBonus": 2
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,
@@ -69,8 +69,8 @@
     "name": "Scale Mail",
     "armorClass": {
       "base": 14,
-      "dex_bonus": true,
-      "max_bonus": 2
+      "dexBonus": true,
+      "maxBonus": 2
     },
     "strMinimum": 0,
     "stealthDisadvantage": true,
@@ -82,8 +82,8 @@
     "name": "Breastplate",
     "armorClass": {
       "base": 14,
-      "dex_bonus": true,
-      "max_bonus": 2
+      "dexBonus": true,
+      "maxBonus": 2
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,
@@ -95,8 +95,8 @@
     "name": "Half Plate",
     "armorClass": {
       "base": 15,
-      "dex_bonus": true,
-      "max_bonus": 2
+      "dexBonus": true,
+      "maxBonus": 2
     },
     "strMinimum": 0,
     "stealthDisadvantage": true,
@@ -108,8 +108,8 @@
     "name": "Ring Mail",
     "armorClass": {
       "base": 14,
-      "dex_bonus": false,
-      "max_bonus": null
+      "dexBonus": false,
+      "maxBonus": 0
     },
     "strMinimum": 0,
     "stealthDisadvantage": true,
@@ -121,8 +121,8 @@
     "name": "Chain Mail",
     "armorClass": {
       "base": 16,
-      "dex_bonus": false,
-      "max_bonus": null
+      "dexBonus": false,
+      "maxBonus": 0
     },
     "strMinimum": 13,
     "stealthDisadvantage": true,
@@ -134,8 +134,8 @@
     "name": "Splint",
     "armorClass": {
       "base": 17,
-      "dex_bonus": false,
-      "max_bonus": null
+      "dexBonus": false,
+      "maxBonus": 0
     },
     "strMinimum": 15,
     "stealthDisadvantage": true,
@@ -147,8 +147,8 @@
     "name": "Plate",
     "armorClass": {
       "base": 18,
-      "dex_bonus": false,
-      "max_bonus": null
+      "dexBonus": false,
+      "maxBonus": 0
     },
     "strMinimum": 15,
     "stealthDisadvantage": true,
@@ -160,8 +160,8 @@
     "name": "Shield",
     "armorClass": {
       "base": 2,
-      "dex_bonus": false,
-      "max_bonus": null
+      "dexBonus": false,
+      "maxBonus": 0
     },
     "strMinimum": 0,
     "stealthDisadvantage": false,

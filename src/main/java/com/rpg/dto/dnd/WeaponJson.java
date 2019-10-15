@@ -1,57 +1,35 @@
-package com.rpg.model.dnd.equipment;
+package com.rpg.dto.dnd;
 
-import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.WeaponProperty;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "weapons")
-public class Weapon {
+public class WeaponJson {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String category;
     private String weaponRange;
     private String damageDice;
     private int damageBonus;
-    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "damage_type_id", referencedColumnName = "id")
-    private DamageType damageType;
+    private DamageTypeJson damageType;
     private int normalRange;
     private int longRange;
     private int normalThrowRange;
     private int longThrowRange;
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "weapons_weapons_properties",
-            joinColumns = { @JoinColumn(name = "weapon_id") },
-            inverseJoinColumns = { @JoinColumn(name = "weapon_property_id") })
-    private List<WeaponProperty> properties;
+    private List<WeaponPropertyJson> properties;
     private int weight;
     private String cost;
 
-    public Weapon() {
+    public WeaponJson() {
     }
 
-    public Weapon(String name, String category, String weaponRange, String damageDice, int damageBonus,
-                  DamageType damageType, int normalRange, int longRange, int normalThrowRange, int longThrowRange,
-                  List<WeaponProperty> properties, int weight, String cost) {
-        this.name = name;
-        this.category = category;
+    public String getWeaponRange() {
+        return weaponRange;
+    }
+
+    public void setWeaponRange(String weaponRange) {
         this.weaponRange = weaponRange;
-        this.damageDice = damageDice;
-        this.damageBonus = damageBonus;
-        this.damageType = damageType;
-        this.normalRange = normalRange;
-        this.longRange = longRange;
-        this.normalThrowRange = normalThrowRange;
-        this.longThrowRange = longThrowRange;
-        this.properties = properties;
-        this.weight = weight;
-        this.cost = cost;
     }
 
     public long getId() {
@@ -94,11 +72,11 @@ public class Weapon {
         this.damageBonus = damageBonus;
     }
 
-    public DamageType getDamageType() {
+    public DamageTypeJson getDamageType() {
         return damageType;
     }
 
-    public void setDamageType(DamageType damageType) {
+    public void setDamageType(DamageTypeJson damageType) {
         this.damageType = damageType;
     }
 
@@ -134,11 +112,11 @@ public class Weapon {
         this.longThrowRange = longThrowRange;
     }
 
-    public List<WeaponProperty> getProperties() {
+    public List<WeaponPropertyJson> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<WeaponProperty> properties) {
+    public void setProperties(List<WeaponPropertyJson> properties) {
         this.properties = properties;
     }
 
@@ -156,13 +134,5 @@ public class Weapon {
 
     public void setCost(String cost) {
         this.cost = cost;
-    }
-
-    public String getWeaponRange() {
-        return weaponRange;
-    }
-
-    public void setWeaponRange(String weaponRange) {
-        this.weaponRange = weaponRange;
     }
 }

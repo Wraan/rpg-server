@@ -1,4 +1,4 @@
-package com.rpg.model.dnd.equipment;
+package com.rpg.model.dnd.types;
 
 import javax.persistence.*;
 

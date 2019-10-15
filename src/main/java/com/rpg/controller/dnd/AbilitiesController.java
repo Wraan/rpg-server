@@ -1,4 +1,4 @@
-package com.rpg.controller;
+package com.rpg.controller.dnd;
 
 import com.rpg.model.dnd.abilities.*;
 import com.rpg.repository.dnd.abilities.*;

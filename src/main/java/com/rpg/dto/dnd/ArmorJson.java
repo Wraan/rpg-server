@@ -1,33 +1,16 @@
-package com.rpg.model.dnd.equipment;
+package com.rpg.dto.dnd;
 
-import javax.persistence.*;
+public class ArmorJson {
 
-@Entity
-@Table(name = "armors")
-public class Armor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "armor_class_id", referencedColumnName = "id")
-    private ArmorClass armorClass;
+    private ArmorClassJson armorClass;
     private int strMinimum;
     private boolean stealthDisadvantage;
     private int weight;
     private String cost;
 
-    public Armor() {
-    }
-
-    public Armor(String name, ArmorClass armorClass, int strMinimum, boolean stealthDisadvantage,
-                 int weight, String cost) {
-        this.name = name;
-        this.armorClass = armorClass;
-        this.strMinimum = strMinimum;
-        this.stealthDisadvantage = stealthDisadvantage;
-        this.weight = weight;
-        this.cost = cost;
+    public ArmorJson() {
     }
 
     public long getId() {
@@ -46,11 +29,11 @@ public class Armor {
         this.name = name;
     }
 
-    public ArmorClass getArmorClass() {
+    public ArmorClassJson getArmorClass() {
         return armorClass;
     }
 
-    public void setArmorClass(ArmorClass armorClass) {
+    public void setArmorClass(ArmorClassJson armorClass) {
         this.armorClass = armorClass;
     }
 

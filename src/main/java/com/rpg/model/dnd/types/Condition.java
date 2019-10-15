@@ -1,27 +1,23 @@
-package com.rpg.model.dnd.equipment;
+package com.rpg.model.dnd.types;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "gear")
-public class Gear {
+@Table(name = "conditions")
+public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     @Column(length = 4095)
     private String description;
-    private int weight;
-    private String cost;
 
-    public Gear() {
+    public Condition() {
     }
 
-    public Gear(String name, String description, int weight, String cost) {
+    public Condition(String name, String description) {
         this.name = name;
         this.description = description;
-        this.weight = weight;
-        this.cost = cost;
     }
 
     public long getId() {
@@ -46,21 +42,5 @@ public class Gear {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public String getCost() {
-        return cost;
-    }
-
-    public void setCost(String cost) {
-        this.cost = cost;
     }
 }

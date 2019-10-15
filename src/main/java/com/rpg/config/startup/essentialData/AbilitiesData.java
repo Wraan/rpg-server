@@ -2,7 +2,7 @@ package com.rpg.config.startup.essentialData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rpg.dto.SpellJson;
+import com.rpg.dto.dnd.SpellJson;
 import com.rpg.model.dnd.abilities.*;
 import com.rpg.model.dnd.types.MagicSchool;
 import com.rpg.repository.dnd.abilities.*;
