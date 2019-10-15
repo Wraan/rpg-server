@@ -4,6 +4,9 @@ import com.rpg.model.dnd.abilities.Proficiency;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ProficienciesRepository extends JpaRepository<Proficiency, Long> {
+    List<Proficiency> findByNameIgnoreCaseContaining(String name);
 }
