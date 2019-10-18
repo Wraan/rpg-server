@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -30,10 +31,11 @@ public class SecurityData implements ApplicationRunner {
 
     @Autowired
     private RoleService roleService;
-
     @Lazy
     @Autowired
     private SimpMessagingTemplate template;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -54,7 +56,7 @@ public class SecurityData implements ApplicationRunner {
 
     private void addEssentialClients(){
         List<OAuthClientDetails> clientDetails = Arrays.asList(
-                new OAuthClientDetails("web", "{bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG",
+                new OAuthClientDetails("web", passwordEncoder.encode("password"),
                         "READ,WRITE,EXECUTE", 3600, 10000, "api-resource",
                         "authorization_code,password,refresh_token,implicit", roleService.findByName("CLIENT").getName())
         );
@@ -63,10 +65,10 @@ public class SecurityData implements ApplicationRunner {
 
     private void addEssentialUsers(){
         List<User> users = Arrays.asList(
-                new User("admin", "{bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG",
+                new User("admin", passwordEncoder.encode("password"),
                         "admin@admin.com", true, true, true,
                         true, Arrays.asList(roleService.findByName("ADMIN"), roleService.findByName("USER"))),
-                new User("test", "{bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG",
+                new User("test", passwordEncoder.encode("password"),
                         "test@test.com", true, true, true,
                         true, Arrays.asList(roleService.findByName("USER")))
         );
