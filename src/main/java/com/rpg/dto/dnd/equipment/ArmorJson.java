@@ -1,5 +1,9 @@
-package com.rpg.dto.dnd;
+package com.rpg.dto.dnd.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.rpg.dto.dnd.equipment.ArmorClassJson;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ArmorJson {
 
     private long id;
@@ -9,8 +13,26 @@ public class ArmorJson {
     private boolean stealthDisadvantage;
     private int weight;
     private String cost;
+    private long creator;
+    private String scenarioKey;
 
     public ArmorJson() {
+    }
+
+    public long getCreator() {
+        return creator;
+    }
+
+    public void setCreator(long creator) {
+        this.creator = creator;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
     }
 
     public long getId() {

@@ -1,6 +1,6 @@
 package com.rpg.controller.dnd;
 
-import com.rpg.model.dnd.abilities.Spell;
+import com.rpg.dto.dnd.types.*;
 import com.rpg.model.dnd.types.Condition;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.MagicSchool;
@@ -9,7 +9,11 @@ import com.rpg.repository.dnd.types.ConditionsRepository;
 import com.rpg.repository.dnd.types.DamageTypesRepository;
 import com.rpg.repository.dnd.types.MagicSchoolsRepository;
 import com.rpg.repository.dnd.types.WeaponPropertiesRepository;
+import com.rpg.service.DndDtoConverter;
+import com.rpg.service.dnd.TypesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,56 +23,118 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class TypesController {
 
-    @Autowired private MagicSchoolsRepository magicSchoolsRepository;
-    @Autowired private ConditionsRepository conditionsRepository;
-    @Autowired private DamageTypesRepository damageTypesRepository;
-    @Autowired private WeaponPropertiesRepository weaponPropertiesRepository;
+    @Autowired private TypesService typesService;
+    @Autowired private DndDtoConverter dtoConverter;
 
     @GetMapping("/magicSchool/{id}")
-    public MagicSchool getMagicSchoolById(@PathVariable("id") long id) {
-        return magicSchoolsRepository.findById(id).get();
+    public MagicSchoolResponse getMagicSchoolById(@PathVariable("id") long id) {
+        return dtoConverter.magicSchoolToResponse(typesService.findMagicSchoolById(id));
     }
 
     @GetMapping("/magicSchool")
-    public List<MagicSchool> getMagicSchoolsByName(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return magicSchoolsRepository.findByNameIgnoreCaseContaining(name.get());
-        return magicSchoolsRepository.findAll();
+    public List<MagicSchoolResponse> getMagicSchoolsByName(@RequestParam(value = "name") Optional<String> name,
+                                                           @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.magicSchoolsToResponse(typesService.findMagicSchoolsByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.magicSchoolsToResponse(typesService.findMagicSchoolsByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.magicSchoolsToResponse(typesService.findMagicSchoolsByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.magicSchoolsToResponse(typesService.findMagicSchools());
     }
 
     @GetMapping("/condition/{id}")
-    public Condition getConditionById(@PathVariable("id") long id) {
-        return conditionsRepository.findById(id).get();
+    public ConditionResponse getConditionById(@PathVariable("id") long id) {
+        return dtoConverter.conditionToResponse(typesService.findConditionById(id));
     }
 
     @GetMapping("/condition")
-    public List<Condition> getConditionsByName(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return conditionsRepository.findByNameIgnoreCaseContaining(name.get());
-        return conditionsRepository.findAll();
+    public List<ConditionResponse> getConditionsByName(@RequestParam(value = "name") Optional<String> name,
+                                                       @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.conditionsToResponse(typesService.findConditionsByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.conditionsToResponse(typesService.findConditionsByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.conditionsToResponse(typesService.findConditionsByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.conditionsToResponse(typesService.findConditions());
     }
 
     @GetMapping("/damageType/{id}")
-    public DamageType getDamageTypeById(@PathVariable("id") long id) {
-        return damageTypesRepository.findById(id).get();
+    public DamageTypeResponse getDamageTypeById(@PathVariable("id") long id) {
+        return dtoConverter.damageTypeToResponse(typesService.findDamageTypeById(id));
     }
 
     @GetMapping("/damageType")
-    public List<DamageType> getDamageTypesByName(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return damageTypesRepository.findByNameIgnoreCaseContaining(name.get());
-        return damageTypesRepository.findAll();
+    public List<DamageTypeResponse> getDamageTypesByName(@RequestParam(value = "name") Optional<String> name,
+                                                 @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.damageTypesToResponse(typesService.findDamageTypesByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.damageTypesToResponse(typesService.findDamageTypesByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.damageTypesToResponse(typesService.findDamageTypesByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.damageTypesToResponse(typesService.findDamageTypes());
     }
 
     @GetMapping("/weaponProperty/{id}")
-    public WeaponProperty getWeaponPropertyById(@PathVariable("id") long id) {
-        return weaponPropertiesRepository.findById(id).get();
+    public WeaponPropertyResponse getWeaponPropertyById(@PathVariable("id") long id) {
+        return dtoConverter.weaponPropertyToResponse(typesService.findWeaponPropertyById(id));
     }
 
     @GetMapping("/weaponProperty")
-    public List<WeaponProperty> getWeaponPropertiesByName(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return weaponPropertiesRepository.findByNameIgnoreCaseContaining(name.get());
-        return weaponPropertiesRepository.findAll();
+    public List<WeaponPropertyResponse> getWeaponPropertiesByName(@RequestParam(value = "name") Optional<String> name,
+                                                                  @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.weaponPropertiesToResponse(typesService.findWeaponPropertiesByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.weaponPropertiesToResponse(typesService.findWeaponPropertiesByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.weaponPropertiesToResponse(typesService.findWeaponPropertiesByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.weaponPropertiesToResponse(typesService.findWeaponProperties());
+    }
+
+    @PostMapping("/condition")
+    public ResponseEntity<String> addCustomCondition(@RequestBody ConditionDto conditionDto){
+        try {
+            typesService.save(conditionDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/magicSchool")
+    public ResponseEntity<String> addCustomMagicSchool(@RequestBody MagicSchoolDto magicSchoolDto){
+        try {
+            typesService.save(magicSchoolDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/damageType")
+    public ResponseEntity<String> addCustomDamageType(@RequestBody DamageTypeDto damageTypeDto){
+        try {
+            typesService.save(damageTypeDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/weaponProperty")
+    public ResponseEntity<String> addCustomWeaponProperty(@RequestBody WeaponPropertyDto weaponPropertyDto){
+        try {
+            typesService.save(weaponPropertyDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

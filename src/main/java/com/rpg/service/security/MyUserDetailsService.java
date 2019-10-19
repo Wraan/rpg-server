@@ -9,4 +9,5 @@ public interface MyUserDetailsService {
 
     UserDetails loadUserByUsername(String username);
     List<User> saveAll(List<User> users);
+    long count();
 }

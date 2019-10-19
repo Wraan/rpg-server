@@ -1,5 +1,6 @@
 package com.rpg.model.dnd.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.WeaponProperty;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "weapons")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weapon {
 
     @Id

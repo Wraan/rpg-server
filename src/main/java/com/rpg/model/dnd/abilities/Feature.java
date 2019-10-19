@@ -1,5 +1,6 @@
 package com.rpg.model.dnd.abilities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "features")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Feature {
 
     @Id

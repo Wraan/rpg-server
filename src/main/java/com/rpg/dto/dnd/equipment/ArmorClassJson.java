@@ -1,4 +1,4 @@
-package com.rpg.dto.dnd;
+package com.rpg.dto.dnd.equipment;
 
 public class ArmorClassJson {
 

@@ -1,5 +1,9 @@
-package com.rpg.dto.dnd;
+package com.rpg.dto.dnd.abilities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.rpg.dto.dnd.types.SpellsMagicSchoolJson;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SpellJson {
 
     private long id;
@@ -15,8 +19,26 @@ public class SpellJson {
     private boolean concentration;
     private String castingTime;
     private SpellsMagicSchoolJson school;
+    private long creator;
+    private String scenarioKey;
 
     public SpellJson() {
+    }
+
+    public long getCreator() {
+        return creator;
+    }
+
+    public void setCreator(long creator) {
+        this.creator = creator;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
     }
 
     public long getId() {

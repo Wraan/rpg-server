@@ -1,5 +1,6 @@
 package com.rpg.model.dnd.types;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "damage_types")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DamageType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

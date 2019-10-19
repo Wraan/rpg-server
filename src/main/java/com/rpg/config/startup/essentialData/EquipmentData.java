@@ -2,11 +2,10 @@ package com.rpg.config.startup.essentialData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rpg.dto.dnd.ArmorJson;
-import com.rpg.dto.dnd.WeaponJson;
+import com.rpg.dto.dnd.equipment.ArmorJson;
+import com.rpg.dto.dnd.equipment.WeaponJson;
 import com.rpg.model.dnd.equipment.*;
 import com.rpg.model.dnd.types.DamageType;
-import com.rpg.model.dnd.types.MagicSchool;
 import com.rpg.model.dnd.types.WeaponProperty;
 import com.rpg.repository.dnd.equipment.*;
 import com.rpg.repository.dnd.types.DamageTypesRepository;

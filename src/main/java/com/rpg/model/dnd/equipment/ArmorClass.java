@@ -1,9 +1,12 @@
 package com.rpg.model.dnd.equipment;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "armor_classes")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ArmorClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

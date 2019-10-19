@@ -34,4 +34,8 @@ public class MyUserDetailServiceImpl implements UserDetailsService, MyUserDetail
     public List<User> saveAll(List<User> users) {
         return userRepository.saveAll(users);
     }
+
+    public long count() {
+        return userRepository.count();
+    }
 }

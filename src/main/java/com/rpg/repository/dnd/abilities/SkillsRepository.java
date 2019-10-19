@@ -1,5 +1,6 @@
 package com.rpg.repository.dnd.abilities;
 
+import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.abilities.Skill;
 import com.rpg.model.dnd.abilities.Trait;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,5 @@ import java.util.List;
 @Repository
 public interface SkillsRepository extends JpaRepository<Skill, Long> {
     List<Skill> findByNameIgnoreCaseContaining(String name);
+    boolean existsByNameAndScenario(String name, Scenario scenario);
 }

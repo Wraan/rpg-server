@@ -1,13 +1,13 @@
-drop table if exists oauth_client_details;
-drop table if exists role_user;
-drop table if exists role;
-drop table if exists users;
-
-drop table if exists oauth_client_token;
-drop table if exists oauth_access_token;
-drop table if exists oauth_refresh_token;
-drop table if exists oauth_code;
-drop table if exists oauth_approvals;
+-- drop table if exists oauth_client_details;
+-- drop table if exists role_user;
+-- drop table if exists role;
+-- drop table if exists users;
+--
+-- drop table if exists oauth_client_token;
+-- drop table if exists oauth_access_token;
+-- drop table if exists oauth_refresh_token;
+-- drop table if exists oauth_code;
+-- drop table if exists oauth_approvals;
 
 create table if not exists oauth_client_details (
   client_id VARCHAR(256) PRIMARY KEY,

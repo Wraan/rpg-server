@@ -1,9 +1,12 @@
-package com.rpg.dto.dnd;
+package com.rpg.dto.dnd.equipment;
 
-import com.rpg.model.dnd.types.WeaponProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.rpg.dto.dnd.DamageTypeJson;
+import com.rpg.dto.dnd.types.WeaponPropertyJson;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeaponJson {
 
     private long id;
@@ -20,8 +23,26 @@ public class WeaponJson {
     private List<WeaponPropertyJson> properties;
     private int weight;
     private String cost;
+    private long creator;
+    private String scenarioKey;
 
     public WeaponJson() {
+    }
+
+    public long getCreator() {
+        return creator;
+    }
+
+    public void setCreator(long creator) {
+        this.creator = creator;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
     }
 
     public String getWeaponRange() {

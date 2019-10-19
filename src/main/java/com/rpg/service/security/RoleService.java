@@ -11,7 +11,7 @@ import java.util.List;
 public class RoleService {
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     public Role findByName(String name){
         return roleRepository.findByName("ROLE_" + name);
@@ -20,4 +20,6 @@ public class RoleService {
     public List<Role> saveAll(List<Role> roles){
         return roleRepository.saveAll(roles);
     }
+
+    public long count(){ return roleRepository.count(); }
 }
