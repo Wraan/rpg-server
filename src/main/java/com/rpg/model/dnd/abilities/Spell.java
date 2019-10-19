@@ -1,6 +1,8 @@
 package com.rpg.model.dnd.abilities;
 
+import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.types.MagicSchool;
+import com.rpg.model.security.User;
 
 import javax.persistence.*;
 
@@ -29,6 +31,12 @@ public class Spell {
     @ManyToOne
     @JoinColumn(name = "magic_school_id")
     private MagicSchool magicSchool;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
 
     public Spell() {
@@ -50,6 +58,25 @@ public class Spell {
         this.concentration = concentration;
         this.castingTime = castingTime;
         this.magicSchool = magicSchool;
+    }
+
+    public Spell(String name, String description, String higherLevels, int level, String range, String components,
+                 String material, boolean ritual, String duration, boolean concentration, String castingTime,
+                 MagicSchool magicSchool, User creator, Scenario scenario) {
+        this.name = name;
+        this.description = description;
+        this.higherLevels = higherLevels;
+        this.level = level;
+        this.range = range;
+        this.components = components;
+        this.material = material;
+        this.ritual = ritual;
+        this.duration = duration;
+        this.concentration = concentration;
+        this.castingTime = castingTime;
+        this.magicSchool = magicSchool;
+        this.creator = creator;
+        this.scenario = scenario;
     }
 
     public long getId() {
@@ -154,5 +181,21 @@ public class Spell {
 
     public void setRange(String range) {
         this.range = range;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 }

@@ -1,5 +1,8 @@
 package com.rpg.model.dnd.equipment;
 
+import com.rpg.model.application.Scenario;
+import com.rpg.model.security.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,12 @@ public class Tool {
     private String category;
     private int weight;
     private String cost;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
     public Tool() {
     }
@@ -24,6 +33,32 @@ public class Tool {
         this.category = category;
         this.weight = weight;
         this.cost = cost;
+    }
+
+    public Tool(String name, String description, String category, int weight, String cost, User creator, Scenario scenario) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.weight = weight;
+        this.cost = cost;
+        this.creator = creator;
+        this.scenario = scenario;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 
     public long getId() {

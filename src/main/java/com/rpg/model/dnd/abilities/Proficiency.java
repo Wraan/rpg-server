@@ -1,5 +1,8 @@
 package com.rpg.model.dnd.abilities;
 
+import com.rpg.model.application.Scenario;
+import com.rpg.model.security.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +15,12 @@ public class Proficiency {
 
     private String name;
     private String type;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
     public Proficiency() {
     }
@@ -19,6 +28,13 @@ public class Proficiency {
     public Proficiency(String name, String type) {
         this.name = name;
         this.type = type;
+    }
+
+    public Proficiency(String name, String type, User creator, Scenario scenario) {
+        this.name = name;
+        this.type = type;
+        this.creator = creator;
+        this.scenario = scenario;
     }
 
     public long getId() {
@@ -43,5 +59,21 @@ public class Proficiency {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 }

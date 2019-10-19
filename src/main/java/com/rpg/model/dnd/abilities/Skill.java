@@ -1,5 +1,8 @@
 package com.rpg.model.dnd.abilities;
 
+import com.rpg.model.application.Scenario;
+import com.rpg.model.security.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,12 @@ public class Skill {
     @Column(length = 4095)
     private String description;
     private String abilityScore;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
     public Skill() {
     }
@@ -21,6 +30,14 @@ public class Skill {
         this.name = name;
         this.description = description;
         this.abilityScore = abilityScore;
+    }
+
+    public Skill(String name, String description, String abilityScore, User creator, Scenario scenario) {
+        this.name = name;
+        this.description = description;
+        this.abilityScore = abilityScore;
+        this.creator = creator;
+        this.scenario = scenario;
     }
 
     public long getId() {
@@ -53,5 +70,21 @@ public class Skill {
 
     public void setAbilityScore(String abilityScore) {
         this.abilityScore = abilityScore;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 }

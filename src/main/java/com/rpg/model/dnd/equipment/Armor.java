@@ -1,5 +1,8 @@
 package com.rpg.model.dnd.equipment;
 
+import com.rpg.model.application.Scenario;
+import com.rpg.model.security.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +19,12 @@ public class Armor {
     private boolean stealthDisadvantage;
     private int weight;
     private String cost;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
     public Armor() {
     }
@@ -28,6 +37,34 @@ public class Armor {
         this.stealthDisadvantage = stealthDisadvantage;
         this.weight = weight;
         this.cost = cost;
+    }
+
+    public Armor(String name, ArmorClass armorClass, int strMinimum, boolean stealthDisadvantage, int weight,
+                 String cost, User creator, Scenario scenario) {
+        this.name = name;
+        this.armorClass = armorClass;
+        this.strMinimum = strMinimum;
+        this.stealthDisadvantage = stealthDisadvantage;
+        this.weight = weight;
+        this.cost = cost;
+        this.creator = creator;
+        this.scenario = scenario;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 
     public long getId() {

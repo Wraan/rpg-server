@@ -1,7 +1,9 @@
 package com.rpg.model.dnd.equipment;
 
+import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.WeaponProperty;
+import com.rpg.model.security.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,6 +34,12 @@ public class Weapon {
     private List<WeaponProperty> properties;
     private int weight;
     private String cost;
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    private User creator;
+    @ManyToOne
+    @JoinColumn(name = "scenario_id")
+    private Scenario scenario;
 
     public Weapon() {
     }
@@ -52,6 +60,42 @@ public class Weapon {
         this.properties = properties;
         this.weight = weight;
         this.cost = cost;
+    }
+
+    public Weapon(String name, String category, String weaponRange, String damageDice, int damageBonus,
+                  DamageType damageType, int normalRange, int longRange, int normalThrowRange, int longThrowRange,
+                  List<WeaponProperty> properties, int weight, String cost, User creator, Scenario scenario) {
+        this.name = name;
+        this.category = category;
+        this.weaponRange = weaponRange;
+        this.damageDice = damageDice;
+        this.damageBonus = damageBonus;
+        this.damageType = damageType;
+        this.normalRange = normalRange;
+        this.longRange = longRange;
+        this.normalThrowRange = normalThrowRange;
+        this.longThrowRange = longThrowRange;
+        this.properties = properties;
+        this.weight = weight;
+        this.cost = cost;
+        this.creator = creator;
+        this.scenario = scenario;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
     }
 
     public long getId() {
