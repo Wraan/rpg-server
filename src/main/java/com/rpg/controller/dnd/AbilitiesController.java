@@ -148,7 +148,7 @@ public class AbilitiesController {
         }
     }
 
-    @PostMapping("/language")
+    @PostMapping("/proficiency")
     public ResponseEntity<String> addCustomProficiency(@RequestBody ProficiencyDto dto){
         try {
             abilitiesService.save(dto);
