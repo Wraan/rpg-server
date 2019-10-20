@@ -1,53 +1,32 @@
-package com.rpg.model.dnd.abilities;
+package com.rpg.dto.dnd.abilities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.rpg.model.application.Scenario;
-import com.rpg.model.dnd.types.MagicSchool;
-import com.rpg.model.security.User;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "spells")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Spell {
+public class SpellResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-
     private String name;
-    @Column(length = 4095)
     private String description;
-    @Column(length = 1023)
     private String higherLevels;
     private int level;
     private String range;
     private String components;
-    @Column(length = 1023)
     private String material;
     private boolean ritual;
     private String duration;
     private boolean concentration;
     private String castingTime;
-    @ManyToOne
-    @JoinColumn(name = "magic_school_id")
-    private MagicSchool magicSchool;
-    @ManyToOne
-    @JoinColumn(name = "creator_id")
-    private User creator;
-    @ManyToOne
-    @JoinColumn(name = "scenario_id")
-    private Scenario scenario;
+    private String magicSchool;
+    private String creatorName;
+    private String scenarioKey;
 
-
-    public Spell() {
+    public SpellResponse() {
     }
 
-    public Spell(long id, String name, String description, String higherLevels, int level, String range,
-                 String components, String material, boolean ritual, String duration, boolean concentration,
-                 String castingTime, MagicSchool magicSchool) {
+    public SpellResponse(long id, String name, String description, String higherLevels, int level, String range,
+                         String components, String material, boolean ritual, String duration, boolean concentration,
+                         String castingTime, String magicSchool, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -61,25 +40,8 @@ public class Spell {
         this.concentration = concentration;
         this.castingTime = castingTime;
         this.magicSchool = magicSchool;
-    }
-
-    public Spell(String name, String description, String higherLevels, int level, String range, String components,
-                 String material, boolean ritual, String duration, boolean concentration, String castingTime,
-                 MagicSchool magicSchool, User creator, Scenario scenario) {
-        this.name = name;
-        this.description = description;
-        this.higherLevels = higherLevels;
-        this.level = level;
-        this.range = range;
-        this.components = components;
-        this.material = material;
-        this.ritual = ritual;
-        this.duration = duration;
-        this.concentration = concentration;
-        this.castingTime = castingTime;
-        this.magicSchool = magicSchool;
-        this.creator = creator;
-        this.scenario = scenario;
+        this.creatorName = creatorName;
+        this.scenarioKey = scenarioKey;
     }
 
     public long getId() {
@@ -112,6 +74,22 @@ public class Spell {
 
     public void setHigherLevels(String higherLevels) {
         this.higherLevels = higherLevels;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
     }
 
     public String getComponents() {
@@ -162,43 +140,27 @@ public class Spell {
         this.castingTime = castingTime;
     }
 
-    public MagicSchool getMagicSchool() {
+    public String getMagicSchool() {
         return magicSchool;
     }
 
-    public void setMagicSchool(MagicSchool magicSchool) {
+    public void setMagicSchool(String magicSchool) {
         this.magicSchool = magicSchool;
     }
 
-    public int getLevel() {
-        return level;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
-    public String getRange() {
-        return range;
+    public String getScenarioKey() {
+        return scenarioKey;
     }
 
-    public void setRange(String range) {
-        this.range = range;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
-    }
-
-    public Scenario getScenario() {
-        return scenario;
-    }
-
-    public void setScenario(Scenario scenario) {
-        this.scenario = scenario;
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
     }
 }

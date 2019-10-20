@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface VehiclesRepository extends JpaRepository<Vehicle, Long> {
     List<Vehicle> findByNameIgnoreCaseContaining(String name);
+    List<Vehicle> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Vehicle> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

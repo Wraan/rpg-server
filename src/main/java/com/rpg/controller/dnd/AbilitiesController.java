@@ -1,8 +1,13 @@
 package com.rpg.controller.dnd;
 
+import com.rpg.dto.dnd.abilities.*;
 import com.rpg.model.dnd.abilities.*;
 import com.rpg.repository.dnd.abilities.*;
+import com.rpg.service.DndDtoConverter;
+import com.rpg.service.dnd.AbilitiesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,83 +17,175 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class AbilitiesController {
 
-    @Autowired private SkillsRepository skillsRepository;
-    @Autowired private TraitsRepository traitsRepository;
-    @Autowired private FeaturesRepository featuresRepository;
-    @Autowired private SpellsRepository spellsRepository;
-    @Autowired private ProficienciesRepository proficienciesRepository;
-    @Autowired private LanguagesRepository languagesRepository;
-
+    @Autowired private AbilitiesService abilitiesService;
+    @Autowired private DndDtoConverter dtoConverter;
 
     @GetMapping("/spell/{id}")
-    public Spell getSpellById(@PathVariable("id") long id) {
-        return spellsRepository.findById(id).get();
+    public SpellResponse getSpellById(@PathVariable("id") long id) {
+        return dtoConverter.spellToResponse(abilitiesService.findSpellById(id));
     }
 
     @GetMapping("/spell")
-    public List<Spell> getSpellsByName(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return spellsRepository.findByNameIgnoreCaseContaining(name.get());
-        return spellsRepository.findAll();
+    public List<SpellResponse> getSpellsByName(@RequestParam(value = "name") Optional<String> name,
+                                               @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.spellsToResponse(abilitiesService.findSpellsByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.spellsToResponse(abilitiesService.findSpellsByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.spellsToResponse(abilitiesService.findSpellsByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.spellsToResponse(abilitiesService.findSpells());
     }
 
     @GetMapping("/skill/{id}")
-    public Skill getSkillById(@PathVariable("id") long id) {
-        return skillsRepository.findById(id).get();
+    public SkillResponse getSkillById(@PathVariable("id") long id) {
+        return dtoConverter.skillToResponse(abilitiesService.findSkillById(id));
     }
 
     @GetMapping("/skill")
-    public List<Skill> getSkills(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return skillsRepository.findByNameIgnoreCaseContaining(name.get());
-        return skillsRepository.findAll();
+    public List<SkillResponse> getSkills(@RequestParam(value = "name") Optional<String> name,
+                                 @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.skillsToResponse(abilitiesService.findSkillsByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.skillsToResponse(abilitiesService.findSkillsByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.skillsToResponse(abilitiesService.findSkillsByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.skillsToResponse(abilitiesService.findSkills());
     }
 
     @GetMapping("/feature/{id}")
-    public Feature getFeatureById(@PathVariable("id") long id) {
-        return featuresRepository.findById(id).get();
+    public FeatureResponse getFeatureById(@PathVariable("id") long id) {
+        return dtoConverter.featureToResponse(abilitiesService.findFeatureById(id));
     }
 
     @GetMapping("/feature")
-    public List<Feature> getFeatures(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return featuresRepository.findByNameIgnoreCaseContaining(name.get());
-        return featuresRepository.findAll();
+    public List<FeatureResponse> getFeatures(@RequestParam(value = "name") Optional<String> name,
+                                             @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.featuresToResponse(abilitiesService.findFeaturesByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.featuresToResponse(abilitiesService.findFeaturesByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.featuresToResponse(abilitiesService.findFeaturesByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.featuresToResponse(abilitiesService.findFeatures());
     }
 
     @GetMapping("/language/{id}")
-    public Language getLanguageById(@PathVariable("id") long id) {
-        return languagesRepository.findById(id).get();
+    public LanguageResponse getLanguageById(@PathVariable("id") long id) {
+        return dtoConverter.languageToResponse(abilitiesService.findLanguageById(id));
     }
 
     @GetMapping("/language")
-    public List<Language> getLanguages(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return languagesRepository.findByNameIgnoreCaseContaining(name.get());
-        return languagesRepository.findAll();
+    public List<LanguageResponse> getLanguages(@RequestParam(value = "name") Optional<String> name,
+                                               @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.languagesToResponse(abilitiesService.findLanguagesByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.languagesToResponse(abilitiesService.findLanguagesByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.languagesToResponse(abilitiesService.findLanguagesByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.languagesToResponse(abilitiesService.findLanguages());
     }
 
     @GetMapping("/proficiency/{id}")
-    public Proficiency getProficiencyById(@PathVariable("id") long id) { return proficienciesRepository.findById(id).get();
+    public ProficiencyResponse getProficiencyById(@PathVariable("id") long id) {
+        return dtoConverter.proficiencyToResponse(abilitiesService.findProficiencyById(id));
     }
 
     @GetMapping("/proficiency")
-    public List<Proficiency> getProficiencies(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return proficienciesRepository.findByNameIgnoreCaseContaining(name.get());
-        return proficienciesRepository.findAll();
+    public List<ProficiencyResponse> getProficiencies(@RequestParam(value = "name") Optional<String> name,
+                                                      @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.proficienciesToResponse(abilitiesService.findProficienciesByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.proficienciesToResponse(abilitiesService.findProficienciesByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.proficienciesToResponse(abilitiesService.findProficienciesByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.proficienciesToResponse(abilitiesService.findProficiencies());
     }
 
     @GetMapping("/trait/{id}")
-    public Trait getTraitById(@PathVariable("id") long id) {
-        return traitsRepository.findById(id).get();
+    public TraitResponse getTraitById(@PathVariable("id") long id) {
+        return dtoConverter.traitToResponse(abilitiesService.findTraitById(id));
     }
 
     @GetMapping("/trait")
-    public List<Trait> getTraits(@RequestParam(value = "name") Optional<String> name) {
-        if(name.isPresent())
-            return traitsRepository.findByNameIgnoreCaseContaining(name.get());
-        return traitsRepository.findAll();
+    public List<TraitResponse> getTraits(@RequestParam(value = "name") Optional<String> name,
+                                 @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
+        if(name.isPresent() && scenarioKey.isPresent())
+            return dtoConverter.traitsToResponse(abilitiesService.findTraitsByNameContainingAndScenarioKey(name.get(), scenarioKey.get().toUpperCase()));
+        else if(name.isPresent())
+            return dtoConverter.traitsToResponse(abilitiesService.findTraitsByNameContaining(name.get()));
+        else if(scenarioKey.isPresent())
+            return dtoConverter.traitsToResponse(abilitiesService.findTraitsByScenarioKey(scenarioKey.get().toUpperCase()));
+
+        return dtoConverter.traitsToResponse(abilitiesService.findTraits());
+    }
+
+    @PostMapping("/feature")
+    public ResponseEntity<String> addCustomFeature(@RequestBody FeatureDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/language")
+    public ResponseEntity<String> addCustomLanguage(@RequestBody LanguageDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/language")
+    public ResponseEntity<String> addCustomProficiency(@RequestBody ProficiencyDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/skill")
+    public ResponseEntity<String> addCustomSkill(@RequestBody SkillDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/spell")
+    public ResponseEntity<String> addCustomSpell(@RequestBody SpellDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/trait")
+    public ResponseEntity<String> addCustomTrait(@RequestBody TraitDto dto){
+        try {
+            abilitiesService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

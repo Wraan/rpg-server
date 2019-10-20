@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface TraitsRepository extends JpaRepository<Trait, Long> {
     List<Trait> findByNameIgnoreCaseContaining(String name);
+    List<Trait> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Trait> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

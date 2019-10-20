@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface ToolsRepository extends JpaRepository<Tool, Long> {
     List<Tool> findByNameIgnoreCaseContaining(String name);
+    List<Tool> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Tool> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

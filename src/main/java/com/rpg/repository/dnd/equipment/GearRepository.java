@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface GearRepository extends JpaRepository<Gear, Long> {
     List<Gear> findByNameIgnoreCaseContaining(String name);
+    List<Gear> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Gear> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

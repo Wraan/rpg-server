@@ -11,5 +11,7 @@ import java.util.List;
 @Repository
 public interface SkillsRepository extends JpaRepository<Skill, Long> {
     List<Skill> findByNameIgnoreCaseContaining(String name);
+    List<Skill> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Skill> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

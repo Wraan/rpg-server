@@ -22,8 +22,8 @@ public class Weapon {
     private String weaponRange;
     private String damageDice;
     private int damageBonus;
-    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "damage_type_id", referencedColumnName = "id")
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "damage_type_id")
     private DamageType damageType;
     private int normalRange;
     private int longRange;

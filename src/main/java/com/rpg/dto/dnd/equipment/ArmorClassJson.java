@@ -9,6 +9,12 @@ public class ArmorClassJson {
     public ArmorClassJson() {
     }
 
+    public ArmorClassJson(int base, boolean dexBonus, int maxBonus) {
+        this.base = base;
+        this.dexBonus = dexBonus;
+        this.maxBonus = maxBonus;
+    }
+
     public int getBase() {
         return base;
     }

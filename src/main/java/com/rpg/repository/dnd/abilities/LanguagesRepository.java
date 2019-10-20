@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface LanguagesRepository extends JpaRepository<Language, Long> {
     List<Language> findByNameIgnoreCaseContaining(String name);
+    List<Language> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Language> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }

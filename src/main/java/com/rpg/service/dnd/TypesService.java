@@ -199,4 +199,23 @@ public class TypesService {
         return weaponPropertiesRepository.findById(id).orElse(null);
     }
 
+    public MagicSchool findMagicSchoolByNameAndScenario(String name, Scenario scenario) {
+        if (scenario == null)
+            return magicSchoolsRepository.findByNameAndScenario(name, null).orElse(null);
+        return magicSchoolsRepository.findByNameAndScenario(name, null)
+                .orElse(magicSchoolsRepository.findByNameAndScenario(name, scenario).orElse(null));
+    }
+    public WeaponProperty findWeaponPropertyByNameAndScenario(String name, Scenario scenario) {
+        if (scenario == null)
+            return weaponPropertiesRepository.findByNameAndScenario(name, null).orElse(null);
+        return weaponPropertiesRepository.findByNameAndScenario(name, null)
+                .orElse(weaponPropertiesRepository.findByNameAndScenario(name, scenario).orElse(null));
+    }
+
+    public DamageType findDamageTypeByNameAndScenario(String name, Scenario scenario) {
+        if (scenario == null)
+            return damageTypesRepository.findByNameAndScenario(name, null).orElse(null);
+        return damageTypesRepository.findByNameAndScenario(name, null)
+                .orElse(damageTypesRepository.findByNameAndScenario(name, scenario).orElse(null));
+    }
 }

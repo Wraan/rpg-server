@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface ArmorsRepository extends JpaRepository<Armor, Long> {
     List<Armor> findByNameIgnoreCaseContaining(String name);
+    List<Armor> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
+    List<Armor> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
 }
