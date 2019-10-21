@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -29,12 +30,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private DataSource dataSource;
+    private UserDetailsService userDetailsService;
 
     @Autowired
-    public AuthorizationServerConfiguration(PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, DataSource dataSource) {
+    public AuthorizationServerConfiguration(PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
+                                            DataSource dataSource, UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.dataSource = dataSource;
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
@@ -82,6 +86,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authenticationManager(authenticationManager)
                 .tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
+                .userDetailsService(userDetailsService)
                 .tokenEnhancer(enhancerChain);
     }
 

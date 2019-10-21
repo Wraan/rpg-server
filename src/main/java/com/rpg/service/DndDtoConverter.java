@@ -329,7 +329,7 @@ public class DndDtoConverter {
             properties.add(typesService.findWeaponPropertyByNameAndScenario(it, scenario));
         });
         return new Weapon(dto.getName(), dto.getCategory(), dto.getWeaponRange(), dto.getDamageDice(),
-                dto.getDamageBonus(), typesService.findDamageTypeByNameAndScenario(dto.getName(), scenario),
+                dto.getDamageBonus(), typesService.findDamageTypeByNameAndScenario(dto.getDamageType(), scenario),
                 dto.getNormalRange(), dto.getLongRange(), dto.getNormalThrowRange(),
                 dto.getLongThrowRange(), properties, dto.getWeight(), dto.getCost(),
                 userService.findByUsername(dto.getCreatorName()),

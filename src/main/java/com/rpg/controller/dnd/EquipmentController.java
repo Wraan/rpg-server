@@ -6,6 +6,8 @@ import com.rpg.repository.dnd.equipment.*;
 import com.rpg.service.DndDtoConverter;
 import com.rpg.service.dnd.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -112,5 +114,55 @@ public class EquipmentController {
             return dtoConverter.weaponsToResponse(equipmentService.findWeaponsByScenarioKey(scenarioKey.get().toUpperCase()));
 
         return dtoConverter.weaponsToResponse(equipmentService.findWeapons());
+    }
+
+    @PostMapping("/armor")
+    public ResponseEntity<String> addCustomArmor(@RequestBody ArmorDto dto){
+        try {
+            equipmentService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/gear")
+    public ResponseEntity<String> addCustomGear(@RequestBody GearDto dto){
+        try {
+            equipmentService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/tool")
+    public ResponseEntity<String> addCustomTool(@RequestBody ToolDto dto){
+        try {
+            equipmentService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/vehicle")
+    public ResponseEntity<String> addCustomVehicle(@RequestBody VehicleDto dto){
+        try {
+            equipmentService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/weapon")
+    public ResponseEntity<String> addCustomWeapon(@RequestBody WeaponDto dto){
+        try {
+            equipmentService.save(dto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -20,6 +20,7 @@ public class CustomTokenEnhancer extends JwtAccessTokenConverter {
         final Map<String, Object> additionalInfo = new HashMap<>();
 
         additionalInfo.put("email", user.getEmail());
+        additionalInfo.put("username", user.getUsername());
 
         ((DefaultOAuth2AccessToken)accessToken).setAdditionalInformation(additionalInfo);
 
