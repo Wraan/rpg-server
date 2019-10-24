@@ -30,7 +30,7 @@ public class Weapon {
     private int normalThrowRange;
     private int longThrowRange;
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "weapons_weapons_properties",
+    @JoinTable(name = "weapons_weapon_properties",
             joinColumns = { @JoinColumn(name = "weapon_id") },
             inverseJoinColumns = { @JoinColumn(name = "weapon_property_id") })
     private List<WeaponProperty> properties;

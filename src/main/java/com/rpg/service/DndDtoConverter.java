@@ -45,7 +45,7 @@ public class DndDtoConverter {
     public ConditionResponse conditionToResponse(Condition it){
         return new ConditionResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public DamageType fromDto(DamageTypeDto damageTypeDto){
@@ -65,7 +65,7 @@ public class DndDtoConverter {
     public DamageTypeResponse damageTypeToResponse(DamageType it){
         return new DamageTypeResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public MagicSchool fromDto(MagicSchoolDto magicSchoolDto){
@@ -85,7 +85,7 @@ public class DndDtoConverter {
     public MagicSchoolResponse magicSchoolToResponse(MagicSchool it){
         return new MagicSchoolResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public WeaponProperty fromDto(WeaponPropertyDto weaponPropertyDto){
@@ -105,7 +105,7 @@ public class DndDtoConverter {
     public WeaponPropertyResponse weaponPropertyToResponse(WeaponProperty it){
         return new WeaponPropertyResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Feature fromDto(FeatureDto dto){
@@ -125,7 +125,7 @@ public class DndDtoConverter {
     public FeatureResponse featureToResponse(Feature it){
         return new FeatureResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Language fromDto(LanguageDto dto){
@@ -145,7 +145,7 @@ public class DndDtoConverter {
     public LanguageResponse languageToResponse(Language it){
         return new LanguageResponse(it.getId(), it.getName(), it.getType(), it.getScript(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Proficiency fromDto(ProficiencyDto dto){
@@ -165,7 +165,7 @@ public class DndDtoConverter {
     public ProficiencyResponse proficiencyToResponse(Proficiency it){
         return new ProficiencyResponse(it.getId(), it.getName(), it.getType(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Skill fromDto(SkillDto dto){
@@ -185,7 +185,7 @@ public class DndDtoConverter {
     public SkillResponse skillToResponse(Skill it){
         return new SkillResponse(it.getId(), it.getName(), it.getDescription(), it.getAbilityScore(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Spell fromDto(SpellDto dto){
@@ -210,7 +210,7 @@ public class DndDtoConverter {
                 it.getRange(), it.getComponents(), it.getMaterial(), it.isRitual(), it.getDuration(),
                 it.isConcentration(), it.getCastingTime(), it.getMagicSchool().getName(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Trait fromDto(TraitDto dto){
@@ -230,7 +230,7 @@ public class DndDtoConverter {
     public TraitResponse traitToResponse(Trait it){
         return new TraitResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Armor fromDto(ArmorDto dto){
@@ -254,7 +254,7 @@ public class DndDtoConverter {
                 it.getArmorClass().isDexBonus(), it.getArmorClass().getMaxBonus()), it.getStrMinimum(),
                 it.isStealthDisadvantage(), it.getWeight(), it.getCost(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Gear fromDto(GearDto dto){
@@ -275,7 +275,7 @@ public class DndDtoConverter {
         return new GearResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getWeight(), it.getCost(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Tool fromDto(ToolDto dto){
@@ -297,7 +297,7 @@ public class DndDtoConverter {
         return new ToolResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getCategory(), it.getWeight(), it.getCost(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Vehicle fromDto(VehicleDto dto){
@@ -319,7 +319,7 @@ public class DndDtoConverter {
         return new VehicleResponse(it.getId(), it.getName(), it.getDescription(),
                 it.getWeight(), it.getCost(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
     public Weapon fromDto(WeaponDto dto){
@@ -355,7 +355,7 @@ public class DndDtoConverter {
                 it.getLongThrowRange(), properties,
                 it.getWeight(), it.getCost(),
                 it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getKey() : null);
+                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
     }
 
 }

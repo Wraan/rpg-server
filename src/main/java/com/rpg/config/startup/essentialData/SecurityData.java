@@ -27,9 +27,7 @@ public class SecurityData implements ApplicationRunner {
     @Autowired private OAuthClientDetailsRepository oauthClientDetailsRepository;
     @Autowired private MyUserDetailsService userDetailsService;
     @Autowired private RoleService roleService;
-    @Lazy @Autowired private SimpMessagingTemplate template;
     @Autowired  private PasswordEncoder passwordEncoder;
-
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -68,12 +66,5 @@ public class SecurityData implements ApplicationRunner {
                         true, Arrays.asList(roleService.findByName("USER")))
         );
         userDetailsService.saveAll(users);
-    }
-
-    @Scheduled(fixedDelay = 5000)
-    public void sendMessage(){
-        template.convertAndSend("/ws/message", "If you see this message very 5 seconds " +
-                "everything is working fine :)");
-
     }
 }
