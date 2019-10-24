@@ -1,15 +1,22 @@
 package com.rpg.service.application;
 
 import com.rpg.dto.application.CreateScenarioDto;
+import com.rpg.dto.application.ScenarioResponse;
+import com.rpg.exception.ScenarioDoesNotExistException;
+import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.ScenarioRepository;
+import com.rpg.service.ApplicationConverter;
+import org.bouncycastle.openssl.PasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScenarioService {
@@ -17,14 +24,15 @@ public class ScenarioService {
     @Autowired private ScenarioRepository scenarioRepository;
 
     @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private ApplicationConverter applicationConverter;
 
     @Value("${scenario.key.length}")
     private int scenarioKeyLength;
 
     private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public Scenario findByKey(String key){
-        return scenarioRepository.findByKey(key).orElse(null);
+    public Scenario findByScenarioKey(String key){
+        return scenarioRepository.findByScenarioKey(key).orElse(null);
     }
 
     public Scenario save(Scenario scenario){
@@ -47,5 +55,24 @@ public class ScenarioService {
         }
         return sb.toString();
 
+    }
+
+    public List<ScenarioResponse> findUserScenarios(User user) {
+        List<Scenario> list = scenarioRepository.findByGameMaster(user);
+        list.addAll(user.getScenarios());
+        return applicationConverter.scenariosToResponse(list);
+    }
+
+    public void enterScenario(User user, String scenarioKey, String password) throws Exception {
+        Scenario scenario = findByScenarioKey(scenarioKey);
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!passwordEncoder.matches(password, scenario.getPassword())) throw new PasswordException("Wrong password");
+        if(user.getUsername().equals(scenario.getGameMaster().getUsername())) throw new UserAlreadyExistsException("User is already a GameMaster of this Scenario");
+        for(User player : scenario.getPlayers()){
+            if(user.getUsername().equals(player.getUsername()))
+                throw new UserAlreadyExistsException("User is already a player in that Scenario");
+        }
+        scenario.getPlayers().add(user);
+        scenarioRepository.save(scenario);
     }
 }

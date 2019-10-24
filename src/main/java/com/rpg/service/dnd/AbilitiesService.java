@@ -43,7 +43,7 @@ public class AbilitiesService {
     }
 
     public List<Feature> findFeaturesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Feature> list = new ArrayList<>(
                 featuresRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -56,7 +56,7 @@ public class AbilitiesService {
     }
 
     public List<Feature> findFeaturesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Feature> list = new ArrayList<>(
                 featuresRepository.findByScenario(null));
         if(scenario != null)
@@ -84,7 +84,7 @@ public class AbilitiesService {
     }
 
     public List<Language> findLanguagesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Language> list = new ArrayList<>(
                 languagesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -97,7 +97,7 @@ public class AbilitiesService {
     }
 
     public List<Language> findLanguagesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Language> list = new ArrayList<>(
                 languagesRepository.findByScenario(null));
         if(scenario != null)
@@ -125,7 +125,7 @@ public class AbilitiesService {
     }
 
     public List<Proficiency> findProficienciesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Proficiency> list = new ArrayList<>(
                 proficienciesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -138,7 +138,7 @@ public class AbilitiesService {
     }
 
     public List<Proficiency> findProficienciesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Proficiency> list = new ArrayList<>(
                 proficienciesRepository.findByScenario(null));
         if(scenario != null)
@@ -166,7 +166,7 @@ public class AbilitiesService {
     }
 
     public List<Skill> findSkillsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Skill> list = new ArrayList<>(
                 skillsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -179,7 +179,7 @@ public class AbilitiesService {
     }
 
     public List<Skill> findSkillsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Skill> list = new ArrayList<>(
                 skillsRepository.findByScenario(null));
         if(scenario != null)
@@ -209,7 +209,7 @@ public class AbilitiesService {
     }
 
     public List<Spell> findSpellsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Spell> list = new ArrayList<>(
                 spellsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -222,7 +222,7 @@ public class AbilitiesService {
     }
 
     public List<Spell> findSpellsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Spell> list = new ArrayList<>(
                 spellsRepository.findByScenario(null));
         if(scenario != null)
@@ -250,7 +250,7 @@ public class AbilitiesService {
     }
 
     public List<Trait> findTraitsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Trait> list = new ArrayList<>(
                 traitsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -263,7 +263,7 @@ public class AbilitiesService {
     }
 
     public List<Trait> findTraitsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Trait> list = new ArrayList<>(
                 traitsRepository.findByScenario(null));
         if(scenario != null)

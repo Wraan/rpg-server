@@ -48,7 +48,7 @@ public class TypesService {
     }
 
     public List<Condition> findConditionsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Condition> list = new ArrayList<>(
                 conditionsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -61,7 +61,7 @@ public class TypesService {
     }
 
     public List<Condition> findConditionsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Condition> list = new ArrayList<>(
                 conditionsRepository.findByScenario(null));
         if(scenario != null)
@@ -89,7 +89,7 @@ public class TypesService {
     }
 
     public List<DamageType> findDamageTypesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<DamageType> list = new ArrayList<>(
                 damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -102,7 +102,7 @@ public class TypesService {
     }
 
     public List<DamageType> findDamageTypesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<DamageType> list = new ArrayList<>(
                 damageTypesRepository.findByScenario(null));
         if(scenario != null)
@@ -130,7 +130,7 @@ public class TypesService {
     }
 
     public List<MagicSchool> findMagicSchoolsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<MagicSchool> list = new ArrayList<>(
                 magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -143,7 +143,7 @@ public class TypesService {
     }
 
     public List<MagicSchool> findMagicSchoolsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<MagicSchool> list = new ArrayList<>(
                 magicSchoolsRepository.findByScenario(null));
         if(scenario != null)
@@ -171,7 +171,7 @@ public class TypesService {
     }
 
     public List<WeaponProperty> findWeaponPropertiesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<WeaponProperty> list = new ArrayList<>(
                 weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -184,7 +184,7 @@ public class TypesService {
     }
 
     public List<WeaponProperty> findWeaponPropertiesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<WeaponProperty> list = new ArrayList<>(
                 weaponPropertiesRepository.findByScenario(null));
         if(scenario != null)

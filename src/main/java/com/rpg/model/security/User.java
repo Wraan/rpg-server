@@ -1,5 +1,7 @@
 package com.rpg.model.security;
 
+import com.rpg.model.application.Scenario;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,6 +32,12 @@ public class User {
     @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "scenario_users",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "scenario_id") })
+    private List<Scenario> scenarios;
 
     public User(){}
 
@@ -126,5 +134,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Scenario> getScenarios() {
+        return scenarios;
+    }
+
+    public void setScenarios(List<Scenario> scenarios) {
+        this.scenarios = scenarios;
     }
 }

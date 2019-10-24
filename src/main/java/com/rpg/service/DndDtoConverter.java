@@ -31,7 +31,7 @@ public class DndDtoConverter {
     public Condition fromDto(ConditionDto conditionDto){
      return new Condition(conditionDto.getName(), conditionDto.getDescription(),
              userService.findByUsername(conditionDto.getCreatorName()),
-             scenarioService.findByKey(conditionDto.getScenarioKey()));
+             scenarioService.findByScenarioKey(conditionDto.getScenarioKey()));
     }
 
     public List<ConditionResponse> conditionsToResponse(List<Condition> conditions){
@@ -51,7 +51,7 @@ public class DndDtoConverter {
     public DamageType fromDto(DamageTypeDto damageTypeDto){
         return new DamageType(damageTypeDto.getName(), damageTypeDto.getDescription(),
                 userService.findByUsername(damageTypeDto.getCreatorName()),
-                scenarioService.findByKey(damageTypeDto.getScenarioKey()));
+                scenarioService.findByScenarioKey(damageTypeDto.getScenarioKey()));
     }
 
     public List<DamageTypeResponse> damageTypesToResponse(List<DamageType> damageTypes){
@@ -71,7 +71,7 @@ public class DndDtoConverter {
     public MagicSchool fromDto(MagicSchoolDto magicSchoolDto){
         return new MagicSchool(magicSchoolDto.getName(), magicSchoolDto.getDescription(),
                 userService.findByUsername(magicSchoolDto.getCreatorName()),
-                scenarioService.findByKey(magicSchoolDto.getScenarioKey()));
+                scenarioService.findByScenarioKey(magicSchoolDto.getScenarioKey()));
     }
 
     public List<MagicSchoolResponse> magicSchoolsToResponse(List<MagicSchool> magicSchools){
@@ -91,7 +91,7 @@ public class DndDtoConverter {
     public WeaponProperty fromDto(WeaponPropertyDto weaponPropertyDto){
         return new WeaponProperty(weaponPropertyDto.getName(), weaponPropertyDto.getDescription(),
                 userService.findByUsername(weaponPropertyDto.getCreatorName()),
-                scenarioService.findByKey(weaponPropertyDto.getScenarioKey()));
+                scenarioService.findByScenarioKey(weaponPropertyDto.getScenarioKey()));
     }
 
     public List<WeaponPropertyResponse> weaponPropertiesToResponse(List<WeaponProperty> weaponProperties){
@@ -111,7 +111,7 @@ public class DndDtoConverter {
     public Feature fromDto(FeatureDto dto){
         return new Feature(dto.getName(), dto.getDescription(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<FeatureResponse> featuresToResponse(List<Feature> list){
@@ -131,7 +131,7 @@ public class DndDtoConverter {
     public Language fromDto(LanguageDto dto){
         return new Language(dto.getName(), dto.getType(), dto.getScript(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<LanguageResponse> languagesToResponse(List<Language> list){
@@ -151,7 +151,7 @@ public class DndDtoConverter {
     public Proficiency fromDto(ProficiencyDto dto){
         return new Proficiency(dto.getName(), dto.getType(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<ProficiencyResponse> proficienciesToResponse(List<Proficiency> list){
@@ -171,7 +171,7 @@ public class DndDtoConverter {
     public Skill fromDto(SkillDto dto){
         return new Skill(dto.getName(), dto.getDescription(), dto.getAbilityScore(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<SkillResponse> skillsToResponse(List<Skill> list){
@@ -189,7 +189,7 @@ public class DndDtoConverter {
     }
 
     public Spell fromDto(SpellDto dto){
-        Scenario scenario = scenarioService.findByKey(dto.getScenarioKey());
+        Scenario scenario = scenarioService.findByScenarioKey(dto.getScenarioKey());
         MagicSchool magicSchool = typesService.findMagicSchoolByNameAndScenario(dto.getMagicSchool(), scenario);
         return new Spell(dto.getName(), dto.getDescription(), dto.getHigherLevels(), dto.getLevel(),
                 dto.getRange(), dto.getComponents(), dto.getMaterial(), dto.isRitual(), dto.getDuration(),
@@ -216,7 +216,7 @@ public class DndDtoConverter {
     public Trait fromDto(TraitDto dto){
         return new Trait(dto.getName(), dto.getDescription(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<TraitResponse> traitsToResponse(List<Trait> list){
@@ -238,7 +238,7 @@ public class DndDtoConverter {
                 dto.getArmorClass().isDexBonus(), dto.getArmorClass().getMaxBonus()), dto.getStrMinimum(),
                 dto.isStealthDisadvantage(), dto.getWeight(), dto.getCost(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<ArmorResponse> armorsToResponse(List<Armor> list){
@@ -260,7 +260,7 @@ public class DndDtoConverter {
     public Gear fromDto(GearDto dto){
         return new Gear(dto.getName(), dto.getDescription(), dto.getWeight(), dto.getCost(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<GearResponse> gearToResponse(List<Gear> list){
@@ -282,7 +282,7 @@ public class DndDtoConverter {
         return new Tool(dto.getName(), dto.getDescription(), dto.getCategory(),
                 dto.getWeight(), dto.getCost(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<ToolResponse> toolsToResponse(List<Tool> list){
@@ -304,7 +304,7 @@ public class DndDtoConverter {
         return new Vehicle(dto.getName(), dto.getDescription(),
                 dto.getWeight(), dto.getCost(),
                 userService.findByUsername(dto.getCreatorName()),
-                scenarioService.findByKey(dto.getScenarioKey()));
+                scenarioService.findByScenarioKey(dto.getScenarioKey()));
     }
 
     public List<VehicleResponse> vehiclesToResponse(List<Vehicle> list){
@@ -323,7 +323,7 @@ public class DndDtoConverter {
     }
 
     public Weapon fromDto(WeaponDto dto){
-        Scenario scenario = scenarioService.findByKey(dto.getScenarioKey());
+        Scenario scenario = scenarioService.findByScenarioKey(dto.getScenarioKey());
         List<WeaponProperty> properties = new ArrayList<>();
         dto.getProperties().forEach(it -> {
             properties.add(typesService.findWeaponPropertyByNameAndScenario(it, scenario));

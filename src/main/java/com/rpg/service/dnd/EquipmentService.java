@@ -47,7 +47,7 @@ public class EquipmentService {
     }
 
     public List<Weapon> findWeaponsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Weapon> list = new ArrayList<>(
                 weaponsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -60,7 +60,7 @@ public class EquipmentService {
     }
 
     public List<Weapon> findWeaponsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Weapon> list = new ArrayList<>(
                 weaponsRepository.findByScenario(null));
         if(scenario != null)
@@ -88,7 +88,7 @@ public class EquipmentService {
     }
 
     public List<Armor> findArmorsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Armor> list = new ArrayList<>(
                 armorsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -101,7 +101,7 @@ public class EquipmentService {
     }
 
     public List<Armor> findArmorsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Armor> list = new ArrayList<>(
                 armorsRepository.findByScenario(null));
         if(scenario != null)
@@ -129,7 +129,7 @@ public class EquipmentService {
     }
 
     public List<Gear> findGearByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Gear> list = new ArrayList<>(
                 gearRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -142,7 +142,7 @@ public class EquipmentService {
     }
 
     public List<Gear> findGearByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Gear> list = new ArrayList<>(
                 gearRepository.findByScenario(null));
         if(scenario != null)
@@ -170,7 +170,7 @@ public class EquipmentService {
     }
 
     public List<Tool> findToolsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Tool> list = new ArrayList<>(
                 toolsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -183,7 +183,7 @@ public class EquipmentService {
     }
 
     public List<Tool> findToolsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Tool> list = new ArrayList<>(
                 toolsRepository.findByScenario(null));
         if(scenario != null)
@@ -211,7 +211,7 @@ public class EquipmentService {
     }
 
     public List<Vehicle> findVehiclesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Vehicle> list = new ArrayList<>(
                 vehiclesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -224,7 +224,7 @@ public class EquipmentService {
     }
 
     public List<Vehicle> findVehiclesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByKey(scenarioKey);
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Vehicle> list = new ArrayList<>(
                 vehiclesRepository.findByScenario(null));
         if(scenario != null)
