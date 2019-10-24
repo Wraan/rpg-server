@@ -41,6 +41,9 @@ public class ScenarioService {
 
     public Scenario createScenarioWithGameMaster(CreateScenarioDto scenarioDto, User user) {
         String scenarioKey = generateScenarioKey();
+        while (scenarioRepository.existsByScenarioKey(scenarioKey)) {
+            scenarioKey = generateScenarioKey();
+        }
         Scenario scenario = new Scenario(scenarioKey, passwordEncoder.encode(scenarioDto.getPassword()),
                 user, Collections.emptyList(), scenarioDto.getName(), scenarioDto.getMaxPlayers());
         return scenarioRepository.save(scenario);
