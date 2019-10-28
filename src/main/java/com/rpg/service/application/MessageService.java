@@ -1,0 +1,93 @@
+package com.rpg.service.application;
+
+import com.rpg.dto.websocket.MessageDto;
+import com.rpg.dto.websocket.MessageResponse;
+import com.rpg.model.application.Message;
+import com.rpg.model.application.MessageType;
+import com.rpg.model.application.Scenario;
+import com.rpg.model.security.User;
+import com.rpg.repository.application.MessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class MessageService {
+
+    @Autowired private ScenarioService scenarioService;
+    @Autowired private MessageRepository messageRepository;
+
+    private int LOADED_OLD_MESSAGE_AMOUNT = 50;
+    private int PAGE_SIZE = 2;
+
+    public Message createMessage(MessageDto messageDto, String scenarioKey, User user) {
+        // TODO check if character is property of the player
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        Message out;
+        if(isOOC(messageDto.getContent().trim())){
+            out = createOOCMessage(messageDto, user, scenario);
+        } else if(isWhisper(messageDto.getContent())){
+            out = createWhisperMessage(messageDto, user, scenario);
+        } else{
+            out = createCharacterMessage(messageDto, user, scenario);
+        }
+        if(out.getWhisperTarget() != null) {
+            //TODO check if whisper target exists else throw an error
+        }
+        return messageRepository.save(out);
+    }
+
+    private Message createOOCMessage(MessageDto messageDto, User user, Scenario scenario){
+        String message = messageDto.getContent().substring(5);
+        return new Message(message, user.getUsername(), MessageType.OOC, null, user, scenario);
+    }
+
+    private Message createWhisperMessage(MessageDto messageDto, User user, Scenario scenario){
+        String message = messageDto.getContent().substring(3);
+        return new Message(message, messageDto.getCharacterName(), MessageType.Whisper, message.split(" ")[0], user, scenario);
+    }
+
+    private Message createCharacterMessage(MessageDto messageDto, User user, Scenario scenario){
+        String message = messageDto.getContent();
+        return new Message(message, messageDto.getCharacterName(), MessageType.Character, null, user, scenario);
+    }
+
+    private Message createSystemMessage(String message, Scenario scenario){
+        return new Message(message, null, MessageType.System, null, null, scenario);
+    }
+
+    private boolean isOOC(String message){
+        return message.trim().startsWith("/ooc ");
+    }
+
+    private boolean isWhisper(String message){
+        return message.trim().startsWith("/w ");
+    }
+
+    public List<Message> findCorrespondingToUserInScenario(User user, Scenario scenario) {
+        int page = 0;
+        List<Message> messages = new ArrayList<>();
+        List<Message> allMessages;
+        List<String> playerCharacterNames = scenarioService.findUserCharacterNamesInScenario(user, scenario);
+        do{
+            allMessages = messageRepository.findByScenario(scenario, PageRequest.of(page, PAGE_SIZE));
+            allMessages.forEach(it -> {
+                if(messages.size() >= LOADED_OLD_MESSAGE_AMOUNT) return;
+                if(it.getType() == MessageType.OOC || it.getType() == MessageType.System
+                    || it.getType() == MessageType.Character)
+                    messages.add(it);
+                else if(playerCharacterNames.contains(it.getWhisperTarget())) messages.add(it);
+                else if(it.getUser().getUsername().equals(user.getUsername())) messages.add(it);
+            });
+            if(allMessages.size() < PAGE_SIZE) break;
+            page++;
+        } while (messages.size() < LOADED_OLD_MESSAGE_AMOUNT);
+
+        return  messages;
+    }
+}

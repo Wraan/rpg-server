@@ -7,16 +7,16 @@ import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.ScenarioRepository;
-import com.rpg.service.ApplicationConverter;
+import com.rpg.service.converter.ApplicationConverter;
 import org.bouncycastle.openssl.PasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ScenarioService {
@@ -77,5 +77,10 @@ public class ScenarioService {
         }
         scenario.getPlayers().add(user);
         scenarioRepository.save(scenario);
+    }
+
+    public List<String> findUserCharacterNamesInScenario(User user, Scenario scenario) {
+        //TODO
+        return new ArrayList<>();
     }
 }

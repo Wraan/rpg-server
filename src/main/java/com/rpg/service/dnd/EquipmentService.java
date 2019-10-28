@@ -9,7 +9,7 @@ import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.equipment.*;
 import com.rpg.model.dnd.types.WeaponProperty;
 import com.rpg.repository.dnd.equipment.*;
-import com.rpg.service.DndDtoConverter;
+import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.application.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

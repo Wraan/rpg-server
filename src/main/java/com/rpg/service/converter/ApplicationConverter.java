@@ -1,4 +1,4 @@
-package com.rpg.service;
+package com.rpg.service.converter;
 
 import com.rpg.dto.application.ScenarioResponse;
 import com.rpg.dto.dnd.equipment.VehicleResponse;

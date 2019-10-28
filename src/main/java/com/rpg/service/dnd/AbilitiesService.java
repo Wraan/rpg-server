@@ -8,7 +8,7 @@ import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.abilities.*;
 import com.rpg.repository.dnd.abilities.*;
-import com.rpg.service.DndDtoConverter;
+import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.application.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

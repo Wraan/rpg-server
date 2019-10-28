@@ -16,7 +16,7 @@ import com.rpg.repository.dnd.types.ConditionsRepository;
 import com.rpg.repository.dnd.types.DamageTypesRepository;
 import com.rpg.repository.dnd.types.MagicSchoolsRepository;
 import com.rpg.repository.dnd.types.WeaponPropertiesRepository;
-import com.rpg.service.DndDtoConverter;
+import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.application.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,7 @@
 package com.rpg.controller.dnd;
 
 import com.rpg.dto.dnd.abilities.*;
-import com.rpg.model.dnd.abilities.*;
-import com.rpg.repository.dnd.abilities.*;
-import com.rpg.service.DndDtoConverter;
+import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.AbilitiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

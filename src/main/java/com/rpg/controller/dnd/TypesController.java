@@ -1,15 +1,7 @@
 package com.rpg.controller.dnd;
 
 import com.rpg.dto.dnd.types.*;
-import com.rpg.model.dnd.types.Condition;
-import com.rpg.model.dnd.types.DamageType;
-import com.rpg.model.dnd.types.MagicSchool;
-import com.rpg.model.dnd.types.WeaponProperty;
-import com.rpg.repository.dnd.types.ConditionsRepository;
-import com.rpg.repository.dnd.types.DamageTypesRepository;
-import com.rpg.repository.dnd.types.MagicSchoolsRepository;
-import com.rpg.repository.dnd.types.WeaponPropertiesRepository;
-import com.rpg.service.DndDtoConverter;
+import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.TypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
