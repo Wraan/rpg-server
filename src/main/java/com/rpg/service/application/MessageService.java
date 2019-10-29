@@ -1,16 +1,14 @@
 package com.rpg.service.application;
 
 import com.rpg.dto.websocket.MessageDto;
-import com.rpg.dto.websocket.MessageResponse;
+import com.rpg.exception.CharacterException;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,23 +19,25 @@ public class MessageService {
 
     @Autowired private ScenarioService scenarioService;
     @Autowired private MessageRepository messageRepository;
+    @Autowired private CharacterService characterService;
 
-    private int LOADED_OLD_MESSAGE_AMOUNT = 50;
-    private int PAGE_SIZE = 2;
+    private int MESSAGES_AMOUNT_TO_RETURN = 50;
+    private int PAGE_SIZE = 50;
 
-    public Message createMessage(MessageDto messageDto, String scenarioKey, User user) {
-        // TODO check if character is property of the player
+    public Message createMessage(MessageDto messageDto, String scenarioKey, User user) throws Exception {
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario))
+            throw new CharacterException("Character is not a property od a player!");
+
         Message out;
         if(isOOC(messageDto.getContent().trim())){
             out = createOOCMessage(messageDto, user, scenario);
         } else if(isWhisper(messageDto.getContent())){
             out = createWhisperMessage(messageDto, user, scenario);
+            if(!characterService.existsWithName(out.getWhisperTarget(), scenario))
+                throw new CharacterException("Whisper target does not exist!");
         } else{
             out = createCharacterMessage(messageDto, user, scenario);
-        }
-        if(out.getWhisperTarget() != null) {
-            //TODO check if whisper target exists else throw an error
         }
         return messageRepository.save(out);
     }
@@ -77,7 +77,7 @@ public class MessageService {
         do{
             allMessages = messageRepository.findByScenario(scenario, PageRequest.of(page, PAGE_SIZE));
             allMessages.forEach(it -> {
-                if(messages.size() >= LOADED_OLD_MESSAGE_AMOUNT) return;
+                if(messages.size() >= MESSAGES_AMOUNT_TO_RETURN) return;
                 if(it.getType() == MessageType.OOC || it.getType() == MessageType.System
                     || it.getType() == MessageType.Character)
                     messages.add(it);
@@ -86,7 +86,7 @@ public class MessageService {
             });
             if(allMessages.size() < PAGE_SIZE) break;
             page++;
-        } while (messages.size() < LOADED_OLD_MESSAGE_AMOUNT);
+        } while (messages.size() < MESSAGES_AMOUNT_TO_RETURN);
 
         return  messages;
     }

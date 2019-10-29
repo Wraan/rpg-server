@@ -26,6 +26,8 @@ public class Scenario {
     @Column(length = 1023)
     private String name;
     private int maxPlayers;
+    @OneToMany(mappedBy = "scenario")
+    private List<Character> characters;
 
     public Scenario() {
     }
@@ -97,5 +99,13 @@ public class Scenario {
 
     public void setMaxPlayers(int maxPlayers) {
         this.maxPlayers = maxPlayers;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
     }
 }

@@ -4,6 +4,7 @@ import com.rpg.dto.application.CreateScenarioDto;
 import com.rpg.dto.application.ScenarioResponse;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.UserAlreadyExistsException;
+import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.ScenarioRepository;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ScenarioService {
 
     @Autowired private ScenarioRepository scenarioRepository;
+    @Autowired private CharacterService characterService;
 
     @Autowired private PasswordEncoder passwordEncoder;
     @Autowired private ApplicationConverter applicationConverter;
@@ -70,7 +72,8 @@ public class ScenarioService {
         Scenario scenario = findByScenarioKey(scenarioKey);
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!passwordEncoder.matches(password, scenario.getPassword())) throw new PasswordException("Wrong password");
-        if(user.getUsername().equals(scenario.getGameMaster().getUsername())) throw new UserAlreadyExistsException("User is already a GameMaster of this Scenario");
+        if(user.getUsername().equals(scenario.getGameMaster().getUsername()))
+            throw new UserAlreadyExistsException("User is already a GameMaster of this Scenario");
         for(User player : scenario.getPlayers()){
             if(user.getUsername().equals(player.getUsername()))
                 throw new UserAlreadyExistsException("User is already a player in that Scenario");
@@ -80,7 +83,7 @@ public class ScenarioService {
     }
 
     public List<String> findUserCharacterNamesInScenario(User user, Scenario scenario) {
-        //TODO
-        return new ArrayList<>();
+        List<Character> characters = characterService.findByOwnerAndScenario(user, scenario);
+        return characterService.getCharacterNames(characters);
     }
 }
