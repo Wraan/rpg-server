@@ -1,6 +1,7 @@
 package com.rpg.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -20,6 +21,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Autowired
     private CustomAccessTokenConverter customAccessTokenConverter;
+
+    @Value("${jwt.signing.key")
+    private String SIGNING_KEY;
 
     private static final String[] PUBLIC_MATCHERS = {
             "/webjars/**",
@@ -72,7 +76,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public JwtAccessTokenConverter accessTokenConverter() {
         final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setAccessTokenConverter(customAccessTokenConverter);
-        converter.setSigningKey("123");
+        converter.setSigningKey(SIGNING_KEY);
         return converter;
     }
 

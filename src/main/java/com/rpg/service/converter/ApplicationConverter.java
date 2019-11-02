@@ -1,9 +1,9 @@
 package com.rpg.service.converter;
 
+import com.rpg.dto.application.CharacterResponse;
 import com.rpg.dto.application.ScenarioResponse;
-import com.rpg.dto.dnd.equipment.VehicleResponse;
+import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
-import com.rpg.model.dnd.equipment.Vehicle;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,5 +22,18 @@ public class ApplicationConverter {
 
     public ScenarioResponse scenarioToResponse(Scenario it){
         return new ScenarioResponse(it.getName(), it.getGameMaster().getUsername(), it.getScenarioKey());
+    }
+
+    public List<CharacterResponse> charactersToResponse(List<Character> list){
+        List<CharacterResponse> out = new ArrayList<>();
+        list.forEach(it ->{
+            out.add(characterToResponse(it));
+        });
+        return out;
+    }
+
+    public CharacterResponse characterToResponse(Character it){
+        return new CharacterResponse(it.getName(), it.getRace(), it.getProfession(),
+                it.getOwner().getUsername());
     }
 }

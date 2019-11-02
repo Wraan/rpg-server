@@ -11,6 +11,7 @@ public class Character {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(length = 25)
     private String name;
     private String race;
     private String profession;
@@ -21,8 +22,8 @@ public class Character {
     @JoinColumn(name = "scenario_id")
     private Scenario scenario;
 
-    public Character(String name) {
-        this.name = name;
+    public Character() {
+
     }
 
     public Character(String name, String race, String profession, User owner, Scenario scenario) {

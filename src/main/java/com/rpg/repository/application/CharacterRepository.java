@@ -12,5 +12,6 @@ import java.util.List;
 public interface CharacterRepository extends JpaRepository<Character, Long> {
     List<Character> findByScenario(Scenario scenario);
     List<Character> findByOwnerAndScenario(User user, Scenario scenario);
+    Character findByNameAndScenario(String name, Scenario scenario);
 
 }

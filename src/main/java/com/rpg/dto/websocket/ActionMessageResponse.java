@@ -8,8 +8,8 @@ public class ActionMessageResponse {
     public ActionMessageResponse() {
     }
 
-    public ActionMessageResponse(String action, MessageResponse body) {
-        this.action = action;
+    public ActionMessageResponse(MessageResponse body) {
+        this.action = "message";
         this.body = body;
     }
 

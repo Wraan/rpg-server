@@ -31,10 +31,12 @@ public class TestData implements ApplicationRunner {
     }
 
     private void createTestScenario(){
-        Scenario scenario = new Scenario("TESTSCEN", passwordEncoder.encode("password"),
-                userService.findByUsername("admin"), Collections.emptyList(), "Test scenario", 2);
-        scenario.setId(1);
-        scenarioService.save(scenario);
+        Scenario scenario = scenarioService.findByScenarioKey("TESTSCEN");
+        if(scenario == null) {
+            scenario = new Scenario("TESTSCEN", passwordEncoder.encode("password"),
+                    userService.findByUsername("admin"), Collections.emptyList(), "Test scenario", 2);
+            scenarioService.save(scenario);
+        }
     }
 
     @Scheduled(fixedDelay = 5000)

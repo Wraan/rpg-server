@@ -2,6 +2,7 @@ package com.rpg.service.application;
 
 import com.rpg.dto.websocket.MessageDto;
 import com.rpg.exception.CharacterException;
+import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
@@ -24,8 +25,9 @@ public class MessageService {
     private int MESSAGES_AMOUNT_TO_RETURN = 50;
     private int PAGE_SIZE = 50;
 
-    public Message createMessage(MessageDto messageDto, String scenarioKey, User user) throws Exception {
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+    public Message createMessage(MessageDto messageDto, Scenario scenario, User user) throws Exception {
+        if (!scenario.getPlayers().contains(user) && !scenario.getGameMaster().getUsername().equals(user.getUsername()))
+            throw new UserDoesNotExistException("User is not a player in that scenario");
         if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario))
             throw new CharacterException("Character is not a property od a player!");
 
@@ -49,7 +51,9 @@ public class MessageService {
 
     private Message createWhisperMessage(MessageDto messageDto, User user, Scenario scenario){
         String message = messageDto.getContent().substring(3);
-        return new Message(message, messageDto.getCharacterName(), MessageType.Whisper, message.split(" ")[0], user, scenario);
+        String whisperTarget = message.split(" ")[0];
+        message = message.replace(whisperTarget, "").trim();
+        return new Message(message, messageDto.getCharacterName(), MessageType.Whisper, whisperTarget, user, scenario);
     }
 
     private Message createCharacterMessage(MessageDto messageDto, User user, Scenario scenario){
@@ -58,7 +62,8 @@ public class MessageService {
     }
 
     private Message createSystemMessage(String message, Scenario scenario){
-        return new Message(message, null, MessageType.System, null, null, scenario);
+        Message out = new Message(message, null, MessageType.System, null, null, scenario);
+        return messageRepository.save(out);
     }
 
     private boolean isOOC(String message){
