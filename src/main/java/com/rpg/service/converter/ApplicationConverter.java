@@ -34,6 +34,6 @@ public class ApplicationConverter {
 
     public CharacterResponse characterToResponse(Character it){
         return new CharacterResponse(it.getName(), it.getRace(), it.getProfession(),
-                it.getOwner().getUsername());
+                it.getOwner() != null ? it.getOwner().getUsername() : null);
     }
 }

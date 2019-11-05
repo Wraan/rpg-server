@@ -4,6 +4,8 @@ import com.rpg.dto.dnd.equipment.*;
 import com.rpg.repository.dnd.equipment.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.EquipmentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ public class EquipmentController {
 
     @Autowired private EquipmentService equipmentService;
     @Autowired private DndDtoConverter dtoConverter;
+
+    private Logger LOGGER = LogManager.getLogger(getClass());
 
     @GetMapping("/armor/{id}")
     public ArmorResponse getArmorById(@PathVariable("id") long id) {
@@ -116,52 +120,57 @@ public class EquipmentController {
     }
 
     @PostMapping("/armor")
-    public ResponseEntity<String> addCustomArmor(@RequestBody ArmorDto dto){
+    public ResponseEntity addCustomArmor(@RequestBody ArmorDto dto){
         try {
             equipmentService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/gear")
-    public ResponseEntity<String> addCustomGear(@RequestBody GearDto dto){
+    public ResponseEntity addCustomGear(@RequestBody GearDto dto){
         try {
             equipmentService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/tool")
-    public ResponseEntity<String> addCustomTool(@RequestBody ToolDto dto){
+    public ResponseEntity addCustomTool(@RequestBody ToolDto dto){
         try {
             equipmentService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/vehicle")
-    public ResponseEntity<String> addCustomVehicle(@RequestBody VehicleDto dto){
+    public ResponseEntity addCustomVehicle(@RequestBody VehicleDto dto){
         try {
             equipmentService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/weapon")
-    public ResponseEntity<String> addCustomWeapon(@RequestBody WeaponDto dto){
+    public ResponseEntity addCustomWeapon(@RequestBody WeaponDto dto){
         try {
             equipmentService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
