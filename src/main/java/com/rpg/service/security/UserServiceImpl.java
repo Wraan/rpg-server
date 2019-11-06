@@ -74,27 +74,28 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByUsername(username).orElse(null);
     }
 
-    public User findWithToken(String token) throws Exception {
-        try {
-            Jwt jwt = JwtHelper.decode(token);
-            Map<String, Object> claims = objectMapper.readValue(jwt.getClaims(), Map.class);
-            int exp = (int) claims.get("exp");
-            if(isTokenExpired(exp))
-                throw new TokenException("Token is expired");
-
-            User user = findByUsername((String) claims.get("username"));
-            if(user == null) throw new UserDoesNotExistException("User does not exist");
-
-            return user;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new Exception("Problem happened with the token. Try again or generate a new token.");
-        }
-    }
-
-    private boolean isTokenExpired(long exp) {
-        Date expiry = new Date(exp * 1000L);
-        Date now = Calendar.getInstance().getTime();
-        return now.compareTo(expiry) > 0;
-    }
+//    Not used, but might be useful later
+//    public User findWithToken(String token) throws Exception {
+//        try {
+//            Jwt jwt = JwtHelper.decode(token);
+//            Map<String, Object> claims = objectMapper.readValue(jwt.getClaims(), Map.class);
+//            int exp = (int) claims.get("exp");
+//            if(isTokenExpired(exp))
+//                throw new TokenException("Token is expired");
+//
+//            User user = findByUsername((String) claims.get("username"));
+//            if(user == null) throw new UserDoesNotExistException("User does not exist");
+//
+//            return user;
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            throw new Exception("Problem happened with the token. Try again or generate a new token.");
+//        }
+//    }
+//
+//    private boolean isTokenExpired(long exp) {
+//        Date expiry = new Date(exp * 1000L);
+//        Date now = Calendar.getInstance().getTime();
+//        return now.compareTo(expiry) > 0;
+//    }
 }

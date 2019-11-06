@@ -1,15 +1,15 @@
 package com.rpg.dto.websocket;
 
-public class ActionMessageResponse {
+public class ActionResponse {
 
     private String action;
     private MessageResponse body;
 
-    public ActionMessageResponse() {
+    public ActionResponse() {
     }
 
-    public ActionMessageResponse(MessageResponse body) {
-        this.action = "message";
+    public ActionResponse(String action, MessageResponse body) {
+        this.action = action;
         this.body = body;
     }
 

@@ -61,7 +61,7 @@ public class MessageService {
         return new Message(message, messageDto.getCharacterName(), MessageType.Character, null, user, scenario);
     }
 
-    private Message createSystemMessage(String message, Scenario scenario){
+    public Message createSystemMessage(String message, Scenario scenario){
         Message out = new Message(message, null, MessageType.System, null, null, scenario);
         return messageRepository.save(out);
     }

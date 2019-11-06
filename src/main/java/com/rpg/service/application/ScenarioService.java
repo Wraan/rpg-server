@@ -86,4 +86,12 @@ public class ScenarioService {
         List<Character> characters = characterService.findByOwnerAndScenario(user, scenario);
         return characterService.getCharacterNames(characters);
     }
+
+    public boolean isUserPlayerInScenario(User user, Scenario scenario){
+        return scenario.getPlayers().contains(user);
+    }
+
+    public boolean isUserGameMasterInScenario(User user, Scenario scenario){
+        return scenario.getGameMaster().getUsername().equals(user.getUsername());
+    }
 }
