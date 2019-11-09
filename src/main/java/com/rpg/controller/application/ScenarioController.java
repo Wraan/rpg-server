@@ -12,6 +12,8 @@ import com.rpg.service.converter.ApplicationConverter;
 import com.rpg.service.security.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,8 @@ public class ScenarioController {
 
     @Autowired private ApplicationConverter applicationConverter;
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    private Logger LOGGER = LogManager.getLogger(getClass());
 
     @PostMapping("/scenario")
     @ApiImplicitParams({
@@ -64,10 +68,11 @@ public class ScenarioController {
         User user = userService.findByUsername(principal.getName());
         try{
             scenarioService.enterScenario(user, scenarioKey, password);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok().body("OK");
     }
 
     @PostMapping("/scenario/{scenarioKey}/createCharacter")
@@ -82,10 +87,11 @@ public class ScenarioController {
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try{
             characterService.createCharacter(characterDto, user, scenario);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok().body("OK");
     }
 
     @GetMapping("/scenario/{scenarioKey}/character")
@@ -101,10 +107,12 @@ public class ScenarioController {
         List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
                 characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
         try {
+            applicationConverter.charactersToResponse(characters);
             return ResponseEntity.ok().header("Content-Type", "application/json")
                     .body(objectMapper.writeValueAsString(applicationConverter.charactersToResponse(characters)));
         }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getStackTrace());
         }
     }
 
@@ -123,6 +131,7 @@ public class ScenarioController {
             characterService.delete(name, user, scenario);
             return ResponseEntity.ok().body("OK");
         }catch (Exception e){
+            LOGGER.error(e.getStackTrace());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

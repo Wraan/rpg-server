@@ -3,6 +3,8 @@ package com.rpg.controller.dnd;
 import com.rpg.dto.dnd.abilities.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.AbilitiesService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ public class AbilitiesController {
 
     @Autowired private AbilitiesService abilitiesService;
     @Autowired private DndDtoConverter dtoConverter;
+
+    private Logger LOGGER = LogManager.getLogger(getClass());
 
     @GetMapping("/spell/{id}")
     public SpellResponse getSpellById(@PathVariable("id") long id) {
@@ -127,62 +131,68 @@ public class AbilitiesController {
     }
 
     @PostMapping("/feature")
-    public ResponseEntity<String> addCustomFeature(@RequestBody FeatureDto dto){
+    public ResponseEntity addCustomFeature(@RequestBody FeatureDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/language")
-    public ResponseEntity<String> addCustomLanguage(@RequestBody LanguageDto dto){
+    public ResponseEntity addCustomLanguage(@RequestBody LanguageDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/proficiency")
-    public ResponseEntity<String> addCustomProficiency(@RequestBody ProficiencyDto dto){
+    public ResponseEntity addCustomProficiency(@RequestBody ProficiencyDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/skill")
-    public ResponseEntity<String> addCustomSkill(@RequestBody SkillDto dto){
+    public ResponseEntity addCustomSkill(@RequestBody SkillDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/spell")
-    public ResponseEntity<String> addCustomSpell(@RequestBody SpellDto dto){
+    public ResponseEntity addCustomSpell(@RequestBody SpellDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/trait")
-    public ResponseEntity<String> addCustomTrait(@RequestBody TraitDto dto){
+    public ResponseEntity addCustomTrait(@RequestBody TraitDto dto){
         try {
             abilitiesService.save(dto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

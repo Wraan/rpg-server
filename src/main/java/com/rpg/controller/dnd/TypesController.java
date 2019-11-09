@@ -3,6 +3,8 @@ package com.rpg.controller.dnd;
 import com.rpg.dto.dnd.types.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.TypesService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ public class TypesController {
 
     @Autowired private TypesService typesService;
     @Autowired private DndDtoConverter dtoConverter;
+
+    private Logger LOGGER = LogManager.getLogger(getClass());
 
     @GetMapping("/magicSchool/{id}")
     public MagicSchoolResponse getMagicSchoolById(@PathVariable("id") long id) {
@@ -91,42 +95,46 @@ public class TypesController {
     }
 
     @PostMapping("/condition")
-    public ResponseEntity<String> addCustomCondition(@RequestBody ConditionDto conditionDto){
+    public ResponseEntity addCustomCondition(@RequestBody ConditionDto conditionDto){
         try {
             typesService.save(conditionDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/magicSchool")
-    public ResponseEntity<String> addCustomMagicSchool(@RequestBody MagicSchoolDto magicSchoolDto){
+    public ResponseEntity addCustomMagicSchool(@RequestBody MagicSchoolDto magicSchoolDto){
         try {
             typesService.save(magicSchoolDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/damageType")
-    public ResponseEntity<String> addCustomDamageType(@RequestBody DamageTypeDto damageTypeDto){
+    public ResponseEntity addCustomDamageType(@RequestBody DamageTypeDto damageTypeDto){
         try {
             typesService.save(damageTypeDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/weaponProperty")
-    public ResponseEntity<String> addCustomWeaponProperty(@RequestBody WeaponPropertyDto weaponPropertyDto){
+    public ResponseEntity addCustomWeaponProperty(@RequestBody WeaponPropertyDto weaponPropertyDto){
         try {
             typesService.save(weaponPropertyDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            LOGGER.error(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
