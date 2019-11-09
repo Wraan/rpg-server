@@ -1,8 +1,10 @@
 package com.rpg.service.application;
 
+import com.rpg.dto.application.SimplePasswordDto;
 import com.rpg.dto.application.CreateScenarioDto;
 import com.rpg.dto.application.ScenarioResponse;
 import com.rpg.exception.ScenarioDoesNotExistException;
+import com.rpg.exception.ScenarioException;
 import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
@@ -15,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -93,5 +94,23 @@ public class ScenarioService {
 
     public boolean isUserGameMasterInScenario(User user, Scenario scenario){
         return scenario.getGameMaster().getUsername().equals(user.getUsername());
+    }
+
+    public void changePassword(SimplePasswordDto simplePasswordDto, Scenario scenario) {
+        scenario.setPassword(passwordEncoder.encode(simplePasswordDto.getPassword()));
+        save(scenario);
+    }
+
+    public void removePlayer(User player, Scenario scenario) throws Exception {
+        if(isUserGameMasterInScenario(player, scenario))
+            throw new ScenarioException("GameMaster cannot be removed from scenario");
+        if(!isUserPlayerInScenario(player, scenario))
+            throw new ScenarioException("User is not a player in that scenario");
+
+        List<Character> characters = characterService.findByOwnerAndScenario(player, scenario);
+        characters.forEach(it -> characterService.changeOwner(it, null));
+
+        scenario.getPlayers().remove(player);
+        save(scenario);
     }
 }

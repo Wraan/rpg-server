@@ -47,10 +47,10 @@ public class MessageController {
     })
     public ResponseEntity message(@PathVariable("scenarioKey") String scenarioKey, @RequestBody MessageDto messageDto,
                                   Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         Message message;
         try {
-            User user = userService.findByUsername(principal.getName());
-            Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
             message = messageService.createMessage(messageDto, scenario, user);
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
 
@@ -79,14 +79,16 @@ public class MessageController {
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
                     paramType = "header", defaultValue="Bearer access-token")
     })
-    public List<MessageResponse> collectUserMessages(@PathVariable("scenarioKey") String scenarioKey,
+    public ResponseEntity collectUserMessages(@PathVariable("scenarioKey") String scenarioKey,
                                                      Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<Message> messages = messageService.findCorrespondingToUserInScenario(user, scenario);
-        return messageConverter.messagesToResponse(messages);
+        try {
+            List<Message> messages = messageService.findCorrespondingToUserInScenario(user, scenario);
+            return ResponseEntity.ok(objectMapper.writeValueAsString(messageConverter.messagesToResponse(messages)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
-
-
-
 }

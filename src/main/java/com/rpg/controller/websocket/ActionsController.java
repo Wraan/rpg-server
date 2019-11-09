@@ -1,6 +1,7 @@
 package com.rpg.controller.websocket;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
+import com.rpg.dto.application.SimplePasswordDto;
 import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.DiceRollDto;
@@ -91,7 +92,7 @@ public class ActionsController {
                 throw new PrivilageException("Only GameMaster can change characters owner");
 
             User oldOwner = characterService.findByNameAndScenario(changeOwnerDto.getCharacterName(), scenario).getOwner();
-            characterService.changeCharactersOwner(changeOwnerDto, scenario);
+            characterService.changeCharactersOwnerInScenario(changeOwnerDto, scenario);
 
             Set<User> usersToUpdate = new HashSet<>();
 
@@ -112,4 +113,54 @@ public class ActionsController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/change/password/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+
+    public ResponseEntity changeScenarioPassword(@PathVariable("scenarioKey") String scenarioKey,
+                                                 @RequestBody SimplePasswordDto simplePasswordDto,
+                                                 Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if (!scenarioService.isUserGameMasterInScenario(gm, scenario))
+                throw new PrivilageException("Only GameMaster can change scenario password");
+
+            scenarioService.changePassword(simplePasswordDto, scenario);
+
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
+    }
+
+    @PostMapping("/remove/player/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity removePlayerFromScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                                   @RequestParam("player") String playerName,
+                                                   Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if (!scenarioService.isUserGameMasterInScenario(gm, scenario))
+                throw new PrivilageException("Only GameMaster can remove players from scenario");
+
+            User player = userService.findByUsername(playerName);
+            scenarioService.removePlayer(player, scenario);
+
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    //TODO changeScenarioOwner
 }

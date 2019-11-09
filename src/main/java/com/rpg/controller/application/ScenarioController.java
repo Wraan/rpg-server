@@ -3,6 +3,7 @@ package com.rpg.controller.application;
 import com.rpg.dto.application.CreateCharacterDto;
 import com.rpg.dto.application.CreateScenarioDto;
 import com.rpg.dto.application.ScenarioResponse;
+import com.rpg.dto.application.SimplePasswordDto;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
@@ -63,11 +64,11 @@ public class ScenarioController {
                     paramType = "header", defaultValue="Bearer access-token")
     })
     public ResponseEntity enterScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                @RequestParam(value = "password") String password,
+                                                @RequestBody SimplePasswordDto passwordDto,
                                                 Principal principal){
         User user = userService.findByUsername(principal.getName());
         try{
-            scenarioService.enterScenario(user, scenarioKey, password);
+            scenarioService.enterScenario(user, scenarioKey, passwordDto.getPassword());
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,7 +102,6 @@ public class ScenarioController {
     })
     public ResponseEntity getCharactersInScenario(@PathVariable("scenarioKey") String scenarioKey,
                                                           Principal principal){
-        // TODO WHY IT IS NOT WORKING FOR ADMIN ???
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?

@@ -74,7 +74,11 @@ public class MessageService {
         return message.trim().startsWith("/w ");
     }
 
-    public List<Message> findCorrespondingToUserInScenario(User user, Scenario scenario) {
+    public List<Message> findCorrespondingToUserInScenario(User user, Scenario scenario) throws Exception {
+        if(!scenarioService.isUserPlayerInScenario(user, scenario) &&
+                !scenarioService.isUserGameMasterInScenario(user, scenario))
+            throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");
+
         int page = 0;
         List<Message> messages = new ArrayList<>();
         List<Message> allMessages;

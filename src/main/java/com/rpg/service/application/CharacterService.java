@@ -89,7 +89,7 @@ public class CharacterService {
         throw new CharacterException("Character does not belong to the player");
     }
 
-    public void changeCharactersOwner(ChangeCharacterOwnerDto changeOwnerDto, Scenario scenario) throws Exception {
+    public void changeCharactersOwnerInScenario(ChangeCharacterOwnerDto changeOwnerDto, Scenario scenario) throws Exception {
         Character character = findByNameAndScenario(changeOwnerDto.getCharacterName(), scenario);
         if(character == null) throw new CharacterException("Character does not exist");
 
@@ -103,5 +103,11 @@ public class CharacterService {
             throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");
 
         characterRepository.save(character);
+    }
+
+    public void changeOwner(Character character, User player) {
+        character.setOwner(player);
+        characterRepository.save(character);
+
     }
 }
