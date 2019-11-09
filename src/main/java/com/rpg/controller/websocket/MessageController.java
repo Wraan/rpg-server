@@ -1,6 +1,6 @@
 package com.rpg.controller.websocket;
 
-import com.rpg.dto.websocket.ActionMessageResponse;
+import com.rpg.dto.websocket.ActionResponse;
 import com.rpg.dto.websocket.MessageDto;
 import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.model.application.Message;
@@ -12,15 +12,13 @@ import com.rpg.service.application.MessageService;
 import com.rpg.service.application.ScenarioService;
 import com.rpg.service.converter.MessageConverter;
 import com.rpg.service.security.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -38,6 +36,7 @@ public class MessageController {
 
     @Autowired private MessageConverter messageConverter;
     private ObjectMapper objectMapper = new ObjectMapper();
+    private Logger LOGGER = LogManager.getLogger(getClass());
 
     @PostMapping("/message/scenario/{scenarioKey}")
     public ResponseEntity message(@PathVariable("scenarioKey") String scenarioKey, @RequestBody MessageDto messageDto,
@@ -47,7 +46,7 @@ public class MessageController {
             User user = userService.findByUsername(principal.getName());
             Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
             message = messageService.createMessage(messageDto, scenario, user);
-            ActionMessageResponse amr = new ActionMessageResponse(messageConverter.messageToResponse(message));
+            ActionResponse amr = new ActionResponse("message", messageConverter.messageToResponse(message));
 
             if(message.getType().equals(MessageType.Whisper)){
                 User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
@@ -57,14 +56,14 @@ public class MessageController {
                         objectMapper.writeValueAsString(amr));
                 template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + message.getUser().getUsername(),
                         objectMapper.writeValueAsString(amr));
-                return ResponseEntity.ok("OK");
             }
             else{
                 template.convertAndSend("/ws/scenario/" + scenarioKey,
                         objectMapper.writeValueAsString(amr));
-                return ResponseEntity.ok("OK");
             }
+            return ResponseEntity.ok("OK");
         } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
