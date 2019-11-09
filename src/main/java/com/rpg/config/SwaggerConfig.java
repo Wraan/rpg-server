@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(Predicates.or(PathSelectors.ant("/api/**"),
-                        PathSelectors.ant("/message/**"),
+                        PathSelectors.ant("/action/**"),
                         PathSelectors.ant("/oauth/token"),
                         PathSelectors.ant("/register")))
                 .build();

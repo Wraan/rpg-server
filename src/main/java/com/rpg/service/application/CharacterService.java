@@ -1,5 +1,6 @@
 package com.rpg.service.application;
 
+import com.rpg.dto.application.ChangeCharacterOwnerDto;
 import com.rpg.dto.application.CreateCharacterDto;
 import com.rpg.exception.CharacterException;
 import com.rpg.exception.RegexException;
@@ -9,6 +10,7 @@ import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.CharacterRepository;
+import com.rpg.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.regex.Pattern;
 public class CharacterService {
 
     @Autowired private CharacterRepository characterRepository;
+    @Autowired private UserService userService;
+    @Autowired private ScenarioService scenarioService;
 
     private final static String NAME_REGEX = "^[A-Z][a-z]{1,24}$";
 
@@ -83,5 +87,21 @@ public class CharacterService {
             characterRepository.delete(character);
         }
         throw new CharacterException("Character does not belong to the player");
+    }
+
+    public void changeCharactersOwner(ChangeCharacterOwnerDto changeOwnerDto, Scenario scenario) throws Exception {
+        Character character = findByNameAndScenario(changeOwnerDto.getCharacterName(), scenario);
+        if(character == null) throw new CharacterException("Character does not exist");
+
+        User newOwner = userService.findByUsername(changeOwnerDto.getNewOwner());
+        if(newOwner == null) throw new UserDoesNotExistException("User does not exist");
+        if(scenarioService.isUserGameMasterInScenario(newOwner, scenario))
+            character.setOwner(null);
+        else if(scenarioService.isUserPlayerInScenario(newOwner, scenario))
+            character.setOwner(newOwner);
+        else
+            throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");
+
+        characterRepository.save(character);
     }
 }

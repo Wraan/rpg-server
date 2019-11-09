@@ -25,7 +25,7 @@ public class AuthenticationController {
             userService.register(registeredUser);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

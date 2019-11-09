@@ -70,7 +70,7 @@ public class ScenarioController {
             scenarioService.enterScenario(user, scenarioKey, password);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -89,7 +89,7 @@ public class ScenarioController {
             characterService.createCharacter(characterDto, user, scenario);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -111,7 +111,7 @@ public class ScenarioController {
             return ResponseEntity.ok().header("Content-Type", "application/json")
                     .body(objectMapper.writeValueAsString(applicationConverter.charactersToResponse(characters)));
         }catch (Exception e){
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getStackTrace());
         }
     }
@@ -131,7 +131,7 @@ public class ScenarioController {
             characterService.delete(name, user, scenario);
             return ResponseEntity.ok().body("OK");
         }catch (Exception e){
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

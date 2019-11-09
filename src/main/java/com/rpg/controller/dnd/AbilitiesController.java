@@ -3,6 +3,8 @@ package com.rpg.controller.dnd;
 import com.rpg.dto.dnd.abilities.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.dnd.AbilitiesService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,19 @@ public class AbilitiesController {
     private Logger LOGGER = LogManager.getLogger(getClass());
 
     @GetMapping("/spell/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public SpellResponse getSpellById(@PathVariable("id") long id) {
         return dtoConverter.spellToResponse(abilitiesService.findSpellById(id));
     }
 
     @GetMapping("/spell")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<SpellResponse> getSpellsByName(@RequestParam(value = "name") Optional<String> name,
                                                @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -41,11 +51,19 @@ public class AbilitiesController {
     }
 
     @GetMapping("/skill/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public SkillResponse getSkillById(@PathVariable("id") long id) {
         return dtoConverter.skillToResponse(abilitiesService.findSkillById(id));
     }
 
     @GetMapping("/skill")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<SkillResponse> getSkills(@RequestParam(value = "name") Optional<String> name,
                                  @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -59,11 +77,19 @@ public class AbilitiesController {
     }
 
     @GetMapping("/feature/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public FeatureResponse getFeatureById(@PathVariable("id") long id) {
         return dtoConverter.featureToResponse(abilitiesService.findFeatureById(id));
     }
 
     @GetMapping("/feature")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<FeatureResponse> getFeatures(@RequestParam(value = "name") Optional<String> name,
                                              @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -77,11 +103,19 @@ public class AbilitiesController {
     }
 
     @GetMapping("/language/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public LanguageResponse getLanguageById(@PathVariable("id") long id) {
         return dtoConverter.languageToResponse(abilitiesService.findLanguageById(id));
     }
 
     @GetMapping("/language")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<LanguageResponse> getLanguages(@RequestParam(value = "name") Optional<String> name,
                                                @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -95,11 +129,19 @@ public class AbilitiesController {
     }
 
     @GetMapping("/proficiency/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ProficiencyResponse getProficiencyById(@PathVariable("id") long id) {
         return dtoConverter.proficiencyToResponse(abilitiesService.findProficiencyById(id));
     }
 
     @GetMapping("/proficiency")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<ProficiencyResponse> getProficiencies(@RequestParam(value = "name") Optional<String> name,
                                                       @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -113,11 +155,19 @@ public class AbilitiesController {
     }
 
     @GetMapping("/trait/{id}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public TraitResponse getTraitById(@PathVariable("id") long id) {
         return dtoConverter.traitToResponse(abilitiesService.findTraitById(id));
     }
 
     @GetMapping("/trait")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<TraitResponse> getTraits(@RequestParam(value = "name") Optional<String> name,
                                  @RequestParam(value = "scenarioKey") Optional<String> scenarioKey) {
         if(name.isPresent() && scenarioKey.isPresent())
@@ -131,67 +181,91 @@ public class AbilitiesController {
     }
 
     @PostMapping("/feature")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomFeature(@RequestBody FeatureDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/language")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomLanguage(@RequestBody LanguageDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/proficiency")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomProficiency(@RequestBody ProficiencyDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/skill")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomSkill(@RequestBody SkillDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/spell")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomSpell(@RequestBody SpellDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/trait")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity addCustomTrait(@RequestBody TraitDto dto){
         try {
             abilitiesService.save(dto);
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -1,6 +1,6 @@
 package com.rpg.controller.websocket;
 
-import com.rpg.dto.websocket.ActionResponse;
+import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.MessageDto;
 import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.model.application.Message;
@@ -12,6 +12,8 @@ import com.rpg.service.application.MessageService;
 import com.rpg.service.application.ScenarioService;
 import com.rpg.service.converter.MessageConverter;
 import com.rpg.service.security.UserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -38,7 +40,11 @@ public class MessageController {
     private ObjectMapper objectMapper = new ObjectMapper();
     private Logger LOGGER = LogManager.getLogger(getClass());
 
-    @PostMapping("/message/scenario/{scenarioKey}")
+    @PostMapping("/action/message/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public ResponseEntity message(@PathVariable("scenarioKey") String scenarioKey, @RequestBody MessageDto messageDto,
                                   Principal principal){
         Message message;
@@ -46,7 +52,7 @@ public class MessageController {
             User user = userService.findByUsername(principal.getName());
             Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
             message = messageService.createMessage(messageDto, scenario, user);
-            ActionResponse amr = new ActionResponse("message", messageConverter.messageToResponse(message));
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
 
             if(message.getType().equals(MessageType.Whisper)){
                 User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
@@ -63,12 +69,16 @@ public class MessageController {
             }
             return ResponseEntity.ok("OK");
         } catch (Exception e) {
-            LOGGER.error(e.getStackTrace());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/api/v1/message/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
     public List<MessageResponse> collectUserMessages(@PathVariable("scenarioKey") String scenarioKey,
                                                      Principal principal){
         User user = userService.findByUsername(principal.getName());
