@@ -95,6 +95,7 @@ public class ScenarioController {
     })
     public ResponseEntity getCharactersInScenario(@PathVariable("scenarioKey") String scenarioKey,
                                                           Principal principal){
+        // TODO WHY IT IS NOT WORKING FOR ADMIN ???
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
