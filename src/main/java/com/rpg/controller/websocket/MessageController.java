@@ -55,6 +55,7 @@ public class MessageController {
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
 
             if(message.getType().equals(MessageType.Whisper)){
+                //TODO sender, receiver and gamemaster receiving message
                 User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
                         .getOwner();
                 if(whisperTargetPlayer == null) whisperTargetPlayer = scenario.getGameMaster();
