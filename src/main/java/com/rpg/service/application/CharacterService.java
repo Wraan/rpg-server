@@ -64,6 +64,7 @@ public class CharacterService {
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(findByNameAndScenario(characterDto.getName(), scenario) != null)
             throw new CharacterException("Character with that name already exists");
+        //TODO make it less aggresive
         Pattern nameReg = Pattern.compile(NAME_REGEX);
         if(!nameReg.matcher(characterDto.getName()).matches())
             throw new RegexException("Character name must be simple - only letters, starting with capital letter, up to 24 letters");

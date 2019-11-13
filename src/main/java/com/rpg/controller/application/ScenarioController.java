@@ -147,6 +147,7 @@ public class ScenarioController {
             List<CharacterResponse> characters =
                     applicationConverter.charactersToResponse(characterService.findByOwnerAndScenario(user, scenario));
             EnterScenarioResponse enterScenarioResponse = new EnterScenarioResponse(scenarioInfo, characters);
+            //TODO add messages
 
             //TODO check if without .header it is appending the Content-Type header (if it requires to be objectMapped
             return ResponseEntity.ok().header("Content-Type", "application/json").body(enterScenarioResponse);
