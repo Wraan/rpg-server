@@ -24,7 +24,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class MessageController {
@@ -55,14 +57,18 @@ public class MessageController {
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
 
             if(message.getType().equals(MessageType.Whisper)){
-                //TODO sender, receiver and gamemaster receiving message
+                //TODO test it
+                Set<User> receivers = new HashSet<>();
+                receivers.add(scenario.getGameMaster());
                 User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
                         .getOwner();
-                if(whisperTargetPlayer == null) whisperTargetPlayer = scenario.getGameMaster();
-                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + whisperTargetPlayer.getUsername(),
-                        objectMapper.writeValueAsString(amr));
-                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + message.getUser().getUsername(),
-                        objectMapper.writeValueAsString(amr));
+                if(whisperTargetPlayer != null)
+                    receivers.add(whisperTargetPlayer);
+                receivers.add(message.getUser());
+
+                for (User it : receivers)
+                    template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + it.getUsername(),
+                            objectMapper.writeValueAsString(amr));
             }
             else{
                 template.convertAndSend("/ws/scenario/" + scenarioKey,

@@ -2,6 +2,7 @@ package com.rpg.service.application;
 
 import com.rpg.dto.websocket.MessageDto;
 import com.rpg.exception.CharacterException;
+import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
@@ -26,6 +27,7 @@ public class MessageService {
     private int PAGE_SIZE = 50;
 
     public Message createMessage(MessageDto messageDto, Scenario scenario, User user) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if (!scenario.getPlayers().contains(user) && !scenario.getGameMaster().getUsername().equals(user.getUsername()))
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario))
@@ -75,6 +77,7 @@ public class MessageService {
     }
 
     public List<Message> findCorrespondingToUserInScenario(User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!scenarioService.isUserPlayerInScenario(user, scenario) &&
                 !scenarioService.isUserGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");

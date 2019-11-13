@@ -80,6 +80,7 @@ public class CharacterService {
     }
 
     public void delete(String name, User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         Character character = findByNameAndScenario(name, scenario);
         if(character == null) throw new CharacterException("Character does not exist");
         if (character.getOwner().getUsername().equals(user.getUsername())
@@ -90,11 +91,14 @@ public class CharacterService {
     }
 
     public void changeCharactersOwnerInScenario(ChangeCharacterOwnerDto changeOwnerDto, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+
         Character character = findByNameAndScenario(changeOwnerDto.getCharacterName(), scenario);
         if(character == null) throw new CharacterException("Character does not exist");
 
         User newOwner = userService.findByUsername(changeOwnerDto.getNewOwner());
-        if(newOwner == null) throw new UserDoesNotExistException("User does not exist");
+        if(newOwner == null) throw new UserDoesNotExistException("New owner user does not exist");
+
         if(scenarioService.isUserGameMasterInScenario(newOwner, scenario))
             character.setOwner(null);
         else if(scenarioService.isUserPlayerInScenario(newOwner, scenario))

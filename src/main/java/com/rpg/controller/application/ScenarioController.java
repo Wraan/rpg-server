@@ -1,9 +1,6 @@
 package com.rpg.controller.application;
 
-import com.rpg.dto.application.CreateCharacterDto;
-import com.rpg.dto.application.CreateScenarioDto;
-import com.rpg.dto.application.ScenarioResponse;
-import com.rpg.dto.application.SimplePasswordDto;
+import com.rpg.dto.application.*;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
@@ -17,7 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,17 +54,17 @@ public class ScenarioController {
         return scenarioService.findUserScenarios(user);
     }
 
-    @PostMapping("/scenario/{scenarioKey}/enter")
+    @PostMapping("/scenario/{scenarioKey}/join")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
                     paramType = "header", defaultValue="Bearer access-token")
     })
-    public ResponseEntity enterScenario(@PathVariable("scenarioKey") String scenarioKey,
+    public ResponseEntity joinScenario(@PathVariable("scenarioKey") String scenarioKey,
                                                 @RequestBody SimplePasswordDto passwordDto,
                                                 Principal principal){
         User user = userService.findByUsername(principal.getName());
         try{
-            scenarioService.enterScenario(user, scenarioKey, passwordDto.getPassword());
+            scenarioService.joinScenario(user, scenarioKey, passwordDto.getPassword());
             return ResponseEntity.ok().body("OK");
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +106,7 @@ public class ScenarioController {
             applicationConverter.charactersToResponse(characters);
             return ResponseEntity.ok().header("Content-Type", "application/json")
                     .body(objectMapper.writeValueAsString(applicationConverter.charactersToResponse(characters)));
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getStackTrace());
         }
@@ -121,16 +117,40 @@ public class ScenarioController {
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
                     paramType = "header", defaultValue="Bearer access-token")
     })
-    public ResponseEntity<String> deleteCharacterFromScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                          @PathVariable("name") String name,
-                                                          Principal principal){
+    public ResponseEntity deleteCharacterFromScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                                      @PathVariable("name") String name,
+                                                      Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
 
         try {
             characterService.delete(name, user, scenario);
             return ResponseEntity.ok().body("OK");
-        }catch (Exception e){
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/scenario/{scenarioKey}/enter")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity enterScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                        Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            //TODO test it
+            ScenarioInfoResponse scenarioInfo = scenarioService.getScenarioInfo(scenario, user);
+            List<CharacterResponse> characters =
+                    applicationConverter.charactersToResponse(characterService.findByOwnerAndScenario(user, scenario));
+            EnterScenarioResponse enterScenarioResponse = new EnterScenarioResponse(scenarioInfo, characters);
+
+            //TODO check if without .header it is appending the Content-Type header (if it requires to be objectMapped
+            return ResponseEntity.ok().header("Content-Type", "application/json").body(enterScenarioResponse);
+        } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
