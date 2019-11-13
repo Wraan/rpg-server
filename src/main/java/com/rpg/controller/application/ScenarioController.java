@@ -1,12 +1,16 @@
 package com.rpg.controller.application;
 
 import com.rpg.dto.application.*;
+import com.rpg.dto.websocket.MessageResponse;
+import com.rpg.model.application.*;
 import com.rpg.model.application.Character;
-import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.service.application.CharacterService;
+import com.rpg.service.application.MessageService;
 import com.rpg.service.application.ScenarioService;
+import com.rpg.service.application.ScenarioStatusService;
 import com.rpg.service.converter.ApplicationConverter;
+import com.rpg.service.converter.MessageConverter;
 import com.rpg.service.security.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -27,8 +31,11 @@ public class ScenarioController {
     @Autowired private ScenarioService scenarioService;
     @Autowired private UserService userService;
     @Autowired private CharacterService characterService;
+    @Autowired private MessageService messageService;
+    @Autowired private ScenarioStatusService scenarioStatusService;
 
     @Autowired private ApplicationConverter applicationConverter;
+    @Autowired private MessageConverter messageConverter;
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private Logger LOGGER = LogManager.getLogger(getClass());
@@ -100,12 +107,10 @@ public class ScenarioController {
                                                           Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
-                characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
         try {
-            applicationConverter.charactersToResponse(characters);
-            return ResponseEntity.ok().header("Content-Type", "application/json")
-                    .body(objectMapper.writeValueAsString(applicationConverter.charactersToResponse(characters)));
+            List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
+                    characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
+            return ResponseEntity.ok().body(applicationConverter.charactersToResponse(characters));
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getStackTrace());
@@ -142,15 +147,19 @@ public class ScenarioController {
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try {
-            //TODO test it
-            ScenarioInfoResponse scenarioInfo = scenarioService.getScenarioInfo(scenario, user);
-            List<CharacterResponse> characters =
-                    applicationConverter.charactersToResponse(characterService.findByOwnerAndScenario(user, scenario));
-            EnterScenarioResponse enterScenarioResponse = new EnterScenarioResponse(scenarioInfo, characters);
-            //TODO add messages
+            ScenarioStatus scenarioStatus = scenarioStatusService.getScenarioStatus(scenario);
+            if(scenarioStatus.getScenarioStatusType().equals(ScenarioStatusType.STOPPED))
+                scenarioStatusService.changeScenarioStatus(scenarioStatus, ScenarioStatusType.STANDBY);
 
-            //TODO check if without .header it is appending the Content-Type header (if it requires to be objectMapped
-            return ResponseEntity.ok().header("Content-Type", "application/json").body(enterScenarioResponse);
+            ScenarioInfoResponse scenarioInfo = scenarioService.getScenarioInfo(scenario, user);
+            List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
+                    characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
+            List<CharacterResponse> charactersResponse = applicationConverter.charactersToResponse(characters);
+            List<MessageResponse> messages = messageConverter.messagesToResponse(
+                    messageService.findCorrespondingToUserInScenario(user, scenario));
+            EnterScenarioResponse enterScenarioResponse = new EnterScenarioResponse(scenarioInfo, charactersResponse, messages);
+
+            return ResponseEntity.ok().body(enterScenarioResponse);
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

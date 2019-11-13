@@ -57,7 +57,6 @@ public class MessageController {
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
 
             if(message.getType().equals(MessageType.Whisper)){
-                //TODO test it
                 Set<User> receivers = new HashSet<>();
                 receivers.add(scenario.getGameMaster());
                 User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
@@ -92,7 +91,7 @@ public class MessageController {
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try {
             List<Message> messages = messageService.findCorrespondingToUserInScenario(user, scenario);
-            return ResponseEntity.ok(objectMapper.writeValueAsString(messageConverter.messagesToResponse(messages)));
+            return ResponseEntity.ok(messageConverter.messagesToResponse(messages));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

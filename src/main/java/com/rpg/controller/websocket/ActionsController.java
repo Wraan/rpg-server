@@ -155,6 +155,8 @@ public class ActionsController {
             User player = userService.findByUsername(playerName);
             scenarioService.removePlayer(player, scenario);
 
+            //TODO send message to everyone that player left a scenario
+
             return ResponseEntity.ok("OK");
         } catch (Exception e) {
             e.printStackTrace();

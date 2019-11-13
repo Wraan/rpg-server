@@ -13,9 +13,18 @@ public class ScenarioStatus {
     public ScenarioStatus() {
     }
 
-    public ScenarioStatus(Scenario scenario, List<UserSession> userSessions) {
+    public ScenarioStatus(Scenario scenario, ScenarioStatusType scenarioStatusType, List<UserSession> userSessions) {
         this.scenario = scenario;
+        this.scenarioStatusType = scenarioStatusType;
         this.userSessions = userSessions;
+    }
+
+    public ScenarioStatusType getScenarioStatusType() {
+        return scenarioStatusType;
+    }
+
+    public void setScenarioStatusType(ScenarioStatusType scenarioStatusType) {
+        this.scenarioStatusType = scenarioStatusType;
     }
 
     public Scenario getScenario() {

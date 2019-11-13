@@ -123,16 +123,12 @@ public class ScenarioService {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!isUserGameMasterInScenario(user, scenario) && !isUserPlayerInScenario(user, scenario))
             throw new ScenarioException("User is not a player in that scenario");
-        //TODO
-        //TODO check if every endpoint is checking if scenario is not null
         List<String> players = new ArrayList<>();
         for (User player : scenario.getPlayers())
             players.add(player.getUsername());
         List<String> onlinePlayers = Collections.singletonList("Not yet implemented...");
-        ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
-                scenario.getScenarioKey(), players, onlinePlayers, scenarioStatusService.getScenarioStatus(scenario));
-
-        return scenarioInfoResponse;
-
+        return new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
+                scenario.getScenarioKey(), players, onlinePlayers,
+                scenarioStatusService.getScenarioStatus(scenario).getScenarioStatusType().toString());
     }
 }

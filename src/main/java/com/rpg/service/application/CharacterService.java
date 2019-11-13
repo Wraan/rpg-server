@@ -25,7 +25,7 @@ public class CharacterService {
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
 
-    private final static String NAME_REGEX = "^[A-Z][a-z]{1,24}$";
+    private final static String NAME_REGEX = "^[a-zA-Z0-9 ]{1,24}$";
 
     public List<Character> findByScenario(Scenario scenario){
         return characterRepository.findByScenario(scenario);
@@ -64,7 +64,6 @@ public class CharacterService {
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(findByNameAndScenario(characterDto.getName(), scenario) != null)
             throw new CharacterException("Character with that name already exists");
-        //TODO make it less aggresive
         Pattern nameReg = Pattern.compile(NAME_REGEX);
         if(!nameReg.matcher(characterDto.getName()).matches())
             throw new RegexException("Character name must be simple - only letters, starting with capital letter, up to 24 letters");

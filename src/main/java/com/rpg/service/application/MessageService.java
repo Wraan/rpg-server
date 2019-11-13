@@ -82,6 +82,9 @@ public class MessageService {
                 !scenarioService.isUserGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");
 
+        if(scenarioService.isUserGameMasterInScenario(user, scenario))
+            return findNLastMessagesInScenario(scenario, 2*PAGE_SIZE);
+
         int page = 0;
         List<Message> messages = new ArrayList<>();
         List<Message> allMessages;
@@ -101,5 +104,9 @@ public class MessageService {
         } while (messages.size() < MESSAGES_AMOUNT_TO_RETURN);
 
         return  messages;
+    }
+
+    private List<Message> findNLastMessagesInScenario(Scenario scenario, int N) {
+        return messageRepository.findByScenario(scenario, PageRequest.of(0, N));
     }
 }
