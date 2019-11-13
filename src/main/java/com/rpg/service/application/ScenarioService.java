@@ -9,7 +9,6 @@ import com.rpg.exception.ScenarioException;
 import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
-import com.rpg.model.application.ScenarioStatus;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.ScenarioRepository;
 import com.rpg.service.converter.ApplicationConverter;
@@ -20,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,6 +27,7 @@ public class ScenarioService {
 
     @Autowired private ScenarioRepository scenarioRepository;
     @Autowired private CharacterService characterService;
+    @Autowired private ScenarioStatusService scenarioStatusService;
 
     @Autowired private PasswordEncoder passwordEncoder;
     @Autowired private ApplicationConverter applicationConverter;
@@ -124,18 +123,15 @@ public class ScenarioService {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!isUserGameMasterInScenario(user, scenario) && !isUserPlayerInScenario(user, scenario))
             throw new ScenarioException("User is not a player in that scenario");
-        //TODO make it prettier
+        //TODO
         //TODO check if every endpoint is checking if scenario is not null
-        ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse();
-        scenarioInfoResponse.setGameMaster(scenario.getGameMaster().getUsername());
-        scenarioInfoResponse.setScenarioKey(scenario.getScenarioKey());
-        scenarioInfoResponse.setScenarioStatus(ScenarioStatus.STOPPED.toString().toLowerCase());
         List<String> players = new ArrayList<>();
         for (User player : scenario.getPlayers())
             players.add(player.getUsername());
-        scenarioInfoResponse.setPlayers(players);
         List<String> onlinePlayers = Collections.singletonList("Not yet implemented...");
-        scenarioInfoResponse.setOnlinePlayers(onlinePlayers);
+        ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
+                scenario.getScenarioKey(), players, onlinePlayers, scenarioStatusService.getScenarioStatus(scenario));
+
         return scenarioInfoResponse;
 
     }
