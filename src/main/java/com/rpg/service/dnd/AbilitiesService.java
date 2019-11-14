@@ -29,6 +29,7 @@ public class AbilitiesService {
     @Autowired private DndDtoConverter dtoConverter;
     @Autowired private ScenarioService scenarioService;
 
+    //TODO add visible flag to items so GM can hide them
 
     public Feature save(FeatureDto dto) throws Exception {
         Feature it = dtoConverter.fromDto(dto);

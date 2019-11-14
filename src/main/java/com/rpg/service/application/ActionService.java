@@ -19,7 +19,7 @@ public class ActionService {
 
     public List<Integer> rollDicesInScenario(int dices, int value, User user, Scenario scenario) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if(!scenarioService.isUserGameMasterInScenario(user, scenario) && !scenarioService.isUserPlayerInScenario(user, scenario))
+        if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
 
         if(dices <= 0 || value <= 0) throw new ValueException("Incorrect values. Values have to be greater than 0");

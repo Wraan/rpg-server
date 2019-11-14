@@ -42,7 +42,7 @@ public class CharacterService {
     }
 
     public boolean isCharacterUsersProperty(String characterName, User user, Scenario scenario) {
-        if (scenario.getGameMaster().getUsername().equals(user.getUsername())){
+        if (scenarioService.isUserGameMasterInScenario(user, scenario)){
             List<String> names = getCharacterNames(findByOwnerAndScenario(null, scenario));
             return names.contains(characterName);
         }
@@ -60,7 +60,7 @@ public class CharacterService {
 
     public void createCharacter(CreateCharacterDto characterDto, User user, Scenario scenario) throws Exception{
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if(!scenario.getPlayers().contains(user) && !scenario.getGameMaster().getUsername().equals(user.getUsername()))
+        if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(findByNameAndScenario(characterDto.getName(), scenario) != null)
             throw new CharacterException("Character with that name already exists");
@@ -68,7 +68,7 @@ public class CharacterService {
         if(!nameReg.matcher(characterDto.getName()).matches())
             throw new RegexException("Character name must be simple - only letters, starting with capital letter, up to 24 letters");
 
-        User owner = user.getUsername().equals(scenario.getGameMaster().getUsername()) ? null : user;
+        User owner = scenarioService.isUserGameMasterInScenario(user, scenario) ? null : user;
 
         Character character = new Character(characterDto.getName(), characterDto.getRace(),
                 characterDto.getProfession(), owner, scenario);
@@ -84,7 +84,7 @@ public class CharacterService {
         Character character = findByNameAndScenario(name, scenario);
         if(character == null) throw new CharacterException("Character does not exist");
         if (character.getOwner().getUsername().equals(user.getUsername())
-                || scenario.getGameMaster().getUsername().equals(user.getUsername())){
+                || scenarioService.isUserGameMasterInScenario(user, scenario)){
             characterRepository.delete(character);
         }
         throw new CharacterException("Character does not belong to the player");

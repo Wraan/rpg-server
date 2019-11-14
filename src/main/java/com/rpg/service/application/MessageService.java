@@ -28,7 +28,7 @@ public class MessageService {
 
     public Message createMessage(MessageDto messageDto, Scenario scenario, User user) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if (!scenario.getPlayers().contains(user) && !scenario.getGameMaster().getUsername().equals(user.getUsername()))
+        if (!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario))
             throw new CharacterException("Character is not a property od a player!");
@@ -78,8 +78,7 @@ public class MessageService {
 
     public List<Message> findCorrespondingToUserInScenario(User user, Scenario scenario) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if(!scenarioService.isUserPlayerInScenario(user, scenario) &&
-                !scenarioService.isUserGameMasterInScenario(user, scenario))
+        if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player or GameMaster in that scenario");
 
         if(scenarioService.isUserGameMasterInScenario(user, scenario))

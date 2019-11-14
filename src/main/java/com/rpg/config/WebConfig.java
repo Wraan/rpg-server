@@ -10,26 +10,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
+                .allowedHeaders("*");
     }
 
-    //TODO test if annotation is enough, if not try below code
-//    @Bean
-//    public WebSecurityConfigurerAdapter webSecurity() {
-//        return new WebSecurityConfigurerAdapter() {
-//
-//            @Override
-//            protected void configure(HttpSecurity http) throws Exception {
-//                http.headers().addHeaderWriter(
-//                        new StaticHeadersWriter("Access-Control-Allow-Origin", "*"));
-//
-//
-//            }
-//        };
-//    }
 }

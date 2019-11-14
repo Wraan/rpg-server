@@ -52,7 +52,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(LOGGED_MATCHERS).hasAnyRole("ADMIN", "USER")
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .and()
-                .csrf().disable();
+                .cors().and().csrf().disable();
     }
 
     @Override

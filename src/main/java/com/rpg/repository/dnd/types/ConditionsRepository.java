@@ -13,4 +13,5 @@ public interface ConditionsRepository extends JpaRepository<Condition, Long> {
     List<Condition> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
     List<Condition> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
+    Condition findByNameAndScenario(String name, Scenario scenario);
 }

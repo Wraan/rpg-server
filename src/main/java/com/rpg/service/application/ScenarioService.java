@@ -72,11 +72,10 @@ public class ScenarioService {
         return applicationConverter.scenariosToResponse(list);
     }
 
-    public void joinScenario(User user, String scenarioKey, String password) throws Exception {
-        Scenario scenario = findByScenarioKey(scenarioKey);
+    public void joinScenario(User user, Scenario scenario, String password) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!passwordEncoder.matches(password, scenario.getPassword())) throw new PasswordException("Wrong password");
-        if(user.getUsername().equals(scenario.getGameMaster().getUsername()))
+        if(isUserGameMasterInScenario(user, scenario))
             throw new UserAlreadyExistsException("User is already a GameMaster of this Scenario");
         for(User player : scenario.getPlayers()){
             if(user.getUsername().equals(player.getUsername()))
@@ -98,6 +97,10 @@ public class ScenarioService {
 
     public boolean isUserGameMasterInScenario(User user, Scenario scenario){
         return scenario.getGameMaster().getUsername().equals(user.getUsername());
+    }
+
+    public boolean isUserPlayerOrGameMasterInScenario(User user, Scenario scenario){
+        return isUserPlayerInScenario(user, scenario) || isUserGameMasterInScenario(user, scenario);
     }
 
     public void changePassword(SimplePasswordDto simplePasswordDto, Scenario scenario) throws Exception{
@@ -123,7 +126,7 @@ public class ScenarioService {
 
     public ScenarioInfoResponse getScenarioInfo(Scenario scenario, User user) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if(!isUserGameMasterInScenario(user, scenario) && !isUserPlayerInScenario(user, scenario))
+        if(!isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new ScenarioException("User is not a player in that scenario");
 
         List<String> players = new ArrayList<>();

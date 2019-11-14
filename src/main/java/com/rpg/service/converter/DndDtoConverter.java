@@ -10,6 +10,7 @@ import com.rpg.model.dnd.types.Condition;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.MagicSchool;
 import com.rpg.model.dnd.types.WeaponProperty;
+import com.rpg.model.security.User;
 import com.rpg.service.application.ScenarioService;
 import com.rpg.service.dnd.TypesService;
 import com.rpg.service.security.UserService;
@@ -28,10 +29,9 @@ public class DndDtoConverter {
 
     @Lazy @Autowired private TypesService typesService;
 
-    public Condition fromDto(ConditionDto conditionDto){
-     return new Condition(conditionDto.getName(), conditionDto.getDescription(),
-             userService.findByUsername(conditionDto.getCreatorName()),
-             scenarioService.findByScenarioKey(conditionDto.getScenarioKey()));
+    public Condition fromDto(ConditionDto conditionDto, User gm, Scenario scenario){
+     return new Condition(conditionDto.getName(), conditionDto.getDescription(), conditionDto.isVisible(),
+             gm, scenario);
     }
 
     public List<ConditionResponse> conditionsToResponse(List<Condition> conditions){
@@ -43,9 +43,8 @@ public class DndDtoConverter {
     }
 
     public ConditionResponse conditionToResponse(Condition it){
-        return new ConditionResponse(it.getId(), it.getName(), it.getDescription(),
-                it.getCreator() != null ? it.getCreator().getUsername() : null,
-                it.getScenario() != null ? it.getScenario().getScenarioKey() : null);
+        return new ConditionResponse(it.getId(), it.getName(), it.getDescription(), it.isVisible(),
+                it.getCreator() != null ? it.getCreator().getUsername() : null);
     }
 
     public DamageType fromDto(DamageTypeDto damageTypeDto){

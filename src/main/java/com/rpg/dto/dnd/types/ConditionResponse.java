@@ -7,18 +7,26 @@ public class ConditionResponse {
     private long id;
     private String name;
     private String description;
+    private boolean visible;
     private String creatorName;
-    private String scenarioKey;
 
     public ConditionResponse() {
     }
 
-    public ConditionResponse(long id, String name, String description, String creatorName, String scenarioKey) {
+    public ConditionResponse(long id, String name, String description, boolean visible, String creatorName) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.visible = visible;
         this.creatorName = creatorName;
-        this.scenarioKey = scenarioKey;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {
@@ -51,13 +59,5 @@ public class ConditionResponse {
 
     public void setCreatorName(String creatorName) {
         this.creatorName = creatorName;
-    }
-
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
     }
 }

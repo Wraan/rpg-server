@@ -138,6 +138,37 @@ public class ActionsController {
             }
     }
 
+
+    @PostMapping("/join/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity joinScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                       @RequestBody SimplePasswordDto passwordDto,
+                                       Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try{
+            scenarioService.joinScenario(user, scenario, passwordDto.getPassword());
+
+            Message message = messageService.createSystemMessage(
+                    "Player " + user.getUsername() + " has joined the scenario."
+                    , scenario);
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(amr));
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "players")));
+
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PostMapping("/remove/player/scenario/{scenarioKey}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -164,6 +195,9 @@ public class ActionsController {
 
             template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + player.getUsername(),
                     objectMapper.writeValueAsString(new ActionUpdateResponse("leave", "scenario")));
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "players")));
+
 
             return ResponseEntity.ok("OK");
         } catch (Exception e) {

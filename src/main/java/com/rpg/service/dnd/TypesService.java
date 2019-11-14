@@ -12,6 +12,7 @@ import com.rpg.model.dnd.types.Condition;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.MagicSchool;
 import com.rpg.model.dnd.types.WeaponProperty;
+import com.rpg.model.security.User;
 import com.rpg.repository.dnd.types.ConditionsRepository;
 import com.rpg.repository.dnd.types.DamageTypesRepository;
 import com.rpg.repository.dnd.types.MagicSchoolsRepository;
@@ -35,20 +36,18 @@ public class TypesService {
     @Autowired private DndDtoConverter dtoConverter;
     @Autowired private ScenarioService scenarioService;
 
-    public Condition save(ConditionDto conditionDto) throws Exception {
-        Condition condition = dtoConverter.fromDto(conditionDto);
-        if(condition.getCreator() == null)
-            throw new UserDoesNotExistException("User does not exist");
-        if(condition.getScenario() == null)
-            throw new ScenarioDoesNotExistException("Scenario does not exist");
-
-        if(conditionsRepository.existsByNameAndScenario(condition.getName(), condition.getScenario()))
+    public Condition add(ConditionDto conditionDto, User gm, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!scenarioService.isUserGameMasterInScenario(gm, scenario))
+            throw new UserDoesNotExistException("Only GameMaster can modify or add items, types and abilities in scenario");
+        if(conditionsRepository.existsByNameAndScenario(conditionDto.getName(), scenario))
             throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
-        else return conditionsRepository.save(condition);
+
+        Condition condition = dtoConverter.fromDto(conditionDto, gm, scenario);
+        return conditionsRepository.save(condition);
     }
 
-    public List<Condition> findConditionsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+    public List<Condition> findConditionsByNameContainingAndScenario(String name, Scenario scenario){
         List<Condition> list = new ArrayList<>(
                 conditionsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
         if(scenario != null)
@@ -56,24 +55,12 @@ public class TypesService {
         return list;
     }
 
-    public List<Condition> findConditionsByNameContaining(String name){
-        return conditionsRepository.findByNameIgnoreCaseContainingAndScenario(name, null);
-    }
-
-    public List<Condition> findConditionsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+    public List<Condition> findConditionsByScenario(Scenario scenario){
         List<Condition> list = new ArrayList<>(
                 conditionsRepository.findByScenario(null));
         if(scenario != null)
             list.addAll(conditionsRepository.findByScenario(scenario));
         return list;
-    }
-
-    public List<Condition> findConditions(){
-        return conditionsRepository.findByScenario(null);
-    }
-    public Condition findConditionById(long id){
-        return conditionsRepository.findById(id).orElse(null);
     }
 
     public DamageType save(DamageTypeDto damageTypeDto) throws Exception {
@@ -217,5 +204,19 @@ public class TypesService {
             return damageTypesRepository.findByNameAndScenario(name, null).orElse(null);
         return damageTypesRepository.findByNameAndScenario(name, null)
                 .orElse(damageTypesRepository.findByNameAndScenario(name, scenario).orElse(null));
+    }
+
+    public Condition findConditionByName(String conditionName, Scenario scenario) {
+        return conditionsRepository.findByNameAndScenario(conditionName, scenario);
+    }
+
+    public void delete(Condition condition) {
+        conditionsRepository.delete(condition);
+    }
+
+    public void patchValues(Condition condition, ConditionDto conditionDto) {
+        condition.setDescription(conditionDto.getDescription());
+        condition.setVisible(conditionDto.isVisible());
+        conditionsRepository.save(condition);
     }
 }

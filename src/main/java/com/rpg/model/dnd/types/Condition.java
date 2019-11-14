@@ -16,6 +16,7 @@ public class Condition {
     private String name;
     @Column(length = 4095)
     private String description;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -31,11 +32,20 @@ public class Condition {
         this.description = description;
     }
 
-    public Condition(String name, String description, User creator, Scenario scenario) {
+    public Condition(String name, String description, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.description = description;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public User getCreator() {

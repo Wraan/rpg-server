@@ -63,24 +63,6 @@ public class ScenarioController {
 
     //TODO delete scenario and test if characters, messages and items are deleted properly
 
-    @PostMapping("/scenario/{scenarioKey}/join")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
-                    paramType = "header", defaultValue="Bearer access-token")
-    })
-    public ResponseEntity joinScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                @RequestBody SimplePasswordDto passwordDto,
-                                                Principal principal){
-        User user = userService.findByUsername(principal.getName());
-        try{
-            scenarioService.joinScenario(user, scenarioKey, passwordDto.getPassword());
-            return ResponseEntity.ok().body("OK");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
     @PostMapping("/scenario/{scenarioKey}/createCharacter")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -110,7 +92,7 @@ public class ScenarioController {
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try {
-            List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
+            List<Character> characters = scenarioService.isUserGameMasterInScenario(user, scenario) ?
                     characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
             return ResponseEntity.ok().body(applicationConverter.charactersToResponse(characters));
         } catch (Exception e){
@@ -130,7 +112,6 @@ public class ScenarioController {
                                                       Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-
         try {
             characterService.delete(name, user, scenario);
             return ResponseEntity.ok().body("OK");
@@ -155,7 +136,7 @@ public class ScenarioController {
                 scenarioStatusService.changeScenarioStatus(scenarioStatus, ScenarioStatusType.STANDBY);
 
             ScenarioInfoResponse scenarioInfo = scenarioService.getScenarioInfo(scenario, user);
-            List<Character> characters = scenario.getGameMaster().getUsername().equals(user.getUsername()) ?
+            List<Character> characters = scenarioService.isUserGameMasterInScenario(user, scenario) ?
                     characterService.findByScenario(scenario) : characterService.findByOwnerAndScenario(user, scenario);
             List<CharacterResponse> charactersResponse = applicationConverter.charactersToResponse(characters);
             List<MessageResponse> messages = messageConverter.messagesToResponse(
