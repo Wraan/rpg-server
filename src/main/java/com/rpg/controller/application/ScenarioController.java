@@ -61,6 +61,8 @@ public class ScenarioController {
         return scenarioService.findUserScenarios(user);
     }
 
+    //TODO delete scenario and test if characters, messages and items are deleted properly
+
     @PostMapping("/scenario/{scenarioKey}/join")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -117,6 +119,7 @@ public class ScenarioController {
         }
     }
 
+    //TODO test if it is deleting properly
     @DeleteMapping("/scenario/{scenarioKey}/character/{name}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",

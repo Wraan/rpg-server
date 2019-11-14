@@ -67,7 +67,7 @@ public class ActionsController {
             Message message = messageService.createSystemMessage(diceRollDto.getCharacterName() + " rolled "
                     + diceRollDto.getDices() + "d" + diceRollDto.getValue() + " for " + rolls.toString(), scenario);
 
-            ActionMessageResponse amr = new ActionMessageResponse("roll", messageConverter.messageToResponse(message));
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
             template.convertAndSend("/ws/scenario/" + scenarioKey,
                     objectMapper.writeValueAsString(amr));
             return ResponseEntity.ok("OK");
@@ -155,7 +155,15 @@ public class ActionsController {
             User player = userService.findByUsername(playerName);
             scenarioService.removePlayer(player, scenario);
 
-            //TODO send message to everyone that player left a scenario
+            Message message = messageService.createSystemMessage(
+                    "Player " + player.getUsername() + " has left the scenario."
+                    , scenario);
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(amr));
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + player.getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("leave", "scenario")));
 
             return ResponseEntity.ok("OK");
         } catch (Exception e) {
@@ -164,5 +172,40 @@ public class ActionsController {
         }
     }
 
-    //TODO changeScenarioOwner
+    @PostMapping("/change/gameMaster/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity changeGameMaster(@PathVariable("scenarioKey") String scenarioKey,
+                                           @RequestParam("player") String playerName,
+                                           Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if (!scenarioService.isUserGameMasterInScenario(gm, scenario))
+                throw new PrivilageException("Only GameMaster can change GameMaster in that scenario");
+
+            User player = userService.findByUsername(playerName);
+            scenarioService.changeGameMaster(player, scenario);
+
+            Message message = messageService.createSystemMessage(
+                    "GameMaster has been changed. Now " + player.getUsername() + " will guide your in your adventure."
+                    , scenario);
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(amr));
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + gm.getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "gameMaster")));
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + player.getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "gameMaster")));
+
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
 }

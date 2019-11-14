@@ -82,6 +82,7 @@ public class ScenarioService {
             if(user.getUsername().equals(player.getUsername()))
                 throw new UserAlreadyExistsException("User is already a player in that Scenario");
         }
+
         scenario.getPlayers().add(user);
         scenarioRepository.save(scenario);
     }
@@ -101,6 +102,7 @@ public class ScenarioService {
 
     public void changePassword(SimplePasswordDto simplePasswordDto, Scenario scenario) throws Exception{
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+
         scenario.setPassword(passwordEncoder.encode(simplePasswordDto.getPassword()));
         save(scenario);
     }
@@ -119,10 +121,11 @@ public class ScenarioService {
         save(scenario);
     }
 
-    public ScenarioInfoResponse getScenarioInfo(Scenario scenario, User user) throws Exception{
+    public ScenarioInfoResponse getScenarioInfo(Scenario scenario, User user) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!isUserGameMasterInScenario(user, scenario) && !isUserPlayerInScenario(user, scenario))
             throw new ScenarioException("User is not a player in that scenario");
+
         List<String> players = new ArrayList<>();
         for (User player : scenario.getPlayers())
             players.add(player.getUsername());
@@ -130,5 +133,19 @@ public class ScenarioService {
         return new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
                 scenario.getScenarioKey(), players, onlinePlayers,
                 scenarioStatusService.getScenarioStatus(scenario).getScenarioStatusType().toString());
+    }
+
+    public void changeGameMaster(User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(isUserGameMasterInScenario(user, scenario))
+            throw new ScenarioException("User is already a GameMaster in that scenario");
+        if(!isUserPlayerInScenario(user, scenario))
+            throw new ScenarioException("User is not a player in that scenario");
+
+        User gm = scenario.getGameMaster();
+        scenario.setGameMaster(user);
+        scenario.getPlayers().remove(user);
+        scenario.getPlayers().add(gm);
+        save(scenario);
     }
 }
