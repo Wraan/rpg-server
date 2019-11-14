@@ -7,6 +7,7 @@ import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.DiceRollDto;
 import com.rpg.exception.PrivilageException;
 import com.rpg.exception.UserDoesNotExistException;
+import com.rpg.model.application.Character;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
@@ -241,5 +242,32 @@ public class ActionsController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
+    }
+
+    @DeleteMapping("/remove/character/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity deleteCharacterFromScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                                      @RequestParam("character") String name,
+                                                      Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            Character character = characterService.findByNameAndScenario(name, scenario);
+            characterService.delete(character, user, scenario);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

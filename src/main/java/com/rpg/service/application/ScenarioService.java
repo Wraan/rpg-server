@@ -1,9 +1,6 @@
 package com.rpg.service.application;
 
-import com.rpg.dto.application.ScenarioInfoResponse;
-import com.rpg.dto.application.SimplePasswordDto;
-import com.rpg.dto.application.CreateScenarioDto;
-import com.rpg.dto.application.ScenarioResponse;
+import com.rpg.dto.application.*;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
 import com.rpg.exception.UserAlreadyExistsException;
@@ -150,5 +147,20 @@ public class ScenarioService {
         scenario.getPlayers().remove(user);
         scenario.getPlayers().add(gm);
         save(scenario);
+    }
+
+    public PlayersResponse getPlayersInScenario(User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!isUserPlayerOrGameMasterInScenario(user, scenario))
+            throw new ScenarioException("User is not a player in that scenario");
+
+        List<String> players = new ArrayList<>();
+        List<String> onlinePlayers = new ArrayList<>();
+
+        //TODO online players
+
+        for(User player : scenario.getPlayers())
+            players.add(player.getUsername());
+        return new PlayersResponse(scenario.getGameMaster().getUsername(), players, onlinePlayers);
     }
 }

@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -101,26 +102,6 @@ public class ScenarioController {
         }
     }
 
-    //TODO test if it is deleting properly
-    @DeleteMapping("/scenario/{scenarioKey}/character/{name}")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
-                    paramType = "header", defaultValue="Bearer access-token")
-    })
-    public ResponseEntity deleteCharacterFromScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                      @PathVariable("name") String name,
-                                                      Principal principal){
-        User user = userService.findByUsername(principal.getName());
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        try {
-            characterService.delete(name, user, scenario);
-            return ResponseEntity.ok().body("OK");
-        } catch (Exception e){
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
     @GetMapping("/scenario/{scenarioKey}/enter")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -144,6 +125,24 @@ public class ScenarioController {
             EnterScenarioResponse enterScenarioResponse = new EnterScenarioResponse(scenarioInfo, charactersResponse, messages);
 
             return ResponseEntity.ok().body(enterScenarioResponse);
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/scenario/{scenarioKey}/players")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity getPlayersInScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                        Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            PlayersResponse playersResponse = scenarioService.getPlayersInScenario(user, scenario);
+            return ResponseEntity.ok().body(playersResponse);
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

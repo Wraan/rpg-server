@@ -79,15 +79,15 @@ public class CharacterService {
         return characterRepository.findByNameAndScenario(name, scenario);
     }
 
-    public void delete(String name, User user, Scenario scenario) throws Exception {
+    public void delete(Character character, User user, Scenario scenario) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        Character character = findByNameAndScenario(name, scenario);
         if(character == null) throw new CharacterException("Character does not exist");
-        if (character.getOwner().getUsername().equals(user.getUsername())
-                || scenarioService.isUserGameMasterInScenario(user, scenario)){
-            characterRepository.delete(character);
-        }
-        throw new CharacterException("Character does not belong to the player");
+        if (!scenarioService.isUserGameMasterInScenario(user, scenario) &&
+                (character.getOwner() == null || !character.getOwner().getUsername().equals(user.getUsername())))
+            throw new CharacterException("Character does not belong to the player");
+
+        characterRepository.delete(character);
+
     }
 
     public void changeCharactersOwnerInScenario(ChangeCharacterOwnerDto changeOwnerDto, Scenario scenario) throws Exception {
@@ -112,6 +112,5 @@ public class CharacterService {
     public void changeOwner(Character character, User player) {
         character.setOwner(player);
         characterRepository.save(character);
-
     }
 }
