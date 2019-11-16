@@ -1,14 +1,17 @@
 package com.rpg.controller.websocket;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
+import com.rpg.dto.application.CreateCharacterDto;
 import com.rpg.dto.application.SimplePasswordDto;
 import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.DiceRollDto;
+import com.rpg.dto.websocket.MessageDto;
 import com.rpg.exception.PrivilageException;
 import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Message;
+import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.service.application.ActionService;
@@ -170,7 +173,7 @@ public class ActionsController {
         }
     }
 
-    @PostMapping("/remove/player/scenario/{scenarioKey}")
+    @DeleteMapping("/remove/player/scenario/{scenarioKey}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
                     paramType = "header", defaultValue="Bearer access-token")
@@ -266,6 +269,69 @@ public class ActionsController {
 
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/create/character/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity createCharacterInScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                                    @RequestBody CreateCharacterDto characterDto,
+                                                    Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try{
+            Character character = characterService.createCharacter(characterDto, user, scenario);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/message/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity message(@PathVariable("scenarioKey") String scenarioKey, @RequestBody MessageDto messageDto,
+                                  Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        Message message;
+        try {
+            message = messageService.createMessage(messageDto, scenario, user);
+            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+
+            if(message.getType().equals(MessageType.Whisper)){
+                Set<User> receivers = new HashSet<>();
+                receivers.add(scenario.getGameMaster());
+                User whisperTargetPlayer = characterService.findByNameAndScenario(message.getWhisperTarget(), scenario)
+                        .getOwner();
+                if(whisperTargetPlayer != null)
+                    receivers.add(whisperTargetPlayer);
+                receivers.add(message.getUser());
+
+                for (User it : receivers)
+                    template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + it.getUsername(),
+                            objectMapper.writeValueAsString(amr));
+            }
+            else{
+                template.convertAndSend("/ws/scenario/" + scenarioKey,
+                        objectMapper.writeValueAsString(amr));
+            }
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }

@@ -18,15 +18,14 @@ public class SpellResponse {
     private boolean concentration;
     private String castingTime;
     private String magicSchool;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public SpellResponse() {
     }
 
-    public SpellResponse(long id, String name, String description, String higherLevels, int level, String range,
-                         String components, String material, boolean ritual, String duration, boolean concentration,
-                         String castingTime, String magicSchool, String creatorName, String scenarioKey) {
+    public SpellResponse(long id, String name, String description, String higherLevels, int level, String range, String components, String material, boolean ritual, String duration, boolean concentration, String castingTime, String magicSchool, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -40,7 +39,16 @@ public class SpellResponse {
         this.concentration = concentration;
         this.castingTime = castingTime;
         this.magicSchool = magicSchool;
+        this.visible = visible;
         this.creatorName = creatorName;
+        this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
         this.scenarioKey = scenarioKey;
     }
 
@@ -156,11 +164,11 @@ public class SpellResponse {
         this.creatorName = creatorName;
     }
 
-    public String getScenarioKey() {
-        return scenarioKey;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

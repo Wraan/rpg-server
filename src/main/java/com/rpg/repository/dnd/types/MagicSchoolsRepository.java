@@ -10,9 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface MagicSchoolsRepository  extends JpaRepository<MagicSchool, Long> {
-    List<MagicSchool> findByNameIgnoreCaseContaining(String name);
     List<MagicSchool> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
     List<MagicSchool> findByScenario(Scenario scenario);
+    List<MagicSchool> findByNameIgnoreCaseContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible);
+    List<MagicSchool> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<MagicSchool> findByNameAndScenario(String name, Scenario scenario);
 }

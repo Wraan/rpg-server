@@ -10,22 +10,39 @@ public class ToolResponse {
     private String category;
     private int weight;
     private String cost;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public ToolResponse() {
     }
 
-    public ToolResponse(long id, String name, String description, String category, int weight,
-                        String cost, String creatorName, String scenarioKey) {
+    public ToolResponse(long id, String name, String description, String category, int weight, String cost, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
         this.weight = weight;
         this.cost = cost;
+        this.visible = visible;
         this.creatorName = creatorName;
         this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {
@@ -84,11 +101,4 @@ public class ToolResponse {
         this.creatorName = creatorName;
     }
 
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
-    }
 }

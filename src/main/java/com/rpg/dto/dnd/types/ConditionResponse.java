@@ -9,16 +9,26 @@ public class ConditionResponse {
     private String description;
     private boolean visible;
     private String creatorName;
+    private String scenarioKey;
 
     public ConditionResponse() {
     }
 
-    public ConditionResponse(long id, String name, String description, boolean visible, String creatorName) {
+    public ConditionResponse(long id, String name, String description, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.visible = visible;
         this.creatorName = creatorName;
+        this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
     }
 
     public boolean isVisible() {

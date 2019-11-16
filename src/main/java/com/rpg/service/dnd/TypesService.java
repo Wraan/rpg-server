@@ -1,5 +1,6 @@
 package com.rpg.service.dnd;
 
+import com.google.common.collect.Sets;
 import com.rpg.dto.dnd.types.ConditionDto;
 import com.rpg.dto.dnd.types.DamageTypeDto;
 import com.rpg.dto.dnd.types.MagicSchoolDto;
@@ -23,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -63,155 +65,26 @@ public class TypesService {
         return list;
     }
 
-    public DamageType save(DamageTypeDto damageTypeDto) throws Exception {
-        DamageType damageType = dtoConverter.fromDto(damageTypeDto);
-        if(damageType.getCreator() == null)
-            throw new UserDoesNotExistException("User does not exist");
-        if(damageType.getScenario() == null)
-            throw new ScenarioDoesNotExistException("Scenario does not exist");
-
-        if(damageTypesRepository.existsByNameAndScenario(damageType.getName(), damageType.getScenario()))
-            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
-        else return damageTypesRepository.save(damageType);
+    public Condition findConditionByNameAndScenario(String name, Scenario scenario) {
+        Condition condition = conditionsRepository.findByNameAndScenario(name, scenario).orElse(null);
+        if (condition == null) return conditionsRepository.findByNameAndScenario(name, null).orElse(null);
+        return condition;
     }
 
-    public List<DamageType> findDamageTypesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<DamageType> list = new ArrayList<>(
-                damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
+    public List<Condition> findConditionsByNameContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible) {
+        List<Condition> list = new ArrayList<>(
+                conditionsRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, null, visible));
         if(scenario != null)
-            list.addAll(damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
+            list.addAll(conditionsRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, scenario, visible));
         return list;
     }
 
-    public List<DamageType> findDamageTypesByNameContaining(String name){
-        return damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, null);
-    }
-
-    public List<DamageType> findDamageTypesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<DamageType> list = new ArrayList<>(
-                damageTypesRepository.findByScenario(null));
+    public List<Condition> findConditionsByScenarioAndVisible(Scenario scenario, boolean visible) {
+        List<Condition> list = new ArrayList<>(
+                conditionsRepository.findByScenarioAndVisible(null, visible));
         if(scenario != null)
-            list.addAll(damageTypesRepository.findByScenario(scenario));
+            list.addAll(conditionsRepository.findByScenarioAndVisible(scenario, visible));
         return list;
-    }
-
-    public List<DamageType> findDamageTypes(){
-        return damageTypesRepository.findByScenario(null);
-    }
-    public DamageType findDamageTypeById(long id){
-        return damageTypesRepository.findById(id).orElse(null);
-    }
-
-    public MagicSchool save(MagicSchoolDto magicSchoolDto) throws Exception {
-        MagicSchool magicSchool = dtoConverter.fromDto(magicSchoolDto);
-        if(magicSchool.getCreator() == null)
-            throw new UserDoesNotExistException("User does not exist");
-        if(magicSchool.getScenario() == null)
-            throw new ScenarioDoesNotExistException("Scenario does not exist");
-
-        if(magicSchoolsRepository.existsByNameAndScenario(magicSchool.getName(), magicSchool.getScenario()))
-            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
-        else return magicSchoolsRepository.save(magicSchool);
-    }
-
-    public List<MagicSchool> findMagicSchoolsByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<MagicSchool> list = new ArrayList<>(
-                magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
-        if(scenario != null)
-            list.addAll(magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
-        return list;
-    }
-
-    public List<MagicSchool> findMagicSchoolsByNameContaining(String name){
-        return magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, null);
-    }
-
-    public List<MagicSchool> findMagicSchoolsByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<MagicSchool> list = new ArrayList<>(
-                magicSchoolsRepository.findByScenario(null));
-        if(scenario != null)
-            list.addAll(magicSchoolsRepository.findByScenario(scenario));
-        return list;
-    }
-
-    public List<MagicSchool> findMagicSchools(){
-        return magicSchoolsRepository.findByScenario(null);
-    }
-    public MagicSchool findMagicSchoolById(long id){
-        return magicSchoolsRepository.findById(id).orElse(null);
-    }
-
-    public WeaponProperty save(WeaponPropertyDto weaponPropertyDto) throws Exception {
-        WeaponProperty weaponProperty = dtoConverter.fromDto(weaponPropertyDto);
-        if(weaponProperty.getCreator() == null)
-            throw new UserDoesNotExistException("User does not exist");
-        if(weaponProperty.getScenario() == null)
-            throw new ScenarioDoesNotExistException("Scenario does not exist");
-
-        if(weaponPropertiesRepository.existsByNameAndScenario(weaponProperty.getName(), weaponProperty.getScenario()))
-            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
-        else return weaponPropertiesRepository.save(weaponProperty);
-    }
-
-    public List<WeaponProperty> findWeaponPropertiesByNameContainingAndScenarioKey(String name, String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<WeaponProperty> list = new ArrayList<>(
-                weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
-        if(scenario != null)
-            list.addAll(weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
-        return list;
-    }
-
-    public List<WeaponProperty> findWeaponPropertiesByNameContaining(String name){
-        return weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, null);
-    }
-
-    public List<WeaponProperty> findWeaponPropertiesByScenarioKey(String scenarioKey){
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        List<WeaponProperty> list = new ArrayList<>(
-                weaponPropertiesRepository.findByScenario(null));
-        if(scenario != null)
-            list.addAll(weaponPropertiesRepository.findByScenario(scenario));
-        return list;
-    }
-
-    public List<WeaponProperty> findWeaponProperties(){
-        return weaponPropertiesRepository.findByScenario(null);
-    }
-    public WeaponProperty findWeaponPropertyById(long id){
-        return weaponPropertiesRepository.findById(id).orElse(null);
-    }
-
-    public MagicSchool findMagicSchoolByNameAndScenario(String name, Scenario scenario) {
-        if (scenario == null)
-            return magicSchoolsRepository.findByNameAndScenario(name, null).orElse(null);
-        return magicSchoolsRepository.findByNameAndScenario(name, null)
-                .orElse(magicSchoolsRepository.findByNameAndScenario(name, scenario).orElse(null));
-    }
-    public WeaponProperty findWeaponPropertyByNameAndScenario(String name, Scenario scenario) {
-        if (scenario == null)
-            return weaponPropertiesRepository.findByNameAndScenario(name, null).orElse(null);
-        return weaponPropertiesRepository.findByNameAndScenario(name, null)
-                .orElse(weaponPropertiesRepository.findByNameAndScenario(name, scenario).orElse(null));
-    }
-
-    public DamageType findDamageTypeByNameAndScenario(String name, Scenario scenario) {
-        if (scenario == null)
-            return damageTypesRepository.findByNameAndScenario(name, null).orElse(null);
-        return damageTypesRepository.findByNameAndScenario(name, null)
-                .orElse(damageTypesRepository.findByNameAndScenario(name, scenario).orElse(null));
-    }
-
-    public Condition findConditionByName(String conditionName, Scenario scenario) {
-        return conditionsRepository.findByNameAndScenario(conditionName, scenario);
-    }
-
-    public void delete(Condition condition) {
-        conditionsRepository.delete(condition);
     }
 
     public void patchValues(Condition condition, ConditionDto conditionDto) {
@@ -219,4 +92,187 @@ public class TypesService {
         condition.setVisible(conditionDto.isVisible());
         conditionsRepository.save(condition);
     }
+
+    public void delete(Condition condition) {
+        conditionsRepository.delete(condition);
+    }
+
+    public DamageType add(DamageTypeDto damageTypeDto, User gm, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!scenarioService.isUserGameMasterInScenario(gm, scenario))
+            throw new UserDoesNotExistException("Only GameMaster can modify or add items, types and abilities in scenario");
+        if(damageTypesRepository.existsByNameAndScenario(damageTypeDto.getName(), scenario))
+            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
+
+        DamageType damageType = dtoConverter.fromDto(damageTypeDto, gm, scenario);
+        return damageTypesRepository.save(damageType);
+    }
+
+    public List<DamageType> findDamageTypesByNameContainingAndScenario(String name, Scenario scenario){
+        List<DamageType> list = new ArrayList<>(
+                damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
+        if(scenario != null)
+            list.addAll(damageTypesRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
+        return list;
+    }
+
+    public List<DamageType> findDamageTypesByScenario(Scenario scenario){
+        List<DamageType> list = new ArrayList<>(
+                damageTypesRepository.findByScenario(null));
+        if(scenario != null)
+            list.addAll(damageTypesRepository.findByScenario(scenario));
+        return list;
+    }
+
+    public DamageType findDamageTypeByNameAndScenario(String name, Scenario scenario) {
+        DamageType damageType = damageTypesRepository.findByNameAndScenario(name, scenario).orElse(null);
+        if (damageType == null) return damageTypesRepository.findByNameAndScenario(name, null).orElse(null);
+        return damageType;
+    }
+
+    public List<DamageType> findDamageTypesByNameContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible) {
+        List<DamageType> list = new ArrayList<>(
+                damageTypesRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, null, visible));
+        if(scenario != null)
+            list.addAll(damageTypesRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, scenario, visible));
+        return list;
+    }
+
+    public List<DamageType> findDamageTypesByScenarioAndVisible(Scenario scenario, boolean visible) {
+        List<DamageType> list = new ArrayList<>(
+                damageTypesRepository.findByScenarioAndVisible(null, visible));
+        if(scenario != null)
+            list.addAll(damageTypesRepository.findByScenarioAndVisible(scenario, visible));
+        return list;
+    }
+
+    public void patchValues(DamageType damageType, DamageTypeDto dto) {
+        damageType.setDescription(dto.getDescription());
+        damageType.setVisible(dto.isVisible());
+        damageTypesRepository.save(damageType);
+    }
+
+    public void delete(DamageType damageType) {
+        damageTypesRepository.delete(damageType);
+    }
+
+    public MagicSchool add(MagicSchoolDto dto, User gm, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!scenarioService.isUserGameMasterInScenario(gm, scenario))
+            throw new UserDoesNotExistException("Only GameMaster can modify or add items, types and abilities in scenario");
+        if(magicSchoolsRepository.existsByNameAndScenario(dto.getName(), scenario))
+            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
+
+        MagicSchool magicSchool = dtoConverter.fromDto(dto, gm, scenario);
+        return magicSchoolsRepository.save(magicSchool);
+    }
+
+    public List<MagicSchool> findMagicSchoolsByNameContainingAndScenario(String name, Scenario scenario){
+        List<MagicSchool> list = new ArrayList<>(
+                magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
+        if(scenario != null)
+            list.addAll(magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
+        return list;
+    }
+
+    public List<MagicSchool> findMagicSchoolsByScenario(Scenario scenario){
+        List<MagicSchool> list = new ArrayList<>(
+                magicSchoolsRepository.findByScenario(null));
+        if(scenario != null)
+            list.addAll(magicSchoolsRepository.findByScenario(scenario));
+        return list;
+    }
+
+    public MagicSchool findMagicSchoolByNameAndScenario(String name, Scenario scenario) {
+        MagicSchool magicSchool = magicSchoolsRepository.findByNameAndScenario(name, scenario).orElse(null);
+        if (magicSchool == null) return magicSchoolsRepository.findByNameAndScenario(name, null).orElse(null);
+        return magicSchool;
+    }
+
+    public List<MagicSchool> findMagicSchoolsByNameContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible) {
+        List<MagicSchool> list = new ArrayList<>(
+                magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, null, visible));
+        if(scenario != null)
+            list.addAll(magicSchoolsRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, scenario, visible));
+        return list;
+    }
+
+    public List<MagicSchool> findMagicSchoolsByScenarioAndVisible(Scenario scenario, boolean visible) {
+        List<MagicSchool> list = new ArrayList<>(
+                magicSchoolsRepository.findByScenarioAndVisible(null, visible));
+        if(scenario != null)
+            list.addAll(magicSchoolsRepository.findByScenarioAndVisible(scenario, visible));
+        return list;
+    }
+
+    public void patchValues(MagicSchool magicSchool, MagicSchoolDto dto) {
+        magicSchool.setDescription(dto.getDescription());
+        magicSchool.setVisible(dto.isVisible());
+        magicSchoolsRepository.save(magicSchool);
+    }
+
+    public void delete(MagicSchool magicSchool) {
+        magicSchoolsRepository.delete(magicSchool);
+    }
+
+    public WeaponProperty add(WeaponPropertyDto dto, User gm, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!scenarioService.isUserGameMasterInScenario(gm, scenario))
+            throw new UserDoesNotExistException("Only GameMaster can modify or add items, types and abilities in scenario");
+        if(weaponPropertiesRepository.existsByNameAndScenario(dto.getName(), scenario))
+            throw new NameExistsInScenarioException("Name already exists in that scenario. Must be unique");
+
+        WeaponProperty weaponProperty = dtoConverter.fromDto(dto, gm, scenario);
+        return weaponPropertiesRepository.save(weaponProperty);
+    }
+
+    public List<WeaponProperty> findWeaponPropertiesByNameContainingAndScenario(String name, Scenario scenario){
+        List<WeaponProperty> list = new ArrayList<>(
+                weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, null));
+        if(scenario != null)
+            list.addAll(weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenario(name, scenario));
+        return list;
+    }
+
+    public List<WeaponProperty> findWeaponPropertiesByScenario(Scenario scenario){
+        List<WeaponProperty> list = new ArrayList<>(
+                weaponPropertiesRepository.findByScenario(null));
+        if(scenario != null)
+            list.addAll(weaponPropertiesRepository.findByScenario(scenario));
+        return list;
+    }
+
+    public WeaponProperty findWeaponPropertyByNameAndScenario(String name, Scenario scenario) {
+        WeaponProperty weaponProperty = weaponPropertiesRepository.findByNameAndScenario(name, scenario).orElse(null);
+        if (weaponProperty == null) return weaponPropertiesRepository.findByNameAndScenario(name, null).orElse(null);
+        return weaponProperty;
+    }
+
+    public List<WeaponProperty> findWeaponPropertiesByNameContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible) {
+        List<WeaponProperty> list = new ArrayList<>(
+                weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, null, visible));
+        if(scenario != null)
+            list.addAll(weaponPropertiesRepository.findByNameIgnoreCaseContainingAndScenarioAndVisible(name, scenario, visible));
+        return list;
+    }
+
+    public List<WeaponProperty> findWeaponPropertiesByScenarioAndVisible(Scenario scenario, boolean visible) {
+        List<WeaponProperty> list = new ArrayList<>(
+                weaponPropertiesRepository.findByScenarioAndVisible(null, visible));
+        if(scenario != null)
+            list.addAll(weaponPropertiesRepository.findByScenarioAndVisible(scenario, visible));
+        return list;
+    }
+
+    public void patchValues(WeaponProperty weaponProperty, WeaponPropertyDto dto) {
+        weaponProperty.setDescription(dto.getDescription());
+        weaponProperty.setVisible(dto.isVisible());
+        weaponPropertiesRepository.save(weaponProperty);
+    }
+
+    public void delete(WeaponProperty weaponProperty) {
+        weaponPropertiesRepository.delete(weaponProperty);
+    }
+
+
 }

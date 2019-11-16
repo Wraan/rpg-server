@@ -18,6 +18,7 @@ public class Skill {
     @Column(length = 4095)
     private String description;
     private String abilityScore;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -32,14 +33,24 @@ public class Skill {
         this.name = name;
         this.description = description;
         this.abilityScore = abilityScore;
+        this.visible = true;
     }
 
-    public Skill(String name, String description, String abilityScore, User creator, Scenario scenario) {
+    public Skill(String name, String description, String abilityScore, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.description = description;
         this.abilityScore = abilityScore;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {

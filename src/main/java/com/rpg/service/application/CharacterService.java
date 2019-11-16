@@ -25,7 +25,7 @@ public class CharacterService {
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
 
-    private final static String NAME_REGEX = "^[a-zA-Z0-9 ]{1,24}$";
+    private final static String NAME_REGEX = "^[a-zA-Z0-9 ]{2,24}$";
 
     public List<Character> findByScenario(Scenario scenario){
         return characterRepository.findByScenario(scenario);
@@ -58,7 +58,7 @@ public class CharacterService {
         return names.contains(whisperTarget);
     }
 
-    public void createCharacter(CreateCharacterDto characterDto, User user, Scenario scenario) throws Exception{
+    public Character createCharacter(CreateCharacterDto characterDto, User user, Scenario scenario) throws Exception{
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
@@ -66,13 +66,13 @@ public class CharacterService {
             throw new CharacterException("Character with that name already exists");
         Pattern nameReg = Pattern.compile(NAME_REGEX);
         if(!nameReg.matcher(characterDto.getName()).matches())
-            throw new RegexException("Character name must be simple - only letters, starting with capital letter, up to 24 letters");
+            throw new RegexException("Character name must be simple - only letters, numbers and spaces 2-24 characters");
 
         User owner = scenarioService.isUserGameMasterInScenario(user, scenario) ? null : user;
 
         Character character = new Character(characterDto.getName(), characterDto.getRace(),
                 characterDto.getProfession(), owner, scenario);
-        characterRepository.save(character);
+        return characterRepository.save(character);
     }
 
     public Character findByNameAndScenario(String name, Scenario scenario){

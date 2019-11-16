@@ -61,6 +61,7 @@ public class EquipmentData implements ApplicationRunner {
                         it.getWeight(), it.getCost()));
             });
 
+            armors.forEach(it -> it.setVisible(true));
             armorsRepository.saveAll(armors);
             LOGGER.info("Armors table has been populated with essential data.");
         } catch (IOException e){
@@ -86,6 +87,7 @@ public class EquipmentData implements ApplicationRunner {
                         it.getNormalThrowRange(), it.getLongThrowRange(), properties, it.getWeight(), it.getCost()));
             });
 
+            weapons.forEach(it -> it.setVisible(true));
             weaponsRepository.saveAll(weapons);
             LOGGER.info("Weapons table has been populated with essential data.");
         } catch (IOException e){
@@ -98,6 +100,7 @@ public class EquipmentData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/equipment/Gear.json");
         try {
             List<Gear> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             gearRepository.saveAll(list);
             LOGGER.info("Gear table has been populated with essential data.");
         } catch (IOException e){
@@ -110,6 +113,7 @@ public class EquipmentData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/equipment/Tools.json");
         try {
             List<Tool> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             toolsRepository.saveAll(list);
             LOGGER.info("Tools table has been populated with essential data.");
         } catch (IOException e){
@@ -122,6 +126,7 @@ public class EquipmentData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/equipment/Vehicles.json");
         try {
             List<Vehicle> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             vehiclesRepository.saveAll(list);
             LOGGER.info("Vehicles table has been populated with essential data.");
         } catch (IOException e){

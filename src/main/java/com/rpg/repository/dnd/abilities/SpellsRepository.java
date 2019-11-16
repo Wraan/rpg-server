@@ -6,11 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SpellsRepository extends JpaRepository<Spell, Long> {
-    List<Spell> findByNameIgnoreCaseContaining(String name);
     List<Spell> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
     List<Spell> findByScenario(Scenario scenario);
+    List<Spell> findByNameIgnoreCaseContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible);
+    List<Spell> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
+    Optional<Spell> findByNameAndScenario(String name, Scenario scenario);
 }

@@ -17,6 +17,7 @@ public class Language {
     private String name;
     private String type;
     private String script;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -31,14 +32,24 @@ public class Language {
         this.name = name;
         this.type = type;
         this.script = script;
+        this.visible = true;
     }
 
-    public Language(String name, String type, String script, User creator, Scenario scenario) {
+    public Language(String name, String type, String script, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.type = type;
         this.script = script;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {

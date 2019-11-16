@@ -10,9 +10,11 @@ import java.util.Optional;
 
 @Repository
 public interface WeaponPropertiesRepository extends JpaRepository<WeaponProperty, Long> {
-    List<WeaponProperty> findByNameIgnoreCaseContaining(String name);
     List<WeaponProperty> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
     List<WeaponProperty> findByScenario(Scenario scenario);
+    List<WeaponProperty> findByNameIgnoreCaseContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible);
+    List<WeaponProperty> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
+    boolean existsByNameAndScenarioIn(String name, List<Scenario> scenarios);
     Optional<WeaponProperty> findByNameAndScenario(String name, Scenario scenario);
 }

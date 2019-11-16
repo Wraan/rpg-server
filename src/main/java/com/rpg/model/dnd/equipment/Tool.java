@@ -19,6 +19,7 @@ public class Tool {
     private String category;
     private int weight;
     private String cost;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -35,16 +36,26 @@ public class Tool {
         this.category = category;
         this.weight = weight;
         this.cost = cost;
+        this.visible = true;
     }
 
-    public Tool(String name, String description, String category, int weight, String cost, User creator, Scenario scenario) {
+    public Tool(String name, String description, String category, int weight, String cost, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.weight = weight;
         this.cost = cost;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public User getCreator() {

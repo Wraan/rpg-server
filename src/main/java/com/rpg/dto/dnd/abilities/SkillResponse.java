@@ -8,18 +8,28 @@ public class SkillResponse {
     private String name;
     private String description;
     private String abilityScore;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public SkillResponse() {
     }
 
-    public SkillResponse(long id, String name, String description, String abilityScore, String creatorName, String scenarioKey) {
+    public SkillResponse(long id, String name, String description, String abilityScore, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.abilityScore = abilityScore;
+        this.visible = visible;
         this.creatorName = creatorName;
+        this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
         this.scenarioKey = scenarioKey;
     }
 
@@ -63,11 +73,11 @@ public class SkillResponse {
         this.creatorName = creatorName;
     }
 
-    public String getScenarioKey() {
-        return scenarioKey;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

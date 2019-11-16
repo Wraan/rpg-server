@@ -9,21 +9,38 @@ public class VehicleResponse {
     private String description;
     private int weight;
     private String cost;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public VehicleResponse() {
     }
 
-    public VehicleResponse(long id, String name, String description, int weight, String cost,
-                           String creatorName, String scenarioKey) {
+    public VehicleResponse(long id, String name, String description, int weight, String cost, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.weight = weight;
         this.cost = cost;
+        this.visible = visible;
         this.creatorName = creatorName;
         this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {
@@ -74,11 +91,4 @@ public class VehicleResponse {
         this.creatorName = creatorName;
     }
 
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
-    }
 }

@@ -51,6 +51,7 @@ public class AbilitiesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/abilities/Skills.json");
         try {
             List<Skill> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             skillsRepository.saveAll(list);
             LOGGER.info("Skills table has been populated with essential data.");
         } catch (IOException e){
@@ -63,6 +64,7 @@ public class AbilitiesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/abilities/Traits.json");
         try {
             List<Trait> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             traitsRepository.saveAll(list);
             LOGGER.info("Traits table has been populated with essential data.");
         } catch (IOException e){
@@ -75,6 +77,7 @@ public class AbilitiesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/abilities/Features.json");
         try {
             List<Feature> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             featuresRepository.saveAll(list);
             LOGGER.info("Features table has been populated with essential data.");
         } catch (IOException e){
@@ -96,6 +99,7 @@ public class AbilitiesData implements ApplicationRunner {
                         it.getDuration(), it.isConcentration(), it.getCastingTime(), ms));
             });
 
+            spells.forEach(it -> it.setVisible(true));
             spellsRepository.saveAll(spells);
             LOGGER.info("Spells table has been populated with essential data.");
         } catch (IOException e){
@@ -108,6 +112,7 @@ public class AbilitiesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/abilities/Languages.json");
         try {
             List<Language> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             languagesRepository.saveAll(list);
             LOGGER.info("Languages table has been populated with essential data.");
         } catch (IOException e){
@@ -120,6 +125,7 @@ public class AbilitiesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/abilities/Proficiencies.json");
         try {
             List<Proficiency> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             proficienciesRepository.saveAll(list);
             LOGGER.info("Proficiencies table has been populated with essential data.");
         } catch (IOException e){

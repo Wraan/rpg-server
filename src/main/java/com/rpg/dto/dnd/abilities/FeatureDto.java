@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class FeatureDto {
     private String name;
     private String description;
-    private String creatorName;
-    private String scenarioKey;
+    private boolean visible;
 
     public FeatureDto() {
     }
@@ -28,19 +27,11 @@ public class FeatureDto {
         this.description = description;
     }
 
-    public String getCreatorName() {
-        return creatorName;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
-    }
-
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

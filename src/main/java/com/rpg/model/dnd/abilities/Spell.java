@@ -16,7 +16,6 @@ public class Spell {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     private String name;
     @Column(length = 4095)
     private String description;
@@ -34,6 +33,7 @@ public class Spell {
     @ManyToOne
     @JoinColumn(name = "magic_school_id")
     private MagicSchool magicSchool;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -61,11 +61,10 @@ public class Spell {
         this.concentration = concentration;
         this.castingTime = castingTime;
         this.magicSchool = magicSchool;
+        this.visible = true;
     }
 
-    public Spell(String name, String description, String higherLevels, int level, String range, String components,
-                 String material, boolean ritual, String duration, boolean concentration, String castingTime,
-                 MagicSchool magicSchool, User creator, Scenario scenario) {
+    public Spell(String name, String description, String higherLevels, int level, String range, String components, String material, boolean ritual, String duration, boolean concentration, String castingTime, MagicSchool magicSchool, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.description = description;
         this.higherLevels = higherLevels;
@@ -78,8 +77,17 @@ public class Spell {
         this.concentration = concentration;
         this.castingTime = castingTime;
         this.magicSchool = magicSchool;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {

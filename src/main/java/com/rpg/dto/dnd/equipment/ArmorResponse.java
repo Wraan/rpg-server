@@ -11,23 +11,40 @@ public class ArmorResponse {
     private boolean stealthDisadvantage;
     private int weight;
     private String cost;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public ArmorResponse() {
     }
 
-    public ArmorResponse(long id, String name, ArmorClassJson armorClass, int strMinimum, boolean stealthDisadvantage,
-                         int weight, String cost, String creatorName, String scenarioKey) {
+    public ArmorResponse(long id, String name, ArmorClassJson armorClass, int strMinimum, boolean stealthDisadvantage, int weight, String cost, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.armorClass = armorClass;
         this.strMinimum = strMinimum;
         this.stealthDisadvantage = stealthDisadvantage;
         this.weight = weight;
+        this.visible = visible;
         this.cost = cost;
         this.creatorName = creatorName;
         this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
+        this.scenarioKey = scenarioKey;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public long getId() {
@@ -92,13 +109,5 @@ public class ArmorResponse {
 
     public void setCreatorName(String creatorName) {
         this.creatorName = creatorName;
-    }
-
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
     }
 }

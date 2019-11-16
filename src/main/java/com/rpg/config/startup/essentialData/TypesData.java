@@ -46,6 +46,7 @@ public class TypesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/types/Magic-Schools.json");
         try {
             List<MagicSchool> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             magicSchoolsRepository.saveAll(list);
             LOGGER.info("MagicSchools table has been populated with essential data.");
         } catch (IOException e){
@@ -58,6 +59,7 @@ public class TypesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/types/Conditions.json");
         try {
             List<Condition> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             conditionsRepository.saveAll(list);
             LOGGER.info("Conditions table has been populated with essential data.");
         } catch (IOException e){
@@ -70,6 +72,7 @@ public class TypesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/types/Damage-Types.json");
         try {
             List<DamageType> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             damageTypesRepository.saveAll(list);
             LOGGER.info("DamageTypes table has been populated with essential data.");
         } catch (IOException e){
@@ -82,6 +85,7 @@ public class TypesData implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/data/types/Weapon-Properties.json");
         try {
             List<WeaponProperty> list = mapper.readValue(inputStream,typeReference);
+            list.forEach(it -> it.setVisible(true));
             weaponPropertiesRepository.saveAll(list);
             LOGGER.info("WeaponProperties table has been populated with essential data.");
         } catch (IOException e){

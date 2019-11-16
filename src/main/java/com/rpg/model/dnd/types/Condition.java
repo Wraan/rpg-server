@@ -30,6 +30,7 @@ public class Condition {
     public Condition(String name, String description) {
         this.name = name;
         this.description = description;
+        this.visible = true;
     }
 
     public Condition(String name, String description, boolean visible, User creator, Scenario scenario) {

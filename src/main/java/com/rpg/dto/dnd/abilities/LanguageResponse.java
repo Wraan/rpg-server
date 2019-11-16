@@ -8,18 +8,28 @@ public class LanguageResponse {
     private String name;
     private String type;
     private String script;
+    private boolean visible;
     private String creatorName;
     private String scenarioKey;
 
     public LanguageResponse() {
     }
 
-    public LanguageResponse(long id, String name, String type, String script, String creatorName, String scenarioKey) {
+    public LanguageResponse(long id, String name, String type, String script, boolean visible, String creatorName, String scenarioKey) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.script = script;
+        this.visible = visible;
         this.creatorName = creatorName;
+        this.scenarioKey = scenarioKey;
+    }
+
+    public String getScenarioKey() {
+        return scenarioKey;
+    }
+
+    public void setScenarioKey(String scenarioKey) {
         this.scenarioKey = scenarioKey;
     }
 
@@ -63,11 +73,11 @@ public class LanguageResponse {
         this.creatorName = creatorName;
     }
 
-    public String getScenarioKey() {
-        return scenarioKey;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

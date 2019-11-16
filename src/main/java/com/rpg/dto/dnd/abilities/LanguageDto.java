@@ -7,8 +7,7 @@ public class LanguageDto {
     private String name;
     private String type;
     private String script;
-    private String creatorName;
-    private String scenarioKey;
+    private boolean visible;
 
     public LanguageDto() {
     }
@@ -37,19 +36,11 @@ public class LanguageDto {
         this.script = script;
     }
 
-    public String getCreatorName() {
-        return creatorName;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
-    }
-
-    public String getScenarioKey() {
-        return scenarioKey;
-    }
-
-    public void setScenarioKey(String scenarioKey) {
-        this.scenarioKey = scenarioKey;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

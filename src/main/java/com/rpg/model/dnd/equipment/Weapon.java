@@ -36,6 +36,7 @@ public class Weapon {
     private List<WeaponProperty> properties;
     private int weight;
     private String cost;
+    private boolean visible;
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -62,11 +63,10 @@ public class Weapon {
         this.properties = properties;
         this.weight = weight;
         this.cost = cost;
+        this.visible = true;
     }
 
-    public Weapon(String name, String category, String weaponRange, String damageDice, int damageBonus,
-                  DamageType damageType, int normalRange, int longRange, int normalThrowRange, int longThrowRange,
-                  List<WeaponProperty> properties, int weight, String cost, User creator, Scenario scenario) {
+    public Weapon(String name, String category, String weaponRange, String damageDice, int damageBonus, DamageType damageType, int normalRange, int longRange, int normalThrowRange, int longThrowRange, List<WeaponProperty> properties, int weight, String cost, boolean visible, User creator, Scenario scenario) {
         this.name = name;
         this.category = category;
         this.weaponRange = weaponRange;
@@ -80,8 +80,17 @@ public class Weapon {
         this.properties = properties;
         this.weight = weight;
         this.cost = cost;
+        this.visible = visible;
         this.creator = creator;
         this.scenario = scenario;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public User getCreator() {

@@ -7,11 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SkillsRepository extends JpaRepository<Skill, Long> {
-    List<Skill> findByNameIgnoreCaseContaining(String name);
     List<Skill> findByNameIgnoreCaseContainingAndScenario(String name, Scenario scenario);
     List<Skill> findByScenario(Scenario scenario);
+    List<Skill> findByNameIgnoreCaseContainingAndScenarioAndVisible(String name, Scenario scenario, boolean visible);
+    List<Skill> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
+    Optional<Skill> findByNameAndScenario(String name, Scenario scenario);
 }
