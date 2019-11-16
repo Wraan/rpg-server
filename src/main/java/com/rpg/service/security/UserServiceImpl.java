@@ -41,11 +41,11 @@ public class UserServiceImpl implements UserService{
 
     public void register(UserRegistrationFormDto registeredUser) throws Exception {
         if (!validateCredentials(registeredUser))
-            throw new CredentialsFormatException("Invalid format exception!");
+            throw new CredentialsFormatException("Invalid format exception");
         if(userRepository.existsByUsername(registeredUser.getUsername()))
-            throw new UserAlreadyExistsException("User already exists!");
+            throw new UserAlreadyExistsException("User already exists");
         if(userRepository.existsByEmail(registeredUser.getEmail()))
-            throw new EmailAlreadyExistsException("Email already exists!");
+            throw new EmailAlreadyExistsException("Email already exists");
 
 
         User user = new User(registeredUser.getUsername(), passwordEncoder.encode(registeredUser.getPassword()), registeredUser.getEmail(),
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
 //            return user;
 //        } catch (Exception e) {
 //            System.out.println(e.getMessage());
-//            throw new Exception("Problem happened with the token. Try again or generate a new token.");
+//            throw new Exception("Problem happened with the token. Try again or generate a new token");
 //        }
 //    }
 //
