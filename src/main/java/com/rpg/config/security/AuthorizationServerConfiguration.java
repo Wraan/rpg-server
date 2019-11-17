@@ -1,5 +1,8 @@
 package com.rpg.config.security;
 
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Encoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +23,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import javax.crypto.SecretKey;
 import javax.sql.DataSource;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Arrays;
 
 @Configuration

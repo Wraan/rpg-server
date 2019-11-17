@@ -74,6 +74,11 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByUsername(username).orElse(null);
     }
 
+    @Override
+    public boolean existByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
 //    Not used, but might be useful later
 //    public User findWithToken(String token) throws Exception {
 //        try {

@@ -163,4 +163,8 @@ public class ScenarioService {
             players.add(player.getUsername());
         return new PlayersResponse(scenario.getGameMaster().getUsername(), players, onlinePlayers);
     }
+
+    public boolean existsByScenarioKey(String scenarioKey){
+        return scenarioRepository.existsByScenarioKey(scenarioKey);
+    }
 }
