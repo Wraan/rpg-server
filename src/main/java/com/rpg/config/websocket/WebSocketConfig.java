@@ -67,9 +67,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
                 } else if (StompCommand.DISCONNECT.equals(accessor.getCommand())) {
                     Principal principal = accessor.getUser();
-                    if(Objects.isNull(principal)) return null;
-
                     String scenarioKey = (String) accessor.getSessionAttributes().get("scenarioKey");
+                    if(Objects.isNull(principal) || Objects.isNull(scenarioKey)) return null;
+
                     scenarioSessionService.removeUserFromScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
                     LOGGER.info("Player {} in scenario {} with session {} has been disconnected",
                             principal.getName(), scenarioKey, accessor.getSessionId());
@@ -82,14 +82,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     if (Objects.nonNull(destination) && destination.startsWith("/ws/scenario")) {
                         String scenarioKey = getScenarioKeyFromDestination(destination);
                         String playerName = getPlayerNameFromDestination(destination);
-                        if(Objects.isNull(scenarioKey) || Objects.isNull(playerName)
-                                || !playerName.equals(principal.getName()))
-                            return null;
-
-                        accessor.getSessionAttributes().put("scenarioKey", scenarioKey);
-                        scenarioSessionService.addUserToScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
-                        LOGGER.info("Player {} subscribed to scenario {} in session {}", playerName,
-                                scenarioKey, accessor.getSessionId());
+                        if(Objects.nonNull(scenarioKey) && Objects.nonNull(playerName)
+                                && playerName.equals(principal.getName())){
+                            accessor.getSessionAttributes().put("scenarioKey", scenarioKey);
+                            scenarioSessionService.addUserToScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
+                            LOGGER.info("Player {} subscribed to scenario {} in session {}", playerName,
+                                    scenarioKey, accessor.getSessionId());
+                        }
                     }
                 }
                 else if(StompCommand.UNSUBSCRIBE.equals(accessor.getCommand())) {
