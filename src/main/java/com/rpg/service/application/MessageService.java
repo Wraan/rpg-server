@@ -89,7 +89,7 @@ public class MessageService {
         List<Message> allMessages;
         List<String> playerCharacterNames = scenarioService.findUserCharacterNamesInScenario(user, scenario);
         do{
-            allMessages = messageRepository.findByScenario(scenario, PageRequest.of(page, PAGE_SIZE));
+            allMessages = messageRepository.findByScenarioOrderByIdDesc(scenario, PageRequest.of(page, PAGE_SIZE));
             allMessages.forEach(it -> {
                 if(messages.size() >= MESSAGES_AMOUNT_TO_RETURN) return;
                 if(it.getType() == MessageType.OOC || it.getType() == MessageType.System
@@ -106,6 +106,6 @@ public class MessageService {
     }
 
     private List<Message> findNLastMessagesInScenario(Scenario scenario, int N) {
-        return messageRepository.findByScenario(scenario, PageRequest.of(0, N));
+        return messageRepository.findByScenarioOrderByIdDesc(scenario, PageRequest.of(0, N));
     }
 }
