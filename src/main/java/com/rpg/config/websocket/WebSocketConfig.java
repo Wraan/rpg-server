@@ -1,6 +1,7 @@
 package com.rpg.config.websocket;
 
 import com.rpg.service.application.ScenarioService;
+import com.rpg.service.application.ScenarioSessionService;
 import com.rpg.service.security.JsonWebTokenAuthenticationService;
 import com.rpg.service.security.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +35,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Autowired private JsonWebTokenAuthenticationService authenticationService;
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
+    @Autowired private ScenarioSessionService scenarioSessionService;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -57,7 +59,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
                 if (StompCommand.CONNECT.equals(accessor.getCommand())) {
                     String authToken = accessor.getFirstNativeHeader("X-Authorization");
-                    LOGGER.info("Header auth token: " + authToken);
                     Principal principal = authenticationService.getUserFromToken(authToken);
 
                     if (Objects.isNull(principal)) return null;
@@ -69,7 +70,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     if(Objects.isNull(principal)) return null;
 
                     String scenarioKey = (String) accessor.getSessionAttributes().get("scenarioKey");
-                    //TODO remove player from online List
+                    scenarioSessionService.removeUserFromScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
                     LOGGER.info("Player {} in scenario {} with session {} has been disconnected",
                             principal.getName(), scenarioKey, accessor.getSessionId());
 
@@ -84,8 +85,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                         if(Objects.isNull(scenarioKey) || Objects.isNull(playerName)
                                 || !playerName.equals(principal.getName()))
                             return null;
-                        //TODO add player to online List
+
                         accessor.getSessionAttributes().put("scenarioKey", scenarioKey);
+                        scenarioSessionService.addUserToScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
                         LOGGER.info("Player {} subscribed to scenario {} in session {}", playerName,
                                 scenarioKey, accessor.getSessionId());
                     }

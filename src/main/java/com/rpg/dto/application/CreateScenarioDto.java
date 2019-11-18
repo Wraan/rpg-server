@@ -4,15 +4,13 @@ public class CreateScenarioDto {
 
     private String name;
     private String password;
-    private int maxPlayers;
 
     public CreateScenarioDto() {
     }
 
-    public CreateScenarioDto(String name, String password, int maxPlayers) {
+    public CreateScenarioDto(String name, String password) {
         this.name = name;
         this.password = password;
-        this.maxPlayers = maxPlayers;
     }
 
     public String getName() {
@@ -29,13 +27,5 @@ public class CreateScenarioDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    public void setMaxPlayers(int maxPlayers) {
-        this.maxPlayers = maxPlayers;
     }
 }

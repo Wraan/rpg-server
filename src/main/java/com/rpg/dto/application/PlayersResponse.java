@@ -1,16 +1,17 @@
 package com.rpg.dto.application;
 
 import java.util.List;
+import java.util.Set;
 
 public class PlayersResponse {
     private String gameMaster;
-    private List<String> players;
-    private List<String> onlinePlayers;
+    private Set<String> players;
+    private Set<String> onlinePlayers;
 
     public PlayersResponse() {
     }
 
-    public PlayersResponse(String gameMaster, List<String> players, List<String> onlinePlayers) {
+    public PlayersResponse(String gameMaster, Set<String> players, Set<String> onlinePlayers) {
         this.gameMaster = gameMaster;
         this.players = players;
         this.onlinePlayers = onlinePlayers;
@@ -24,19 +25,19 @@ public class PlayersResponse {
         this.gameMaster = gameMaster;
     }
 
-    public List<String> getPlayers() {
+    public Set<String> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<String> players) {
+    public void setPlayers(Set<String> players) {
         this.players = players;
     }
 
-    public List<String> getOnlinePlayers() {
+    public Set<String> getOnlinePlayers() {
         return onlinePlayers;
     }
 
-    public void setOnlinePlayers(List<String> onlinePlayers) {
+    public void setOnlinePlayers(Set<String> onlinePlayers) {
         this.onlinePlayers = onlinePlayers;
     }
 }

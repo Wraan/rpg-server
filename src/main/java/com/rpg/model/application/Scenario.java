@@ -25,20 +25,18 @@ public class Scenario {
     private List<User> players;
     @Column(length = 1023)
     private String name;
-    private int maxPlayers;
     @OneToMany(mappedBy = "scenario")
     private List<Character> characters;
 
     public Scenario() {
     }
 
-    public Scenario(String key, String password, User gameMaster, List<User> players, String name, int maxPlayers) {
+    public Scenario(String key, String password, User gameMaster, List<User> players, String name) {
         this.scenarioKey = key;
         this.password = password;
         this.gameMaster = gameMaster;
         this.players = players;
         this.name = name;
-        this.maxPlayers = maxPlayers;
     }
 
     public Scenario(String key) {
@@ -91,14 +89,6 @@ public class Scenario {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    public void setMaxPlayers(int maxPlayers) {
-        this.maxPlayers = maxPlayers;
     }
 
     public List<Character> getCharacters() {

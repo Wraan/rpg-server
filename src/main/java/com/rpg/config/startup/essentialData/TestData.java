@@ -34,7 +34,7 @@ public class TestData implements ApplicationRunner {
         Scenario scenario = scenarioService.findByScenarioKey("TESTSCEN");
         if(scenario == null) {
             scenario = new Scenario("TESTSCEN", passwordEncoder.encode("password"),
-                    userService.findByUsername("admin"), Collections.emptyList(), "Test scenario", 2);
+                    userService.findByUsername("admin"), Collections.emptyList(), "Test scenario");
             scenarioService.save(scenario);
         }
     }

@@ -1,19 +1,20 @@
 package com.rpg.dto.application;
 
 import java.util.List;
+import java.util.Set;
 
 public class ScenarioInfoResponse {
 
     private String gameMaster;
     private String scenarioKey;
-    private List<String> players;
-    private List<String> onlinePlayers;
+    private Set<String> players;
+    private Set<String> onlinePlayers;
     private String scenarioStatus;
 
     public ScenarioInfoResponse() {
     }
 
-    public ScenarioInfoResponse(String gameMaster, String scenarioKey, List<String> players, List<String> onlinePlayers, String scenarioStatus) {
+    public ScenarioInfoResponse(String gameMaster, String scenarioKey, Set<String> players, Set<String> onlinePlayers, String scenarioStatus) {
         this.gameMaster = gameMaster;
         this.scenarioKey = scenarioKey;
         this.players = players;
@@ -37,19 +38,19 @@ public class ScenarioInfoResponse {
         this.scenarioKey = scenarioKey;
     }
 
-    public List<String> getPlayers() {
+    public Set<String> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<String> players) {
+    public void setPlayers(Set<String> players) {
         this.players = players;
     }
 
-    public List<String> getOnlinePlayers() {
+    public Set<String> getOnlinePlayers() {
         return onlinePlayers;
     }
 
-    public void setOnlinePlayers(List<String> onlinePlayers) {
+    public void setOnlinePlayers(Set<String> onlinePlayers) {
         this.onlinePlayers = onlinePlayers;
     }
 

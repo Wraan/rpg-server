@@ -9,12 +9,12 @@ public class ScenarioSession {
 
     private Scenario scenario;
     private ScenarioStatusType scenarioStatusType;
-    private Set<User> usersInSession;
+    private Set<UserSession> usersInSession;
 
     public ScenarioSession() {
     }
 
-    public ScenarioSession(Scenario scenario, ScenarioStatusType scenarioStatusType, Set<User> usersInSession) {
+    public ScenarioSession(Scenario scenario, ScenarioStatusType scenarioStatusType, Set<UserSession> usersInSession) {
         this.scenario = scenario;
         this.scenarioStatusType = scenarioStatusType;
         this.usersInSession = usersInSession;
@@ -36,11 +36,11 @@ public class ScenarioSession {
         this.scenario = scenario;
     }
 
-    public Set<User> getUsersInSession() {
+    public Set<UserSession> getUsersInSession() {
         return usersInSession;
     }
 
-    public void setUsersInSession(Set<User> usersInSession) {
+    public void setUsersInSession(Set<UserSession> usersInSession) {
         this.usersInSession = usersInSession;
     }
 }

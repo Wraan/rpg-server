@@ -208,7 +208,7 @@
     "name": "Quarterstaff",
     "category": "Simple",
     "weaponRange": "Melee",
-    "damageDice": "1d6",
+    "damageDice": "1d6(1d8)",
     "damageBonus": 0,
     "damageType": {
       "name": "Bludgeoning",
@@ -264,7 +264,7 @@
     "name": "Spear",
     "category": "Simple",
     "weaponRange": "Melee",
-    "damageDice": "1d4",
+    "damageDice": "1d4(1d6)",
     "damageBonus": 0,
     "damageType": {
       "name": "Piercing",
@@ -408,7 +408,7 @@
     "name": "Battleaxe",
     "category": "Martial",
     "weaponRange": "Melee",
-    "damageDice": "1d8",
+    "damageDice": "1d8(1d10)",
     "damageBonus": 0,
     "damageType": {
       "name": "Slashing",
@@ -599,7 +599,7 @@
     "name": "Longsword",
     "category": "Martial",
     "weaponRange": "Melee",
-    "damageDice": "1d8",
+    "damageDice": "1d8(1d10)",
     "damageBonus": 0,
     "damageType": {
       "name": "Slashing",
@@ -786,7 +786,7 @@
     "name": "Trident",
     "category": "Martial",
     "weaponRange": "Melee",
-    "damageDice": "1d6",
+    "damageDice": "1d6(1d8)",
     "damageBonus": 0,
     "damageType": {
       "name": "Slashing",
@@ -833,7 +833,7 @@
     "name": "Warhammer",
     "category": "Martial",
     "weaponRange": "Melee",
-    "damageDice": "1d8",
+    "damageDice": "1d8(1d10)",
     "damageBonus": 0,
     "damageType": {
       "name": "Bludgeoning",

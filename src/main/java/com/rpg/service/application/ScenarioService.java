@@ -1,11 +1,14 @@
 package com.rpg.service.application;
 
 import com.rpg.dto.application.*;
+import com.rpg.exception.PrivilageException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
 import com.rpg.exception.UserAlreadyExistsException;
 import com.rpg.model.application.Character;
 import com.rpg.model.application.Scenario;
+import com.rpg.model.application.ScenarioSession;
+import com.rpg.model.application.ScenarioStatusType;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.ScenarioRepository;
 import com.rpg.service.converter.ApplicationConverter;
@@ -15,9 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ScenarioService {
@@ -48,7 +49,7 @@ public class ScenarioService {
             scenarioKey = generateScenarioKey();
         }
         Scenario scenario = new Scenario(scenarioKey, passwordEncoder.encode(scenarioDto.getPassword()),
-                user, Collections.emptyList(), scenarioDto.getName(), scenarioDto.getMaxPlayers());
+                user, Collections.emptyList(), scenarioDto.getName());
         return scenarioRepository.save(scenario);
     }
 
@@ -122,16 +123,9 @@ public class ScenarioService {
     }
 
     public ScenarioInfoResponse getScenarioInfo(Scenario scenario, User user) throws Exception {
-        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
-        if(!isUserPlayerOrGameMasterInScenario(user, scenario))
-            throw new ScenarioException("User is not a player in that scenario");
-
-        List<String> players = new ArrayList<>();
-        for (User player : scenario.getPlayers())
-            players.add(player.getUsername());
-        List<String> onlinePlayers = Collections.singletonList("Not yet implemented...");
+        PlayersResponse playersResponse = getPlayersInScenario(user, scenario);
         return new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
-                scenario.getScenarioKey(), players, onlinePlayers,
+                scenario.getScenarioKey(), playersResponse.getPlayers(), playersResponse.getOnlinePlayers(),
                 scenarioSessionService.getScenarioSession(scenario).getScenarioStatusType().toString());
     }
 
@@ -154,17 +148,38 @@ public class ScenarioService {
         if(!isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new ScenarioException("User is not a player in that scenario");
 
-        List<String> players = new ArrayList<>();
-        List<String> onlinePlayers = new ArrayList<>();
+        Set<String> players = getPlayerNames(scenario.getPlayers());
+        Set<String> onlinePlayers = getPlayerNames(scenarioSessionService.getOnlineUsersFromScenario(scenario));
 
-        //TODO online players
-
-        for(User player : scenario.getPlayers())
-            players.add(player.getUsername());
         return new PlayersResponse(scenario.getGameMaster().getUsername(), players, onlinePlayers);
     }
 
     public boolean existsByScenarioKey(String scenarioKey){
         return scenarioRepository.existsByScenarioKey(scenarioKey);
+    }
+
+    public void startScenario(User gm, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!isUserGameMasterInScenario(gm, scenario))
+            throw new PrivilageException("Only GameMaster can start the scenario");
+        ScenarioSession scenarioSession = scenarioSessionService.getScenarioSession(scenario);
+        if(scenarioSession.getScenarioStatusType().equals(ScenarioStatusType.STARTED))
+            throw new ScenarioException("Scenario has been already started");
+        if(!getPlayerNames(scenarioSessionService.getOnlineUsersFromScenario(scenario)).contains(gm.getUsername()))
+            throw new ScenarioException("GameMaster has to be online");
+        scenarioSessionService.changeScenarioSessionStatus(scenarioSession, ScenarioStatusType.STARTED);
+    }
+
+    private Set<String> getPlayerNames(Set<User> users){
+        Set<String> playerNames = new HashSet<>();
+        for(User player : users)
+            playerNames.add(player.getUsername());
+        return playerNames;
+    }
+    private Set<String> getPlayerNames(List<User> users){
+        Set<String> playerNames = new HashSet<>();
+        for(User player : users)
+            playerNames.add(player.getUsername());
+        return playerNames;
     }
 }

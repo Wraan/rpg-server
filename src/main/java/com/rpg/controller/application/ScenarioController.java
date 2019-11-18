@@ -54,6 +54,7 @@ public class ScenarioController {
                     paramType = "header", defaultValue="Bearer access-token")
     })
     public List<ScenarioResponse> getUserScenarios(Principal principal){
+        //TODO add amount of online players
         User user = userService.findByUsername(principal.getName());
         return scenarioService.findUserScenarios(user);
     }
@@ -79,12 +80,12 @@ public class ScenarioController {
         }
     }
 
-    @GetMapping("/scenario/{scenarioKey}/enter")
+    @GetMapping("/scenario/{scenarioKey}/connect")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
                     paramType = "header", defaultValue="Bearer access-token")
     })
-    public ResponseEntity enterScenario(@PathVariable("scenarioKey") String scenarioKey,
+    public ResponseEntity connectToScenario(@PathVariable("scenarioKey") String scenarioKey,
                                         Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
@@ -126,6 +127,7 @@ public class ScenarioController {
         }
     }
 
+    //TODO OOC without characterName
     @GetMapping("/scenario/{scenarioKey}/message")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -138,6 +140,26 @@ public class ScenarioController {
         try {
             List<Message> messages = messageService.findCorrespondingToUserInScenario(user, scenario);
             return ResponseEntity.ok(messageConverter.messagesToResponse(messages));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    //TODO notes which players and GM can make
+
+    @PostMapping("/scenario/{scenarioKey}/start")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity startScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                              Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            scenarioService.startScenario(gm, scenario);
+            return ResponseEntity.ok("OK");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
