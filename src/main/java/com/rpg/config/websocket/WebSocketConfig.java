@@ -35,8 +35,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
 
-    Map<String, String> sessions = new HashMap<>();
-
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.setApplicationDestinationPrefixes("/app");
@@ -65,15 +63,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     if (Objects.isNull(principal)) return null;
 
                     accessor.setUser(principal);
+
                 } else if (StompCommand.DISCONNECT.equals(accessor.getCommand())) {
                     Principal principal = accessor.getUser();
                     if(Objects.isNull(principal)) return null;
-                    String scenarioKey = sessions.get(accessor.getSessionId());
-                    sessions.remove(accessor.getSessionId());
 
+                    String scenarioKey = (String) accessor.getSessionAttributes().get("scenarioKey");
+                    //TODO remove player from online List
                     LOGGER.info("Player {} in scenario {} with session {} has been disconnected",
                             principal.getName(), scenarioKey, accessor.getSessionId());
-
 
                 } else if(StompCommand.SUBSCRIBE.equals(accessor.getCommand())) {
                     Principal principal = accessor.getUser();
@@ -86,8 +84,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                         if(Objects.isNull(scenarioKey) || Objects.isNull(playerName)
                                 || !playerName.equals(principal.getName()))
                             return null;
-                        //TODO add player to online players
-                        sessions.put(accessor.getSessionId(), scenarioKey);
+                        //TODO add player to online List
+                        accessor.getSessionAttributes().put("scenarioKey", scenarioKey);
                         LOGGER.info("Player {} subscribed to scenario {} in session {}", playerName,
                                 scenarioKey, accessor.getSessionId());
                     }

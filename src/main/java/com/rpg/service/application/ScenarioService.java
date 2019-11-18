@@ -24,7 +24,7 @@ public class ScenarioService {
 
     @Autowired private ScenarioRepository scenarioRepository;
     @Autowired private CharacterService characterService;
-    @Autowired private ScenarioStatusService scenarioStatusService;
+    @Autowired private ScenarioSessionService scenarioSessionService;
 
     @Autowired private PasswordEncoder passwordEncoder;
     @Autowired private ApplicationConverter applicationConverter;
@@ -132,7 +132,7 @@ public class ScenarioService {
         List<String> onlinePlayers = Collections.singletonList("Not yet implemented...");
         return new ScenarioInfoResponse(scenario.getGameMaster().getUsername(),
                 scenario.getScenarioKey(), players, onlinePlayers,
-                scenarioStatusService.getScenarioStatus(scenario).getScenarioStatusType().toString());
+                scenarioSessionService.getScenarioSession(scenario).getScenarioStatusType().toString());
     }
 
     public void changeGameMaster(User user, Scenario scenario) throws Exception {

@@ -5,10 +5,7 @@ import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.model.application.*;
 import com.rpg.model.application.Character;
 import com.rpg.model.security.User;
-import com.rpg.service.application.CharacterService;
-import com.rpg.service.application.MessageService;
-import com.rpg.service.application.ScenarioService;
-import com.rpg.service.application.ScenarioStatusService;
+import com.rpg.service.application.*;
 import com.rpg.service.converter.ApplicationConverter;
 import com.rpg.service.converter.MessageConverter;
 import com.rpg.service.security.UserService;
@@ -22,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -33,7 +29,7 @@ public class ScenarioController {
     @Autowired private UserService userService;
     @Autowired private CharacterService characterService;
     @Autowired private MessageService messageService;
-    @Autowired private ScenarioStatusService scenarioStatusService;
+    @Autowired private ScenarioSessionService scenarioSessionService;
 
     @Autowired private ApplicationConverter applicationConverter;
     @Autowired private MessageConverter messageConverter;
@@ -93,9 +89,9 @@ public class ScenarioController {
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try {
-            ScenarioStatus scenarioStatus = scenarioStatusService.getScenarioStatus(scenario);
-            if(scenarioStatus.getScenarioStatusType().equals(ScenarioStatusType.STOPPED))
-                scenarioStatusService.changeScenarioStatus(scenarioStatus, ScenarioStatusType.STANDBY);
+            ScenarioSession scenarioSession = scenarioSessionService.getScenarioSession(scenario);
+            if(scenarioSession.getScenarioStatusType().equals(ScenarioStatusType.STOPPED))
+                scenarioSessionService.changeScenarioSessionStatus(scenarioSession, ScenarioStatusType.STANDBY);
 
             ScenarioInfoResponse scenarioInfo = scenarioService.getScenarioInfo(scenario, user);
             List<Character> characters = scenarioService.isUserGameMasterInScenario(user, scenario) ?

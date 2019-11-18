@@ -3,20 +3,21 @@ package com.rpg.model.application;
 import com.rpg.model.security.User;
 
 import java.util.List;
+import java.util.Set;
 
-public class ScenarioStatus {
+public class ScenarioSession {
 
     private Scenario scenario;
     private ScenarioStatusType scenarioStatusType;
-    private List<UserSession> userSessions;
+    private Set<User> usersInSession;
 
-    public ScenarioStatus() {
+    public ScenarioSession() {
     }
 
-    public ScenarioStatus(Scenario scenario, ScenarioStatusType scenarioStatusType, List<UserSession> userSessions) {
+    public ScenarioSession(Scenario scenario, ScenarioStatusType scenarioStatusType, Set<User> usersInSession) {
         this.scenario = scenario;
         this.scenarioStatusType = scenarioStatusType;
-        this.userSessions = userSessions;
+        this.usersInSession = usersInSession;
     }
 
     public ScenarioStatusType getScenarioStatusType() {
@@ -35,11 +36,11 @@ public class ScenarioStatus {
         this.scenario = scenario;
     }
 
-    public List<UserSession> getUserSessions() {
-        return userSessions;
+    public Set<User> getUsersInSession() {
+        return usersInSession;
     }
 
-    public void setUserSessions(List<UserSession> userSessions) {
-        this.userSessions = userSessions;
+    public void setUsersInSession(Set<User> usersInSession) {
+        this.usersInSession = usersInSession;
     }
 }
