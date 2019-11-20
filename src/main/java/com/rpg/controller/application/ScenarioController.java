@@ -2,6 +2,8 @@ package com.rpg.controller.application;
 
 import com.rpg.dto.application.*;
 import com.rpg.dto.websocket.MessageResponse;
+import com.rpg.exception.ScenarioDoesNotExistException;
+import com.rpg.exception.ScenarioException;
 import com.rpg.model.application.*;
 import com.rpg.model.application.Character;
 import com.rpg.model.security.User;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -54,9 +57,8 @@ public class ScenarioController {
                     paramType = "header", defaultValue="Bearer access-token")
     })
     public List<ScenarioResponse> getUserScenarios(Principal principal){
-        //TODO add amount of online players
         User user = userService.findByUsername(principal.getName());
-        return scenarioService.findUserScenarios(user);
+        return applicationConverter.scenariosToResponse(scenarioService.findUserScenarios(user));
     }
 
     //TODO delete scenario and test if characters, messages and items are deleted properly
@@ -127,7 +129,6 @@ public class ScenarioController {
         }
     }
 
-    //TODO OOC without characterName
     @GetMapping("/scenario/{scenarioKey}/message")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -146,8 +147,6 @@ public class ScenarioController {
         }
     }
 
-    //TODO notes which players and GM can make
-
     @PostMapping("/scenario/{scenarioKey}/start")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -159,6 +158,98 @@ public class ScenarioController {
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try {
             scenarioService.startScenario(gm, scenario);
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/scenario/{scenarioKey}/note")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity getNotes(@PathVariable("scenarioKey") String scenarioKey,
+                                   Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            return ResponseEntity.ok(applicationConverter.notesToResponse(
+                    scenarioService.findNotesByUserAndScenario(user, scenario)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/scenario/{scenarioKey}/note")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity createNote(@PathVariable("scenarioKey") String scenarioKey,
+                                     @RequestBody NoteDto noteDto,
+                                     Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            scenarioService.createNote(noteDto, user, scenario);
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/scenario/{scenarioKey}/note/{noteId}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity patchNote(@PathVariable("scenarioKey") String scenarioKey,
+                                    @PathVariable("noteId") long noteId,
+                                    @RequestBody NoteDto noteDto,
+                                    Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
+                throw new ScenarioException("User is not a player in that scenario");
+
+            Note note = scenarioService.findNoteByIdAndUserAndScenario(noteId, user, scenario);
+            if(Objects.isNull(note))
+                throw new ScenarioException("Note does not exist");
+
+            scenarioService.patchNote(note, noteDto);
+            return ResponseEntity.ok("OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/scenario/{scenarioKey}/note/{noteId}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity deleteNote(@PathVariable("scenarioKey") String scenarioKey,
+                                    @PathVariable("noteId") long noteId,
+                                    Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
+                throw new ScenarioException("User is not a player in that scenario");
+
+            Note note = scenarioService.findNoteByIdAndUserAndScenario(noteId, user, scenario);
+            if(Objects.isNull(note))
+                throw new ScenarioException("Note does not exist");
+
+            scenarioService.deleteNote(note);
             return ResponseEntity.ok("OK");
         } catch (Exception e) {
             e.printStackTrace();

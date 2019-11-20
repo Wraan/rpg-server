@@ -5,11 +5,10 @@ import com.rpg.exception.PrivilageException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
 import com.rpg.exception.UserAlreadyExistsException;
+import com.rpg.model.application.*;
 import com.rpg.model.application.Character;
-import com.rpg.model.application.Scenario;
-import com.rpg.model.application.ScenarioSession;
-import com.rpg.model.application.ScenarioStatusType;
 import com.rpg.model.security.User;
+import com.rpg.repository.application.NoteRepository;
 import com.rpg.repository.application.ScenarioRepository;
 import com.rpg.service.converter.ApplicationConverter;
 import org.bouncycastle.openssl.PasswordException;
@@ -24,11 +23,11 @@ import java.util.*;
 public class ScenarioService {
 
     @Autowired private ScenarioRepository scenarioRepository;
+    @Autowired private NoteRepository noteRepository;
     @Autowired private CharacterService characterService;
     @Autowired private ScenarioSessionService scenarioSessionService;
 
     @Autowired private PasswordEncoder passwordEncoder;
-    @Autowired private ApplicationConverter applicationConverter;
 
     @Value("${scenario.key.length}")
     private int scenarioKeyLength;
@@ -64,10 +63,10 @@ public class ScenarioService {
 
     }
 
-    public List<ScenarioResponse> findUserScenarios(User user) {
+    public List<Scenario> findUserScenarios(User user) {
         List<Scenario> list = scenarioRepository.findByGameMaster(user);
         list.addAll(user.getScenarios());
-        return applicationConverter.scenariosToResponse(list);
+        return list;
     }
 
     public void joinScenario(User user, Scenario scenario, String password) throws Exception {
@@ -181,5 +180,36 @@ public class ScenarioService {
         for(User player : users)
             playerNames.add(player.getUsername());
         return playerNames;
+    }
+
+    public List<Note> findNotesByUserAndScenario(User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!isUserPlayerOrGameMasterInScenario(user, scenario))
+            throw new ScenarioException("User is not a player in that scenario");
+
+        return noteRepository.findByUserAndScenario(user, scenario);
+    }
+
+    public Note findNoteByIdAndUserAndScenario(long noteId, User user, Scenario scenario) {
+        return noteRepository.findByIdAndUserAndScenario(noteId, user, scenario);
+    }
+
+    public void deleteNote(Note note) {
+        noteRepository.delete(note);
+    }
+
+    public void patchNote(Note note, NoteDto noteDto) {
+        note.setName(noteDto.getName());
+        note.setContent(noteDto.getContent());
+        noteRepository.save(note);
+    }
+
+    public void createNote(NoteDto noteDto, User user, Scenario scenario) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!isUserPlayerOrGameMasterInScenario(user, scenario))
+            throw new ScenarioException("User is not a player in that scenario");
+
+        Note note = new Note(noteDto.getName(), noteDto.getContent(), user, scenario);
+        noteRepository.save(note);
     }
 }

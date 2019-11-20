@@ -50,7 +50,11 @@ public class SecurityData implements ApplicationRunner {
     private void addEssentialClients(){
         List<OAuthClientDetails> clientDetails = Arrays.asList(
                 new OAuthClientDetails("web", passwordEncoder.encode("password"),
-                        "READ,WRITE,EXECUTE", 3600, 10000, "api-resource",
+                        "READ,WRITE,EXECUTE", 43200, 86400, "api-resource",
+                        "authorization_code,password,refresh_token,implicit",
+                        roleService.findByName("CLIENT").getName()),
+                new OAuthClientDetails("mobile", passwordEncoder.encode("password"),
+                        "READ,WRITE,EXECUTE", 259200, 604800, "api-resource",
                         "authorization_code,password,refresh_token,implicit",
                         roleService.findByName("CLIENT").getName())
         );

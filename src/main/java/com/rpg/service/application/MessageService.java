@@ -30,11 +30,11 @@ public class MessageService {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if (!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
-        if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario))
+        if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario) && !isOOC(messageDto.getContent()))
             throw new CharacterException("Character is not a property od a player");
 
         Message out;
-        if(isOOC(messageDto.getContent().trim())){
+        if(isOOC(messageDto.getContent())){
             out = createOOCMessage(messageDto, user, scenario);
         } else if(isWhisper(messageDto.getContent())){
             out = createWhisperMessage(messageDto, user, scenario);

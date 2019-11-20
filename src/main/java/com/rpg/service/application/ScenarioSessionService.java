@@ -79,6 +79,17 @@ public class ScenarioSessionService {
         return users;
     }
 
+    public Set<String> getOnlineUsernamesFromScenario(Scenario scenario){
+        ScenarioSession scenarioSession = scenarioSessions.get(scenario.getScenarioKey());
+        if(Objects.isNull(scenarioSession)) return Collections.emptySet();
+        Set<UserSession> userSessions = scenarioSession.getUsersInSession();
+        Set<User> users = new HashSet<>();
+        for(UserSession userSession : userSessions){
+            users.add(userSession.getUser());
+        }
+        return getPlayerNames(users);
+    }
+
     public ScenarioSession getScenarioSession(Scenario scenario) {
         ScenarioSession scenarioSession = scenarioSessions.get(scenario.getScenarioKey());
         return Objects.isNull(scenarioSession) ?
@@ -92,5 +103,18 @@ public class ScenarioSessionService {
 
     public void changeScenarioSessionStatus(ScenarioSession scenarioSession, ScenarioStatusType type) {
         scenarioSession.setScenarioStatusType(type);
+    }
+
+    private Set<String> getPlayerNames(Set<User> users){
+        Set<String> playerNames = new HashSet<>();
+        for(User player : users)
+            playerNames.add(player.getUsername());
+        return playerNames;
+    }
+    private Set<String> getPlayerNames(List<User> users){
+        Set<String> playerNames = new HashSet<>();
+        for(User player : users)
+            playerNames.add(player.getUsername());
+        return playerNames;
     }
 }
