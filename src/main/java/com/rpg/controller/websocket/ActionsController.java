@@ -109,7 +109,7 @@ public class ActionsController {
 
             for (User user: usersToUpdate)
                 template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + user.getUsername(),
-                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "character")));
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
 
             return ResponseEntity.ok("OK");
         } catch (Exception e) {

@@ -61,7 +61,23 @@ public class ScenarioController {
         return applicationConverter.scenariosToResponse(scenarioService.findUserScenarios(user));
     }
 
-    //TODO delete scenario and test if characters, messages and items are deleted properly
+    @DeleteMapping("/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity deleteScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                                 Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            scenarioService.deleteScenario(scenario, gm);
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+    }
 
     @GetMapping("/scenario/{scenarioKey}/character")
     @ApiImplicitParams({

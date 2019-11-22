@@ -212,4 +212,13 @@ public class ScenarioService {
         Note note = new Note(noteDto.getName(), noteDto.getContent(), user, scenario);
         noteRepository.save(note);
     }
+
+    public void deleteScenario(Scenario scenario, User gm) throws Exception {
+        if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+        if(!isUserGameMasterInScenario(gm, scenario))
+            throw new PrivilageException("Only GameMaster can delete the scenario");
+
+//        TODO test if all things also are being deleted, otherwise delete it manually
+        scenarioRepository.delete(scenario);
+    }
 }

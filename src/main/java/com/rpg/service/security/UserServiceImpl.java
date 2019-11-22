@@ -1,9 +1,11 @@
 package com.rpg.service.security;
 
 import com.rpg.dto.UserRegistrationFormDto;
+import com.rpg.dto.application.ChangePasswordDto;
 import com.rpg.exception.*;
 import com.rpg.model.security.User;
 import com.rpg.repository.security.UserRepository;
+import org.bouncycastle.openssl.PasswordException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,6 +79,19 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean existByUsername(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public void changePassword(User user, ChangePasswordDto changePasswordDto) throws Exception {
+        Pattern passwordReg = Pattern.compile(PASSWORD_REGEX);
+        if(!passwordEncoder.matches(user.getPassword(), changePasswordDto.getOldPassword()))
+            throw new PasswordException("Incorrect old password provided");
+        if(!passwordReg.matcher(changePasswordDto.getNewPassword()).matches())
+            throw new PasswordException("Incorrect new password. You have to use password with small, big letters " +
+                    "and numbers with length 6-24");
+
+        user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        userRepository.save(user);
     }
 
 //    Not used, but might be useful later
