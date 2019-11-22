@@ -17,4 +17,5 @@ public interface WeaponsRepository extends JpaRepository<Weapon, Long> {
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Weapon> findByNameAndScenario(String name, Scenario scenario);
     boolean existsByNameAndScenarioIn(String name, List<Scenario> scenarios);
+    void deleteByScenario(Scenario scenario);
 }

@@ -275,4 +275,10 @@ public class TypesService {
     }
 
 
+    public void deleteByScenario(Scenario scenario) {
+        magicSchoolsRepository.deleteByScenario(scenario);
+        conditionsRepository.deleteByScenario(scenario);
+        damageTypesRepository.deleteByScenario(scenario);
+        weaponPropertiesRepository.deleteByScenario(scenario);
+    }
 }

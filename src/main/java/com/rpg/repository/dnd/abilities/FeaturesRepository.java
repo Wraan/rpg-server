@@ -16,4 +16,5 @@ public interface FeaturesRepository extends JpaRepository<Feature, Long> {
     List<Feature> findByScenario(Scenario scenario);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Feature> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

@@ -1,6 +1,7 @@
 package com.rpg.controller.application;
 
 import com.rpg.dto.application.*;
+import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
@@ -59,24 +60,6 @@ public class ScenarioController {
     public List<ScenarioResponse> getUserScenarios(Principal principal){
         User user = userService.findByUsername(principal.getName());
         return applicationConverter.scenariosToResponse(scenarioService.findUserScenarios(user));
-    }
-
-    @DeleteMapping("/scenario/{scenarioKey}")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
-                    paramType = "header", defaultValue="Bearer access-token")
-    })
-    public ResponseEntity deleteScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                 Principal principal){
-        User gm = userService.findByUsername(principal.getName());
-        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
-        try {
-            scenarioService.deleteScenario(scenario, gm);
-            return ResponseEntity.ok().body("OK");
-        } catch (Exception e){
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
-        }
     }
 
     @GetMapping("/scenario/{scenarioKey}/character")

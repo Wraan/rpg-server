@@ -16,4 +16,5 @@ public interface ProficienciesRepository extends JpaRepository<Proficiency, Long
     List<Proficiency> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Proficiency> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

@@ -16,4 +16,5 @@ public interface ToolsRepository extends JpaRepository<Tool, Long> {
     List<Tool> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Tool> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

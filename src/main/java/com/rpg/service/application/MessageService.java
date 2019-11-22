@@ -108,4 +108,7 @@ public class MessageService {
     private List<Message> findNLastMessagesInScenario(Scenario scenario, int N) {
         return messageRepository.findByScenarioOrderByIdDesc(scenario, PageRequest.of(0, N));
     }
+    public void deleteByScenario(Scenario scenario){
+        messageRepository.deleteByScenario(scenario);
+    }
 }

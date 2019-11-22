@@ -18,4 +18,5 @@ public interface DamageTypesRepository extends JpaRepository<DamageType, Long> {
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<DamageType> findByNameAndScenario(String name, Scenario scenario);
     Optional<DamageType> findByNameAndScenarioIn(String name, List<Scenario> scenarios);
+    void deleteByScenario(Scenario scenario);
 }

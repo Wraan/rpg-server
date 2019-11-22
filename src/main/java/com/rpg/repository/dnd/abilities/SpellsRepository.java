@@ -16,4 +16,5 @@ public interface SpellsRepository extends JpaRepository<Spell, Long> {
     List<Spell> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Spell> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

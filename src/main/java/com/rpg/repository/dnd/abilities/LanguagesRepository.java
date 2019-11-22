@@ -16,4 +16,5 @@ public interface LanguagesRepository extends JpaRepository<Language, Long> {
     List<Language> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Language> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

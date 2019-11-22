@@ -11,12 +11,16 @@ import com.rpg.model.security.User;
 import com.rpg.repository.application.NoteRepository;
 import com.rpg.repository.application.ScenarioRepository;
 import com.rpg.service.converter.ApplicationConverter;
+import com.rpg.service.dnd.AbilitiesService;
+import com.rpg.service.dnd.EquipmentService;
+import com.rpg.service.dnd.TypesService;
 import org.bouncycastle.openssl.PasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -25,7 +29,12 @@ public class ScenarioService {
     @Autowired private ScenarioRepository scenarioRepository;
     @Autowired private NoteRepository noteRepository;
     @Autowired private CharacterService characterService;
+    @Autowired private MessageService messageService;
     @Autowired private ScenarioSessionService scenarioSessionService;
+
+    @Autowired private TypesService typesService;
+    @Autowired private AbilitiesService abilitiesService;
+    @Autowired private EquipmentService equipmentService;
 
     @Autowired private PasswordEncoder passwordEncoder;
 
@@ -213,12 +222,20 @@ public class ScenarioService {
         noteRepository.save(note);
     }
 
+    @Transactional
     public void deleteScenario(Scenario scenario, User gm) throws Exception {
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!isUserGameMasterInScenario(gm, scenario))
             throw new PrivilageException("Only GameMaster can delete the scenario");
 
-//        TODO test if all things also are being deleted, otherwise delete it manually
+        noteRepository.deleteByScenario(scenario);
+        characterService.deleteByScenario(scenario);
+        messageService.deleteByScenario(scenario);
+
+        typesService.deleteByScenario(scenario);
+        abilitiesService.deleteByScenario(scenario);
+        equipmentService.deleteByScenario(scenario);
+
         scenarioRepository.delete(scenario);
     }
 }

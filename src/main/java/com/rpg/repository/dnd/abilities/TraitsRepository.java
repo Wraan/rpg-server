@@ -16,4 +16,5 @@ public interface TraitsRepository extends JpaRepository<Trait, Long> {
     List<Trait> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Trait> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

@@ -12,4 +12,5 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findByScenarioOrderByIdDesc(Scenario scenario, Pageable pageable);
     List<Message> findByScenario(Scenario scenario, Pageable pageable);
+    void deleteByScenario(Scenario scenario);
 }

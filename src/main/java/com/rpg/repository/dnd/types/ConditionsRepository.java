@@ -16,5 +16,5 @@ public interface ConditionsRepository extends JpaRepository<Condition, Long> {
     List<Condition> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Condition> findByNameAndScenario(String name, Scenario scenario);
-
+    void deleteByScenario(Scenario scenario);
 }

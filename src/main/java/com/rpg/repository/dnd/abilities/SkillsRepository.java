@@ -17,4 +17,5 @@ public interface SkillsRepository extends JpaRepository<Skill, Long> {
     List<Skill> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Skill> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

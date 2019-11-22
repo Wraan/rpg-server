@@ -14,10 +14,7 @@ import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
-import com.rpg.service.application.ActionService;
-import com.rpg.service.application.CharacterService;
-import com.rpg.service.application.MessageService;
-import com.rpg.service.application.ScenarioService;
+import com.rpg.service.application.*;
 import com.rpg.service.converter.MessageConverter;
 import com.rpg.service.security.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -42,6 +39,7 @@ public class ActionsController {
 
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
+    @Autowired private ScenarioSessionService scenarioSessionService;
     @Autowired private MessageService messageService;
     @Autowired private ActionService actionService;
     @Autowired private CharacterService characterService;
@@ -336,4 +334,26 @@ public class ActionsController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @DeleteMapping("/remove/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity deleteScenario(@PathVariable("scenarioKey") String scenarioKey,
+                                         Principal principal){
+        User gm = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            scenarioService.deleteScenario(scenario, gm);
+            scenarioSessionService.removeScenarioSessionByScenario(scenario);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey,
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("leave", "scenario")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.rpg.model.application;
 
 import com.rpg.model.security.User;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Scenario {
     private List<User> players;
     @Column(length = 1023)
     private String name;
-    @OneToMany(mappedBy = "scenario")
+    @OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Character> characters;
 
     public Scenario() {
@@ -37,10 +39,6 @@ public class Scenario {
         this.gameMaster = gameMaster;
         this.players = players;
         this.name = name;
-    }
-
-    public Scenario(String key) {
-        this.scenarioKey = key;
     }
 
     public long getId() {

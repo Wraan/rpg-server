@@ -16,4 +16,5 @@ public interface ArmorsRepository extends JpaRepository<Armor, Long> {
     List<Armor> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Armor> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

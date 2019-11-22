@@ -16,4 +16,5 @@ public interface VehiclesRepository extends JpaRepository<Vehicle, Long> {
     List<Vehicle> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Vehicle> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

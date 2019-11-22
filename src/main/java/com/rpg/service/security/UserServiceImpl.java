@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void changePassword(User user, ChangePasswordDto changePasswordDto) throws Exception {
         Pattern passwordReg = Pattern.compile(PASSWORD_REGEX);
-        if(!passwordEncoder.matches(user.getPassword(), changePasswordDto.getOldPassword()))
+        if(!passwordEncoder.matches(changePasswordDto.getOldPassword(), user.getPassword()))
             throw new PasswordException("Incorrect old password provided");
         if(!passwordReg.matcher(changePasswordDto.getNewPassword()).matches())
             throw new PasswordException("Incorrect new password. You have to use password with small, big letters " +

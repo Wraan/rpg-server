@@ -16,4 +16,5 @@ public interface GearRepository extends JpaRepository<Gear, Long> {
     List<Gear> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Gear> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

@@ -369,4 +369,12 @@ public class EquipmentService {
     public void delete(Weapon weapon) {
         weaponsRepository.delete(weapon);
     }
+
+    public void deleteByScenario(Scenario scenario) {
+        armorsRepository.deleteByScenario(scenario);
+        gearRepository.deleteByScenario(scenario);
+        toolsRepository.deleteByScenario(scenario);
+        vehiclesRepository.deleteByScenario(scenario);
+        weaponsRepository.deleteByScenario(scenario);
+    }
 }

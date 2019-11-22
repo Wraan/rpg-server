@@ -405,4 +405,13 @@ public class AbilitiesService {
     public void delete(Trait trait) {
         traitsRepository.delete(trait);
     }
+
+    public void deleteByScenario(Scenario scenario) {
+        skillsRepository.deleteByScenario(scenario);
+        traitsRepository.deleteByScenario(scenario);
+        featuresRepository.deleteByScenario(scenario);
+        proficienciesRepository.deleteByScenario(scenario);
+        languagesRepository.deleteByScenario(scenario);
+        spellsRepository.deleteByScenario(scenario);
+    }
 }

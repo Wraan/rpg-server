@@ -16,4 +16,5 @@ public interface MagicSchoolsRepository  extends JpaRepository<MagicSchool, Long
     List<MagicSchool> findByScenarioAndVisible(Scenario scenario, boolean visible);
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<MagicSchool> findByNameAndScenario(String name, Scenario scenario);
+    void deleteByScenario(Scenario scenario);
 }

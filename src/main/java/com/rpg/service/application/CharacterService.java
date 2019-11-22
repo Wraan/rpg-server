@@ -113,4 +113,8 @@ public class CharacterService {
         character.setOwner(player);
         characterRepository.save(character);
     }
+
+    public void deleteByScenario(Scenario scenario){
+        characterRepository.deleteByScenario(scenario);
+    }
 }
