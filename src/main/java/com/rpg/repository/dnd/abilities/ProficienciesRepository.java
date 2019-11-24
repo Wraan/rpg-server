@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface ProficienciesRepository extends JpaRepository<Proficiency, Long> {
@@ -17,4 +18,5 @@ public interface ProficienciesRepository extends JpaRepository<Proficiency, Long
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Proficiency> findByNameAndScenario(String name, Scenario scenario);
     void deleteByScenario(Scenario scenario);
+    Set<Proficiency> findByNameInAndScenario(Set<String> names, Scenario scenario);
 }

@@ -1,15 +1,24 @@
 package com.rpg.service.application;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
-import com.rpg.dto.application.CreateCharacterDto;
+import com.rpg.dto.application.character.CharacterAbilitiesDto;
+import com.rpg.dto.application.character.CharacterEquipmentDto;
+import com.rpg.dto.application.character.CharacterSpellsDto;
+import com.rpg.dto.application.character.CharacterDto;
 import com.rpg.exception.CharacterException;
 import com.rpg.exception.RegexException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.UserDoesNotExistException;
-import com.rpg.model.application.Character;
+import com.rpg.model.application.character.*;
 import com.rpg.model.application.Scenario;
+import com.rpg.model.application.character.Character;
 import com.rpg.model.security.User;
-import com.rpg.repository.application.CharacterRepository;
+import com.rpg.repository.application.character.CharacterAbilitiesRepository;
+import com.rpg.repository.application.character.CharacterEquipmentRepository;
+import com.rpg.repository.application.character.CharacterRepository;
+import com.rpg.repository.application.character.CharacterSpellsRepository;
+import com.rpg.service.dnd.AbilitiesService;
+import com.rpg.service.dnd.EquipmentService;
 import com.rpg.service.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +31,14 @@ import java.util.regex.Pattern;
 public class CharacterService {
 
     @Autowired private CharacterRepository characterRepository;
+    @Autowired private CharacterSpellsRepository characterSpellsRepository;
+    @Autowired private CharacterAbilitiesRepository characterAbilitiesRepository;
+    @Autowired private CharacterEquipmentRepository characterEquipmentRepository;
+
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
+    @Autowired private AbilitiesService abilitiesService;
+    @Autowired private EquipmentService equipmentService;
 
     private final static String NAME_REGEX = "^[a-zA-Z0-9 ]{2,24}$";
 
@@ -50,7 +65,6 @@ public class CharacterService {
             List<String> names = getCharacterNames(findByOwnerAndScenario(user, scenario));
             return names.contains(characterName);
         }
-
     }
 
     public boolean existsWithName(String whisperTarget, Scenario scenario) {
@@ -58,20 +72,29 @@ public class CharacterService {
         return names.contains(whisperTarget);
     }
 
-    public Character createCharacter(CreateCharacterDto characterDto, User user, Scenario scenario) throws Exception{
+    public Character createCharacter(CharacterDto dto, User user, Scenario scenario) throws Exception{
         if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
         if(!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
-        if(findByNameAndScenario(characterDto.getName(), scenario) != null)
+        if(findByNameAndScenario(dto.getName(), scenario) != null)
             throw new CharacterException("Character with that name already exists");
         Pattern nameReg = Pattern.compile(NAME_REGEX);
-        if(!nameReg.matcher(characterDto.getName()).matches())
+        if(!nameReg.matcher(dto.getName()).matches())
             throw new RegexException("Character name must be simple - only letters, numbers and spaces 2-24 characters");
 
         User owner = scenarioService.isUserGameMasterInScenario(user, scenario) ? null : user;
 
-        Character character = new Character(characterDto.getName(), characterDto.getRace(),
-                characterDto.getProfession(), owner, scenario);
+        Character character = new Character(dto.getName(), dto.getRace(), dto.getProfession(), dto.getLevel(),
+                dto.getBackground(), dto.getExperience(), dto.getAlignment(), dto.getProficiency(), dto.getPassivePerception(),
+                dto.getPassiveInsight(), dto.getInitiative(), dto.getSpeed(), dto.getInspiration(), new Attributes(dto.getAttributes().getStrength(),
+                dto.getAttributes().getDexterity(), dto.getAttributes().getConstitution(), dto.getAttributes().getIntelligence(),
+                dto.getAttributes().getWisdom(),  dto.getAttributes().getCharisma()), new Health(dto.getHealth().getMaxHealth(),
+                dto.getHealth().getTemporaryHealth(), dto.getHealth().getActualHealth()), new HitDices(dto.getHitDices().getDice(),
+                dto.getHitDices().getTotal(), dto.getHitDices().getUsed()), owner, scenario);
+        character.setAbilities(new CharacterAbilities());
+        character.setSpells(new CharacterSpells());
+        character.setEquipment(new CharacterEquipment());
+
         return characterRepository.save(character);
     }
 
@@ -117,4 +140,26 @@ public class CharacterService {
     public void deleteByScenario(Scenario scenario){
         characterRepository.deleteByScenario(scenario);
     }
-}
+
+    public void updateCharacterEquipment(Character character, CharacterEquipmentDto dto){
+
+    }
+
+    public void updateCharacterAbilities(Character character, CharacterAbilitiesDto dto) throws Exception{
+        CharacterAbilities characterAbilities = character.getAbilities();
+        characterAbilities.setFeatures(abilitiesService.getFeaturesFromNames(dto.getFeatures(), character.getScenario()));
+        characterAbilities.setTraits(abilitiesService.getTraitsFromNames(dto.getTraits(), character.getScenario()));
+        characterAbilities.setLanguages(abilitiesService.getLanguagesFromNames(dto.getLanguages(), character.getScenario()));
+        characterAbilities.setProficiencies(abilitiesService.getProficienciesFromNames(dto.getProficiencies(), character.getScenario()));
+        characterAbilitiesRepository.save(characterAbilities);
+
+    }
+
+    public void updateCharacterSpells(Character character, CharacterSpellsDto dto){
+
+    }
+
+    public void updateCharacter(Character character, CharacterDto dto) {
+    }
+
+

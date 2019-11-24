@@ -31,7 +31,7 @@ public class MessageService {
         if (!scenarioService.isUserPlayerOrGameMasterInScenario(user, scenario))
             throw new UserDoesNotExistException("User is not a player in that scenario");
         if(!characterService.isCharacterUsersProperty(messageDto.getCharacterName(), user, scenario) && !isOOC(messageDto.getContent()))
-            throw new CharacterException("Character is not a property od a player");
+            throw new CharacterException("Character is not a property of a player");
 
         Message out;
         if(isOOC(messageDto.getContent())){

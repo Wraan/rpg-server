@@ -12,11 +12,14 @@ import com.rpg.model.security.User;
 import com.rpg.repository.dnd.abilities.*;
 import com.rpg.service.application.ScenarioService;
 import com.rpg.service.converter.DndDtoConverter;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AbilitiesService {
@@ -413,5 +416,78 @@ public class AbilitiesService {
         proficienciesRepository.deleteByScenario(scenario);
         languagesRepository.deleteByScenario(scenario);
         spellsRepository.deleteByScenario(scenario);
+    }
+
+    public Set<String> getNamesFromFeatures(Set<Feature> features) {
+        Set<String> out = new HashSet<>();
+        for(Feature feature : features){
+            out.add(feature.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromTraits(Set<Trait> traits) {
+        Set<String> out = new HashSet<>();
+        for(Trait trait : traits){
+            out.add(trait.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromLanguages(Set<Language> languages) {
+        Set<String> out = new HashSet<>();
+        for(Language language : languages){
+            out.add(language.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromProficiencies(Set<Proficiency> proficiencies) {
+        Set<String> out = new HashSet<>();
+        for(Proficiency proficiency : proficiencies){
+            out.add(proficiency.getName());
+        }
+        return out;
+    }
+
+    public Set<Feature> getFeaturesFromNames(Set<String> features, Scenario scenario) throws Exception {
+        Set<Feature> out = featuresRepository.findByNameInAndScenario(features, scenario);
+        Set<String> outNames = getNamesFromFeatures(out);
+        for(String it : features){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Feature " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Trait> getTraitsFromNames(Set<String> traits, Scenario scenario) throws Exception {
+        Set<Trait> out = traitsRepository.findByNameInAndScenario(traits, scenario);
+        Set<String> outNames = getNamesFromTraits(out);
+        for(String it : traits){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Trait " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Language> getLanguagesFromNames(Set<String> languages, Scenario scenario) throws Exception {
+        //TODO test if nameIn works properly
+        Set<Language> out = languagesRepository.findByNameInAndScenario(languages, scenario);
+        Set<String> outNames = getNamesFromLanguages(out);
+        for(String it : languages){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Language " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Proficiency> getProficienciesFromNames(Set<String> proficiencies, Scenario scenario) throws Exception {
+        Set<Proficiency> out = proficienciesRepository.findByNameInAndScenario(proficiencies, scenario);
+        Set<String> outNames = getNamesFromProficiencies(out);
+        for(String it : proficiencies){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Proficiency " + it + " does not exist");
+        }
+        return out;
     }
 }

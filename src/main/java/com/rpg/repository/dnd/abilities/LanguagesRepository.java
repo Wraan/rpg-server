@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface LanguagesRepository extends JpaRepository<Language, Long> {
@@ -17,4 +18,5 @@ public interface LanguagesRepository extends JpaRepository<Language, Long> {
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Language> findByNameAndScenario(String name, Scenario scenario);
     void deleteByScenario(Scenario scenario);
+    Set<Language> findByNameInAndScenario(Set<String> names, Scenario scenario);
 }

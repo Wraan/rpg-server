@@ -1,8 +1,7 @@
 package com.rpg.model.application;
 
+import com.rpg.model.application.character.Character;
 import com.rpg.model.security.User;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;

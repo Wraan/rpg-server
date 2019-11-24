@@ -1,12 +1,12 @@
 package com.rpg.controller.application;
 
 import com.rpg.dto.application.*;
-import com.rpg.dto.websocket.ActionUpdateResponse;
+import com.rpg.dto.application.character.CharacterResponse;
 import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
 import com.rpg.model.application.*;
-import com.rpg.model.application.Character;
+import com.rpg.model.application.character.Character;
 import com.rpg.model.security.User;
 import com.rpg.service.application.*;
 import com.rpg.service.converter.ApplicationConverter;

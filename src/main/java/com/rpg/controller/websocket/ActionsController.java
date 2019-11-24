@@ -1,15 +1,20 @@
 package com.rpg.controller.websocket;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
-import com.rpg.dto.application.CreateCharacterDto;
+import com.rpg.dto.application.character.CharacterAbilitiesDto;
+import com.rpg.dto.application.character.CharacterDto;
 import com.rpg.dto.application.SimplePasswordDto;
+import com.rpg.dto.application.character.CharacterEquipmentDto;
+import com.rpg.dto.application.character.CharacterSpellsDto;
 import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.DiceRollDto;
 import com.rpg.dto.websocket.MessageDto;
+import com.rpg.exception.CharacterException;
 import com.rpg.exception.PrivilageException;
+import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.UserDoesNotExistException;
-import com.rpg.model.application.Character;
+import com.rpg.model.application.character.Character;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
@@ -27,6 +32,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
 
 import java.security.Principal;
 import java.util.HashSet;
@@ -278,7 +284,7 @@ public class ActionsController {
                     paramType = "header", defaultValue="Bearer access-token")
     })
     public ResponseEntity createCharacterInScenario(@PathVariable("scenarioKey") String scenarioKey,
-                                                    @RequestBody CreateCharacterDto characterDto,
+                                                    @RequestBody CharacterDto characterDto,
                                                     Principal principal){
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
@@ -349,6 +355,127 @@ public class ActionsController {
 
             template.convertAndSend("/ws/scenario/" + scenarioKey,
                     objectMapper.writeValueAsString(new ActionUpdateResponse("leave", "scenario")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+    }
+
+    @PatchMapping("/update/character/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity updateCharacter(@PathVariable("scenarioKey") String scenarioKey,
+                                         @RequestBody CharacterDto dto,
+                                         Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
+            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+                throw new CharacterException("Character is not a property of a player");
+
+            characterService.updateCharacter(character, dto);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+    }
+
+    @PatchMapping("/update/characterAbilities/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity updateCharacterAbilities(@PathVariable("scenarioKey") String scenarioKey,
+                                          @RequestBody CharacterAbilitiesDto dto,
+                                          Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
+            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+                throw new CharacterException("Character is not a property of a player");
+
+            characterService.updateCharacterAbilities(character, dto);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+
+    }
+
+    @PatchMapping("/update/characterSpells/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity updateCharacterSpells(@PathVariable("scenarioKey") String scenarioKey,
+                                          @RequestBody CharacterSpellsDto dto,
+                                          Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
+            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+                throw new CharacterException("Character is not a property of a player");
+
+            characterService.updateCharacterSpells(character, dto);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            return ResponseEntity.ok().body("OK");
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getStackTrace());
+        }
+    }
+
+    @PatchMapping("/update/characterEquipment/scenario/{scenarioKey}")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
+                    paramType = "header", defaultValue="Bearer access-token")
+    })
+    public ResponseEntity updateCharacterEquipment(@PathVariable("scenarioKey") String scenarioKey,
+                                          @RequestBody CharacterEquipmentDto dto,
+                                          Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
+        try {
+            if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
+            Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
+            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+                throw new CharacterException("Character is not a property of a player");
+
+            characterService.updateCharacterEquipment(character, dto);
+
+            template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + scenario.getGameMaster().getUsername(),
+                    objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
+            if(character.getOwner() != null)
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + character.getOwner().getUsername(),
+                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "characters")));
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
