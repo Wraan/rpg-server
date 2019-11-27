@@ -4,6 +4,7 @@ public class DiceRollDto {
     private int dices;
     private int value;
     private String characterName;
+    private boolean visible;
 
     public DiceRollDto() {
     }
@@ -26,6 +27,14 @@ public class DiceRollDto {
 
     public String getCharacterName() {
         return characterName;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public void setCharacterName(String characterName) {

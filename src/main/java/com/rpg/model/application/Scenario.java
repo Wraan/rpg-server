@@ -1,6 +1,6 @@
 package com.rpg.model.application;
 
-import com.rpg.model.application.character.Character;
+import com.rpg.model.dnd.character.Character;
 import com.rpg.model.security.User;
 
 import javax.persistence.*;

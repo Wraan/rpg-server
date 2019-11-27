@@ -1,6 +1,6 @@
 package com.rpg.dto.application;
 
-import com.rpg.dto.application.character.CharacterResponse;
+import com.rpg.dto.dnd.character.CharacterResponse;
 import com.rpg.dto.websocket.MessageResponse;
 
 import java.util.List;

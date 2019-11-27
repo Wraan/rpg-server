@@ -1,21 +1,23 @@
-package com.rpg.dto.application.character;
+package com.rpg.dto.dnd.character;
 
 import java.util.Set;
 
-public class CharacterAbilitiesResponse {
+public class CharacterAbilitiesDto {
+    private String name;
     private Set<String> features;
     private Set<String> traits;
     private Set<String> languages;
     private Set<String> proficiencies;
 
-    public CharacterAbilitiesResponse() {
+    public CharacterAbilitiesDto() {
     }
 
-    public CharacterAbilitiesResponse(Set<String> features, Set<String> traits, Set<String> languages, Set<String> proficiencies) {
-        this.features = features;
-        this.traits = traits;
-        this.languages = languages;
-        this.proficiencies = proficiencies;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<String> getFeatures() {

@@ -1,4 +1,4 @@
-package com.rpg.model.application.character;
+package com.rpg.model.dnd.character;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

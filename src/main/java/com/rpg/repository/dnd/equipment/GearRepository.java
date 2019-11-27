@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface GearRepository extends JpaRepository<Gear, Long> {
@@ -17,4 +18,5 @@ public interface GearRepository extends JpaRepository<Gear, Long> {
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Gear> findByNameAndScenario(String name, Scenario scenario);
     void deleteByScenario(Scenario scenario);
+    Set<Gear> findByNameInAndScenario(Set<String> names, Scenario scenario);
 }

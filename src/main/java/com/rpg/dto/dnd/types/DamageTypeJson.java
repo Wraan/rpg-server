@@ -1,4 +1,4 @@
-package com.rpg.dto.dnd;
+package com.rpg.dto.dnd.types;
 
 public class DamageTypeJson {
     private String name;

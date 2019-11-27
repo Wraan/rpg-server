@@ -1,4 +1,4 @@
-package com.rpg.model.application.character;
+package com.rpg.model.dnd.character;
 
 import com.rpg.model.dnd.abilities.Feature;
 import com.rpg.model.dnd.abilities.Language;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "characterAbilities")
+@Table(name = "character_abilities")
 public class CharacterAbilities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +19,15 @@ public class CharacterAbilities {
             inverseJoinColumns = {@JoinColumn(name = "feature_id", referencedColumnName = "id")})
     private Set<Feature> features;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
+    @JoinTable(name = "character_traits", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "trait_id", referencedColumnName = "id")})
     private Set<Trait> traits;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
+    @JoinTable(name = "character_languages", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "language_id", referencedColumnName = "id")})
     private Set<Language> languages;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
+    @JoinTable(name = "character_proficiencies", joinColumns = {@JoinColumn(name = "character_abilities_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "proficiency_id", referencedColumnName = "id")})
     private Set<Proficiency> proficiencies;
 

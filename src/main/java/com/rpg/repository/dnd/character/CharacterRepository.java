@@ -1,6 +1,6 @@
-package com.rpg.repository.application.character;
+package com.rpg.repository.dnd.character;
 
-import com.rpg.model.application.character.Character;
+import com.rpg.model.dnd.character.Character;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;

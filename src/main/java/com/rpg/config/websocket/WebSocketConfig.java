@@ -1,15 +1,19 @@
 package com.rpg.config.websocket;
 
+import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.service.application.ScenarioService;
 import com.rpg.service.application.ScenarioSessionService;
 import com.rpg.service.security.JsonWebTokenAuthenticationService;
 import com.rpg.service.security.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -23,6 +27,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
 
@@ -36,6 +41,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Autowired private UserService userService;
     @Autowired private ScenarioService scenarioService;
     @Autowired private ScenarioSessionService scenarioSessionService;
+
+    @Lazy @Autowired private SimpMessagingTemplate template;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -73,6 +81,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     scenarioSessionService.removeUserFromScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
                     LOGGER.info("Player {} in scenario {} with session {} has been disconnected",
                             principal.getName(), scenarioKey, accessor.getSessionId());
+                    try {
+                        template.convertAndSend("/ws/scenario/" + scenarioKey,
+                                objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "players")));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 } else if(StompCommand.SUBSCRIBE.equals(accessor.getCommand())) {
                     Principal principal = accessor.getUser();
@@ -88,6 +102,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                             scenarioSessionService.addUserToScenarioSession(accessor.getSessionId(), principal.getName(), scenarioKey);
                             LOGGER.info("Player {} subscribed to scenario {} in session {}", playerName,
                                     scenarioKey, accessor.getSessionId());
+                            try {
+                                template.convertAndSend("/ws/scenario/" + scenarioKey,
+                                        objectMapper.writeValueAsString(new ActionUpdateResponse("reload", "players")));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }

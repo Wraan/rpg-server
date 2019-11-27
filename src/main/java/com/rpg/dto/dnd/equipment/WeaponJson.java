@@ -1,7 +1,7 @@
 package com.rpg.dto.dnd.equipment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.rpg.dto.dnd.DamageTypeJson;
+import com.rpg.dto.dnd.types.DamageTypeJson;
 import com.rpg.dto.dnd.types.WeaponPropertyJson;
 
 import java.util.List;

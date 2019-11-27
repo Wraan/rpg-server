@@ -9,6 +9,7 @@ import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.repository.application.MessageRepository;
+import com.rpg.service.dnd.character.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -63,9 +64,12 @@ public class MessageService {
         return new Message(message, messageDto.getCharacterName(), MessageType.Character, null, user, scenario);
     }
 
-    public Message createSystemMessage(String message, Scenario scenario){
+    public Message createAndSaveSystemMessage(String message, Scenario scenario){
         Message out = new Message(message, null, MessageType.System, null, null, scenario);
         return messageRepository.save(out);
+    }
+    public Message createSystemMessage(String message, Scenario scenario){
+        return new Message(message, null, MessageType.System, null, null, scenario);
     }
 
     private boolean isOOC(String message){

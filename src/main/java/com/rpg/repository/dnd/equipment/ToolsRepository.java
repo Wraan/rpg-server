@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface ToolsRepository extends JpaRepository<Tool, Long> {
@@ -17,4 +18,5 @@ public interface ToolsRepository extends JpaRepository<Tool, Long> {
     boolean existsByNameAndScenario(String name, Scenario scenario);
     Optional<Tool> findByNameAndScenario(String name, Scenario scenario);
     void deleteByScenario(Scenario scenario);
+    Set<Tool> findByNameInAndScenario(Set<String> names, Scenario scenario);
 }

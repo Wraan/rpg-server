@@ -1,4 +1,4 @@
-package com.rpg.dto.application.character;
+package com.rpg.dto.dnd.character;
 
 public class HitDicesDto {
     private String dice;

@@ -1,12 +1,16 @@
 package com.rpg.service.dnd;
 
+import com.rpg.dto.dnd.character.SpellSlotDto;
 import com.rpg.dto.dnd.abilities.*;
 import com.rpg.exception.NameExistsInScenarioException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.TypeDoesNotExist;
 import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Scenario;
+import com.rpg.model.dnd.character.CharacterSpells;
+import com.rpg.model.dnd.character.SpellSlot;
 import com.rpg.model.dnd.abilities.*;
+import com.rpg.model.dnd.equipment.Armor;
 import com.rpg.model.dnd.types.MagicSchool;
 import com.rpg.model.security.User;
 import com.rpg.repository.dnd.abilities.*;
@@ -449,9 +453,17 @@ public class AbilitiesService {
         }
         return out;
     }
+    public Set<String> getNamesFromSpells(Set<Spell> spells) {
+        Set<String> out = new HashSet<>();
+        for(Spell spell : spells){
+            out.add(spell.getName());
+        }
+        return out;
+    }
 
     public Set<Feature> getFeaturesFromNames(Set<String> features, Scenario scenario) throws Exception {
         Set<Feature> out = featuresRepository.findByNameInAndScenario(features, scenario);
+        out.addAll(featuresRepository.findByNameInAndScenario(features, null));
         Set<String> outNames = getNamesFromFeatures(out);
         for(String it : features){
             if (!outNames.contains(it))
@@ -462,6 +474,7 @@ public class AbilitiesService {
 
     public Set<Trait> getTraitsFromNames(Set<String> traits, Scenario scenario) throws Exception {
         Set<Trait> out = traitsRepository.findByNameInAndScenario(traits, scenario);
+        out.addAll(traitsRepository.findByNameInAndScenario(traits, null));
         Set<String> outNames = getNamesFromTraits(out);
         for(String it : traits){
             if (!outNames.contains(it))
@@ -471,8 +484,8 @@ public class AbilitiesService {
     }
 
     public Set<Language> getLanguagesFromNames(Set<String> languages, Scenario scenario) throws Exception {
-        //TODO test if nameIn works properly
         Set<Language> out = languagesRepository.findByNameInAndScenario(languages, scenario);
+        out.addAll(languagesRepository.findByNameInAndScenario(languages, null));
         Set<String> outNames = getNamesFromLanguages(out);
         for(String it : languages){
             if (!outNames.contains(it))
@@ -483,6 +496,7 @@ public class AbilitiesService {
 
     public Set<Proficiency> getProficienciesFromNames(Set<String> proficiencies, Scenario scenario) throws Exception {
         Set<Proficiency> out = proficienciesRepository.findByNameInAndScenario(proficiencies, scenario);
+        out.addAll(proficienciesRepository.findByNameInAndScenario(proficiencies, null));
         Set<String> outNames = getNamesFromProficiencies(out);
         for(String it : proficiencies){
             if (!outNames.contains(it))
@@ -490,4 +504,24 @@ public class AbilitiesService {
         }
         return out;
     }
+
+    public Set<Spell> getSpellsFromNames(Set<String> spells, Scenario scenario) throws Exception {
+        Set<Spell> out = spellsRepository.findByNameInAndScenario(spells, scenario);
+        out.addAll(spellsRepository.findByNameInAndScenario(spells, null));
+        Set<String> outNames = getNamesFromSpells(out);
+        for(String it : spells){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Spell " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<SpellSlot> createSpellSlots(List<SpellSlotDto> spellSlots, CharacterSpells characterSpells) {
+        Set<SpellSlot> convertedSpellSlots = new HashSet<>();
+        spellSlots.forEach(spellSlot -> {
+            convertedSpellSlots.add(new SpellSlot(spellSlot.getTotal(), spellSlot.getUsed(), spellSlot.getLevel(), characterSpells));
+        });
+        return convertedSpellSlots;
+    }
+
 }

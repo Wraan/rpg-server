@@ -1,16 +1,17 @@
 package com.rpg.controller.application;
 
 import com.rpg.dto.application.*;
-import com.rpg.dto.application.character.CharacterResponse;
+import com.rpg.dto.dnd.character.CharacterResponse;
 import com.rpg.dto.websocket.MessageResponse;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.ScenarioException;
 import com.rpg.model.application.*;
-import com.rpg.model.application.character.Character;
+import com.rpg.model.dnd.character.Character;
 import com.rpg.model.security.User;
 import com.rpg.service.application.*;
 import com.rpg.service.converter.ApplicationConverter;
 import com.rpg.service.converter.MessageConverter;
+import com.rpg.service.dnd.character.CharacterService;
 import com.rpg.service.security.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -77,7 +78,7 @@ public class ScenarioController {
             return ResponseEntity.ok().body(applicationConverter.charactersToResponse(characters));
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface WeaponsRepository extends JpaRepository<Weapon, Long> {
@@ -18,4 +19,5 @@ public interface WeaponsRepository extends JpaRepository<Weapon, Long> {
     Optional<Weapon> findByNameAndScenario(String name, Scenario scenario);
     boolean existsByNameAndScenarioIn(String name, List<Scenario> scenarios);
     void deleteByScenario(Scenario scenario);
+    Set<Weapon> findByNameInAndScenario(Set<String> names, Scenario scenario);
 }

@@ -1,11 +1,16 @@
 package com.rpg.service.dnd;
 
+import com.rpg.dto.dnd.character.AttackDto;
+import com.rpg.dto.dnd.character.CurrencyDto;
 import com.rpg.dto.dnd.equipment.*;
 import com.rpg.exception.NameExistsInScenarioException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.TypeDoesNotExist;
 import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Scenario;
+import com.rpg.model.dnd.character.Attack;
+import com.rpg.model.dnd.character.CharacterEquipment;
+import com.rpg.model.dnd.character.Currency;
 import com.rpg.model.dnd.equipment.*;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.WeaponProperty;
@@ -13,11 +18,11 @@ import com.rpg.model.security.User;
 import com.rpg.repository.dnd.equipment.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.application.ScenarioService;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EquipmentService {
@@ -376,5 +381,122 @@ public class EquipmentService {
         toolsRepository.deleteByScenario(scenario);
         vehiclesRepository.deleteByScenario(scenario);
         weaponsRepository.deleteByScenario(scenario);
+    }
+
+    public CurrencyDto convertCurrency(Currency currency) {
+        return new CurrencyDto(currency.getCp(), currency.getSp(), currency.getEp(), currency.getGp(),
+                currency.getPp());
+    }
+
+    public Set<String> getNamesFromArmors(Set<Armor> armors) {
+        Set<String> out = new HashSet<>();
+        for(Armor armor : armors){
+            out.add(armor.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromGear(Set<Gear> gear) {
+        Set<String> out = new HashSet<>();
+        for(Gear it : gear){
+            out.add(it.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromWeapons(Set<Weapon> weapons) {
+        Set<String> out = new HashSet<>();
+        for(Weapon weapon : weapons){
+            out.add(weapon.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromVehicles(Set<Vehicle> vehicles) {
+        Set<String> out = new HashSet<>();
+        for(Vehicle vehicle : vehicles){
+            out.add(vehicle.getName());
+        }
+        return out;
+    }
+
+    public Set<String> getNamesFromTools(Set<Tool> tools) {
+        Set<String> out = new HashSet<>();
+        for(Tool tool : tools){
+            out.add(tool.getName());
+        }
+        return out;
+    }
+
+    public Set<Attack> createAttacks(List<AttackDto> attacks, CharacterEquipment characterEquipment, Scenario scenario) throws Exception {
+        Set<Attack> createdAttacks = new HashSet<>();
+        for(AttackDto attack: attacks){
+            DamageType damageType = typesService.findDamageTypeByNameAndScenario(attack.getType(), scenario);
+            if(Objects.isNull(damageType))
+                throw new TypeDoesNotExist("DamageType does not exist");
+
+            createdAttacks.add(new Attack(attack.getName(), attack.getBonus(), attack.getDamage(), damageType, characterEquipment));
+        }
+        return createdAttacks;
+    }
+
+    public Set<Armor> getArmorsFromNames(Set<String> armors, Scenario scenario) throws Exception {
+        Set<Armor> out = armorsRepository.findByNameInAndScenario(armors, scenario);
+        out.addAll(armorsRepository.findByNameInAndScenario(armors, null));
+        Set<String> outNames = getNamesFromArmors(out);
+        for(String it : armors){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Armor " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Gear> getGearFromNames(Set<String> gear, Scenario scenario) throws Exception {
+        Set<Gear> out = gearRepository.findByNameInAndScenario(gear, scenario);
+        out.addAll(gearRepository.findByNameInAndScenario(gear, null));
+        Set<String> outNames = getNamesFromGear(out);
+        for(String it : gear){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Gear " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Weapon> getWeaponsFromNames(Set<String> weapons, Scenario scenario) throws Exception {
+        Set<Weapon> out = weaponsRepository.findByNameInAndScenario(weapons, scenario);
+        out.addAll(weaponsRepository.findByNameInAndScenario(weapons, null));
+        Set<String> outNames = getNamesFromWeapons(out);
+        for(String it : weapons){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Weapon " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Vehicle> getVehiclesFromNames(Set<String> vehicles, Scenario scenario) throws Exception {
+        Set<Vehicle> out = vehiclesRepository.findByNameInAndScenario(vehicles, scenario);
+        out.addAll(vehiclesRepository.findByNameInAndScenario(vehicles, null));
+        Set<String> outNames = getNamesFromVehicles(out);
+        for(String it : vehicles){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Vehicle " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Set<Tool> getToolsFromNames(Set<String> tools, Scenario scenario) throws Exception {
+        Set<Tool> out = toolsRepository.findByNameInAndScenario(tools, scenario);
+        out.addAll(toolsRepository.findByNameInAndScenario(tools, null));
+        Set<String> outNames = getNamesFromTools(out);
+        for(String it : tools){
+            if (!outNames.contains(it))
+                throw new InvalidDataException("Tool " + it + " does not exist");
+        }
+        return out;
+    }
+
+    public Currency createCurrency(CurrencyDto currency) {
+        return new Currency(currency.getCp(), currency.getSp(), currency.getEp(), currency.getGp(),
+                currency.getPp());
     }
 }

@@ -1,17 +1,6 @@
-package com.rpg.model.application.character;
+package com.rpg.dto.dnd.character;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "attributes")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Attributes {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class AttributesDto {
     private int strength;
     private int dexterity;
     private int constitution;
@@ -19,24 +8,16 @@ public class Attributes {
     private int wisdom;
     private int charisma;
 
-    public Attributes() {
+    public AttributesDto() {
     }
 
-    public Attributes(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+    public AttributesDto(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public int getStrength() {

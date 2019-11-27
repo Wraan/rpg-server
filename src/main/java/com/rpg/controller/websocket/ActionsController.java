@@ -1,11 +1,11 @@
 package com.rpg.controller.websocket;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
-import com.rpg.dto.application.character.CharacterAbilitiesDto;
-import com.rpg.dto.application.character.CharacterDto;
+import com.rpg.dto.dnd.character.CharacterAbilitiesDto;
+import com.rpg.dto.dnd.character.CharacterDto;
 import com.rpg.dto.application.SimplePasswordDto;
-import com.rpg.dto.application.character.CharacterEquipmentDto;
-import com.rpg.dto.application.character.CharacterSpellsDto;
+import com.rpg.dto.dnd.character.CharacterEquipmentDto;
+import com.rpg.dto.dnd.character.CharacterSpellsDto;
 import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.ActionUpdateResponse;
 import com.rpg.dto.websocket.DiceRollDto;
@@ -14,13 +14,14 @@ import com.rpg.exception.CharacterException;
 import com.rpg.exception.PrivilageException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.UserDoesNotExistException;
-import com.rpg.model.application.character.Character;
+import com.rpg.model.dnd.character.Character;
 import com.rpg.model.application.Message;
 import com.rpg.model.application.MessageType;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.security.User;
 import com.rpg.service.application.*;
 import com.rpg.service.converter.MessageConverter;
+import com.rpg.service.dnd.character.CharacterService;
 import com.rpg.service.security.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -32,11 +33,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.Request;
 
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @RestController
@@ -56,6 +57,7 @@ public class ActionsController {
     private ObjectMapper objectMapper = new ObjectMapper();
     private Logger LOGGER = LogManager.getLogger(getClass());
 
+
     @PostMapping("/roll/scenario/{scenarioKey}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -67,18 +69,29 @@ public class ActionsController {
         User user = userService.findByUsername(principal.getName());
         Scenario scenario = scenarioService.findByScenarioKey(scenarioKey);
         try{
-            if(!characterService.isCharacterUsersProperty(diceRollDto.getCharacterName(), user, scenario))
+            if(Objects.isNull(diceRollDto.getCharacterName()) || diceRollDto.getCharacterName().isEmpty())
+                diceRollDto.setCharacterName(user.getUsername());
+            else if(!characterService.isCharacterUsersProperty(diceRollDto.getCharacterName(), user, scenario))
                 throw new UserDoesNotExistException("Character is not a property of a player");
 
             List<Integer> rolls = actionService.rollDicesInScenario(diceRollDto.getDices(), diceRollDto.getValue(),
                     user, scenario);
-            Message message = messageService.createSystemMessage(diceRollDto.getCharacterName() + " rolled "
-                    + diceRollDto.getDices() + "d" + diceRollDto.getValue() + " for " + rolls.toString(), scenario);
+            Message message;
+            if(diceRollDto.isVisible()){
+                message = messageService.createAndSaveSystemMessage(diceRollDto.getCharacterName() + " rolled "
+                        + diceRollDto.getDices() + "d" + diceRollDto.getValue() + " for " + rolls.toString(), scenario);
+                ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+                template.convertAndSend("/ws/scenario/" + scenarioKey,
+                        objectMapper.writeValueAsString(amr));
+            } else {
+                message = messageService.createSystemMessage("[PRIVATE] " + diceRollDto.getCharacterName() + " rolled "
+                        + diceRollDto.getDices() + "d" + diceRollDto.getValue() + " for " + rolls.toString(), scenario);
+                ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
+                template.convertAndSend("/ws/scenario/" + scenarioKey + "/player/" + user.getUsername(),
+                        objectMapper.writeValueAsString(amr));
+            }
 
-            ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
-            template.convertAndSend("/ws/scenario/" + scenarioKey,
-                    objectMapper.writeValueAsString(amr));
-            return ResponseEntity.ok("OK");
+            return ResponseEntity.ok(rolls);
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -146,7 +159,6 @@ public class ActionsController {
             }
     }
 
-
     @PostMapping("/join/scenario/{scenarioKey}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "Bearer access_token", required = true, dataType = "String",
@@ -160,7 +172,7 @@ public class ActionsController {
         try{
             scenarioService.joinScenario(user, scenario, passwordDto.getPassword());
 
-            Message message = messageService.createSystemMessage(
+            Message message = messageService.createAndSaveSystemMessage(
                     "Player " + user.getUsername() + " has joined the scenario."
                     , scenario);
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
@@ -194,7 +206,7 @@ public class ActionsController {
             User player = userService.findByUsername(playerName);
             scenarioService.removePlayer(player, scenario);
 
-            Message message = messageService.createSystemMessage(
+            Message message = messageService.createAndSaveSystemMessage(
                     "Player " + player.getUsername() + " has left the scenario."
                     , scenario);
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
@@ -231,7 +243,7 @@ public class ActionsController {
             User player = userService.findByUsername(playerName);
             scenarioService.changeGameMaster(player, scenario);
 
-            Message message = messageService.createSystemMessage(
+            Message message = messageService.createAndSaveSystemMessage(
                     "GameMaster has been changed. Now " + player.getUsername() + " will guide your in your adventure."
                     , scenario);
             ActionMessageResponse amr = new ActionMessageResponse("message", messageConverter.messageToResponse(message));
@@ -358,7 +370,7 @@ public class ActionsController {
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -375,7 +387,7 @@ public class ActionsController {
         try {
             if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
             Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
-            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+            if(Objects.isNull(character) || !characterService.isCharacterUsersProperty(character.getName(), user, scenario))
                 throw new CharacterException("Character is not a property of a player");
 
             characterService.updateCharacter(character, dto);
@@ -388,7 +400,7 @@ public class ActionsController {
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -405,7 +417,8 @@ public class ActionsController {
         try {
             if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
             Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
-            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+
+            if(Objects.isNull(character) || !characterService.isCharacterUsersProperty(character.getName(), user, scenario))
                 throw new CharacterException("Character is not a property of a player");
 
             characterService.updateCharacterAbilities(character, dto);
@@ -418,7 +431,7 @@ public class ActionsController {
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
     }
@@ -436,7 +449,7 @@ public class ActionsController {
         try {
             if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
             Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
-            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+            if(Objects.isNull(character) || !characterService.isCharacterUsersProperty(character.getName(), user, scenario))
                 throw new CharacterException("Character is not a property of a player");
 
             characterService.updateCharacterSpells(character, dto);
@@ -449,7 +462,7 @@ public class ActionsController {
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -466,7 +479,7 @@ public class ActionsController {
         try {
             if(scenario == null) throw new ScenarioDoesNotExistException("Scenario does not exist");
             Character character = characterService.findByNameAndScenario(dto.getName(), scenario);
-            if(!characterService.isCharacterUsersProperty(character.getName(), user, scenario))
+            if(Objects.isNull(character) || !characterService.isCharacterUsersProperty(character.getName(), user, scenario))
                 throw new CharacterException("Character is not a property of a player");
 
             characterService.updateCharacterEquipment(character, dto);
@@ -479,7 +492,7 @@ public class ActionsController {
             return ResponseEntity.ok().body("OK");
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getStackTrace());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
