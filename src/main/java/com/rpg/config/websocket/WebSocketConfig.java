@@ -54,6 +54,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/rpg-server").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/rpg-server-kotlin").setAllowedOrigins("*");
     }
 
     @Override
