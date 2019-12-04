@@ -8,7 +8,7 @@ public class CharacterEquipmentResponse {
 
     private int armorClass;
     private List<EquipmentAmountDto> armors;
-    private List<EquipmentAmountDto> gears;
+    private List<EquipmentAmountDto> gear;
     private List<EquipmentAmountDto> vehicles;
     private List<EquipmentAmountDto> tools;
     private List<EquipmentAmountDto> weapons;
@@ -19,12 +19,12 @@ public class CharacterEquipmentResponse {
     }
 
     public CharacterEquipmentResponse(int armorClass, List<EquipmentAmountDto> armors,
-                                      List<EquipmentAmountDto> gears, List<EquipmentAmountDto> vehicles,
+                                      List<EquipmentAmountDto> gear, List<EquipmentAmountDto> vehicles,
                                       List<EquipmentAmountDto> tools, List<EquipmentAmountDto> weapons,
                                       List<AttackDto> attacks, CurrencyDto currency) {
         this.armorClass = armorClass;
         this.armors = armors;
-        this.gears = gears;
+        this.gear = gear;
         this.vehicles = vehicles;
         this.tools = tools;
         this.weapons = weapons;
@@ -48,12 +48,12 @@ public class CharacterEquipmentResponse {
         this.armors = armors;
     }
 
-    public List<EquipmentAmountDto> getGears() {
-        return gears;
+    public List<EquipmentAmountDto> getGear() {
+        return gear;
     }
 
-    public void setGears(List<EquipmentAmountDto> gears) {
-        this.gears = gears;
+    public void setGear(List<EquipmentAmountDto> gear) {
+        this.gear = gear;
     }
 
     public List<EquipmentAmountDto> getVehicles() {
