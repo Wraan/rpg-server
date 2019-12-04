@@ -1,24 +1,27 @@
-package com.rpg.dto.dnd.character;
+package com.rpg.dto.dnd.character.equipment;
+
+import com.rpg.dto.dnd.character.AttackDto;
 
 import java.util.List;
-import java.util.Set;
 
 public class CharacterEquipmentResponse {
 
     private int armorClass;
-    private Set<String> armors;
-    private Set<String> gears;
-    private Set<String> vehicles;
-    private Set<String> tools;
-    private Set<String> weapons;
+    private List<EquipmentAmountDto> armors;
+    private List<EquipmentAmountDto> gears;
+    private List<EquipmentAmountDto> vehicles;
+    private List<EquipmentAmountDto> tools;
+    private List<EquipmentAmountDto> weapons;
     private List<AttackDto> attacks;
     private CurrencyDto currency;
 
     public CharacterEquipmentResponse() {
     }
 
-    public CharacterEquipmentResponse(int armorClass, Set<String> armors, Set<String> gears, Set<String> vehicles,
-                                      Set<String> tools, Set<String> weapons, List<AttackDto> attacks, CurrencyDto currency) {
+    public CharacterEquipmentResponse(int armorClass, List<EquipmentAmountDto> armors,
+                                      List<EquipmentAmountDto> gears, List<EquipmentAmountDto> vehicles,
+                                      List<EquipmentAmountDto> tools, List<EquipmentAmountDto> weapons,
+                                      List<AttackDto> attacks, CurrencyDto currency) {
         this.armorClass = armorClass;
         this.armors = armors;
         this.gears = gears;
@@ -37,43 +40,43 @@ public class CharacterEquipmentResponse {
         this.armorClass = armorClass;
     }
 
-    public Set<String> getArmors() {
+    public List<EquipmentAmountDto> getArmors() {
         return armors;
     }
 
-    public void setArmors(Set<String> armors) {
+    public void setArmors(List<EquipmentAmountDto> armors) {
         this.armors = armors;
     }
 
-    public Set<String> getGears() {
+    public List<EquipmentAmountDto> getGears() {
         return gears;
     }
 
-    public void setGears(Set<String> gears) {
+    public void setGears(List<EquipmentAmountDto> gears) {
         this.gears = gears;
     }
 
-    public Set<String> getVehicles() {
+    public List<EquipmentAmountDto> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(Set<String> vehicles) {
+    public void setVehicles(List<EquipmentAmountDto> vehicles) {
         this.vehicles = vehicles;
     }
 
-    public Set<String> getTools() {
+    public List<EquipmentAmountDto> getTools() {
         return tools;
     }
 
-    public void setTools(Set<String> tools) {
+    public void setTools(List<EquipmentAmountDto> tools) {
         this.tools = tools;
     }
 
-    public Set<String> getWeapons() {
+    public List<EquipmentAmountDto> getWeapons() {
         return weapons;
     }
 
-    public void setWeapons(Set<String> weapons) {
+    public void setWeapons(List<EquipmentAmountDto> weapons) {
         this.weapons = weapons;
     }
 

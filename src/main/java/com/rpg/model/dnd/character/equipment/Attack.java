@@ -1,5 +1,6 @@
-package com.rpg.model.dnd.character;
+package com.rpg.model.dnd.character.equipment;
 
+import com.rpg.model.dnd.character.equipment.CharacterEquipment;
 import com.rpg.model.dnd.types.DamageType;
 
 import javax.persistence.*;

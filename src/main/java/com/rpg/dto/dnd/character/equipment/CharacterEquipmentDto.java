@@ -1,4 +1,6 @@
-package com.rpg.dto.dnd.character;
+package com.rpg.dto.dnd.character.equipment;
+
+import com.rpg.dto.dnd.character.AttackDto;
 
 import java.util.List;
 import java.util.Set;
@@ -6,11 +8,11 @@ import java.util.Set;
 public class CharacterEquipmentDto {
     private String name;
     private int armorClass;
-    private Set<String> armors;
-    private Set<String> gear;
-    private Set<String> vehicles;
-    private Set<String> weapons;
-    private Set<String> tools;
+    private List<EquipmentAmountDto> armors;
+    private List<EquipmentAmountDto> gear;
+    private List<EquipmentAmountDto> vehicles;
+    private List<EquipmentAmountDto> weapons;
+    private List<EquipmentAmountDto> tools;
     private List<AttackDto> attacks;
     private CurrencyDto currency;
 
@@ -33,43 +35,43 @@ public class CharacterEquipmentDto {
         this.armorClass = armorClass;
     }
 
-    public Set<String> getArmors() {
+    public List<EquipmentAmountDto> getArmors() {
         return armors;
     }
 
-    public void setArmors(Set<String> armors) {
+    public void setArmors(List<EquipmentAmountDto> armors) {
         this.armors = armors;
     }
 
-    public Set<String> getGear() {
+    public List<EquipmentAmountDto> getGear() {
         return gear;
     }
 
-    public void setGear(Set<String> gear) {
+    public void setGear(List<EquipmentAmountDto> gear) {
         this.gear = gear;
     }
 
-    public Set<String> getVehicles() {
+    public List<EquipmentAmountDto> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(Set<String> vehicles) {
+    public void setVehicles(List<EquipmentAmountDto> vehicles) {
         this.vehicles = vehicles;
     }
 
-    public Set<String> getWeapons() {
+    public List<EquipmentAmountDto> getWeapons() {
         return weapons;
     }
 
-    public void setWeapons(Set<String> weapons) {
+    public void setWeapons(List<EquipmentAmountDto> weapons) {
         this.weapons = weapons;
     }
 
-    public Set<String> getTools() {
+    public List<EquipmentAmountDto> getTools() {
         return tools;
     }
 
-    public void setTools(Set<String> tools) {
+    public void setTools(List<EquipmentAmountDto> tools) {
         this.tools = tools;
     }
 

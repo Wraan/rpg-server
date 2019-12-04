@@ -4,7 +4,7 @@ import com.rpg.dto.application.ChangeCharacterOwnerDto;
 import com.rpg.dto.dnd.character.CharacterAbilitiesDto;
 import com.rpg.dto.dnd.character.CharacterDto;
 import com.rpg.dto.application.SimplePasswordDto;
-import com.rpg.dto.dnd.character.CharacterEquipmentDto;
+import com.rpg.dto.dnd.character.equipment.CharacterEquipmentDto;
 import com.rpg.dto.dnd.character.CharacterSpellsDto;
 import com.rpg.dto.websocket.ActionMessageResponse;
 import com.rpg.dto.websocket.ActionUpdateResponse;

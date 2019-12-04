@@ -1,5 +1,7 @@
 package com.rpg.dto.dnd.character;
 
+import com.rpg.dto.dnd.character.equipment.CharacterEquipmentResponse;
+
 public class CharacterResponse {
 
     private String name;

@@ -1,21 +1,37 @@
-package com.rpg.dto.dnd.character;
+package com.rpg.model.dnd.character.equipment;
 
-public class CurrencyDto {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "currencies")
+public class Currency {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private int cp;
     private int sp;
     private int ep;
     private int gp;
     private int pp;
 
-    public CurrencyDto() {
+    public Currency() {
     }
 
-    public CurrencyDto(int cp, int sp, int ep, int gp, int pp) {
+    public Currency(int cp, int sp, int ep, int gp, int pp) {
         this.cp = cp;
         this.sp = sp;
         this.ep = ep;
         this.gp = gp;
         this.pp = pp;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getCp() {

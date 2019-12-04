@@ -1,16 +1,16 @@
 package com.rpg.service.dnd;
 
 import com.rpg.dto.dnd.character.AttackDto;
-import com.rpg.dto.dnd.character.CurrencyDto;
+import com.rpg.dto.dnd.character.equipment.CurrencyDto;
+import com.rpg.dto.dnd.character.equipment.EquipmentAmountDto;
 import com.rpg.dto.dnd.equipment.*;
 import com.rpg.exception.NameExistsInScenarioException;
 import com.rpg.exception.ScenarioDoesNotExistException;
 import com.rpg.exception.TypeDoesNotExist;
 import com.rpg.exception.UserDoesNotExistException;
 import com.rpg.model.application.Scenario;
-import com.rpg.model.dnd.character.Attack;
-import com.rpg.model.dnd.character.CharacterEquipment;
-import com.rpg.model.dnd.character.Currency;
+import com.rpg.model.dnd.character.equipment.*;
+import com.rpg.model.dnd.character.equipment.Currency;
 import com.rpg.model.dnd.equipment.*;
 import com.rpg.model.dnd.types.DamageType;
 import com.rpg.model.dnd.types.WeaponProperty;
@@ -19,10 +19,13 @@ import com.rpg.repository.dnd.equipment.*;
 import com.rpg.service.converter.DndDtoConverter;
 import com.rpg.service.application.ScenarioService;
 import com.sun.media.sound.InvalidDataException;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
@@ -388,42 +391,42 @@ public class EquipmentService {
                 currency.getPp());
     }
 
-    public Set<String> getNamesFromArmors(Set<Armor> armors) {
-        Set<String> out = new HashSet<>();
-        for(Armor armor : armors){
-            out.add(armor.getName());
+    public List<EquipmentAmountDto> getEQAmountFromArmors(List<ArmorAmount> armors) {
+        List<EquipmentAmountDto> out = new ArrayList<>();
+        for(ArmorAmount it : armors){
+            out.add(new EquipmentAmountDto(it.getArmor().getName(), it.getAmount()));
         }
         return out;
     }
 
-    public Set<String> getNamesFromGear(Set<Gear> gear) {
-        Set<String> out = new HashSet<>();
-        for(Gear it : gear){
-            out.add(it.getName());
+    public List<EquipmentAmountDto> getEQAmountFromGear(List<GearAmount> gear) {
+        List<EquipmentAmountDto> out = new ArrayList<>();
+        for(GearAmount it : gear){
+            out.add(new EquipmentAmountDto(it.getGear().getName(), it.getAmount()));
         }
         return out;
     }
 
-    public Set<String> getNamesFromWeapons(Set<Weapon> weapons) {
-        Set<String> out = new HashSet<>();
-        for(Weapon weapon : weapons){
-            out.add(weapon.getName());
+    public List<EquipmentAmountDto> getEQAmountFromWeapons(List<WeaponAmount> weapons) {
+        List<EquipmentAmountDto> out = new ArrayList<>();
+        for(WeaponAmount it : weapons){
+            out.add(new EquipmentAmountDto(it.getWeapon().getName(), it.getAmount()));
         }
         return out;
     }
 
-    public Set<String> getNamesFromVehicles(Set<Vehicle> vehicles) {
-        Set<String> out = new HashSet<>();
-        for(Vehicle vehicle : vehicles){
-            out.add(vehicle.getName());
+    public List<EquipmentAmountDto> getEQAmountFromVehicles(List<VehicleAmount> vehicles) {
+        List<EquipmentAmountDto> out = new ArrayList<>();
+        for(VehicleAmount it : vehicles){
+            out.add(new EquipmentAmountDto(it.getVehicle().getName(), it.getAmount()));
         }
         return out;
     }
 
-    public Set<String> getNamesFromTools(Set<Tool> tools) {
-        Set<String> out = new HashSet<>();
-        for(Tool tool : tools){
-            out.add(tool.getName());
+    public List<EquipmentAmountDto> getEQAmountFromTools(List<ToolAmount> tools) {
+        List<EquipmentAmountDto> out = new ArrayList<>();
+        for(ToolAmount it : tools){
+            out.add(new EquipmentAmountDto(it.getTool().getName(), it.getAmount()));
         }
         return out;
     }
@@ -440,59 +443,100 @@ public class EquipmentService {
         return createdAttacks;
     }
 
-    public Set<Armor> getArmorsFromNames(Set<String> armors, Scenario scenario) throws Exception {
-        Set<Armor> out = armorsRepository.findByNameInAndScenario(armors, scenario);
-        out.addAll(armorsRepository.findByNameInAndScenario(armors, null));
-        Set<String> outNames = getNamesFromArmors(out);
-        for(String it : armors){
+    public List<ArmorAmount> getArmorsFromEQAmounts(List<EquipmentAmountDto> armors, CharacterEquipment characterEquipment,
+                                                    Scenario scenario) throws Exception {
+        armors.forEach(it -> {
+            if(it.getAmount() <= 0) throw new ValueException("Amount cannot be lower or equal 0");
+        });
+        Set<String> eqNames = armors.stream().map(EquipmentAmountDto::getName).collect(Collectors.toSet());
+        Set<Armor> out = armorsRepository.findByNameInAndScenario(eqNames, scenario);
+        out.addAll(armorsRepository.findByNameInAndScenario(eqNames, null));
+        Set<String> outNames = out.stream().map(Armor::getName).collect(Collectors.toSet());
+        Map<String, Armor> outMap = out.stream().collect(Collectors.toMap(Armor::getName, Function.identity()));
+        for(String it : eqNames){
             if (!outNames.contains(it))
                 throw new InvalidDataException("Armor " + it + " does not exist");
         }
-        return out;
+
+        return armors.stream()
+                .map(it -> new ArmorAmount(outMap.get(it.getName()), characterEquipment, it.getAmount()))
+                .collect(Collectors.toList());
     }
 
-    public Set<Gear> getGearFromNames(Set<String> gear, Scenario scenario) throws Exception {
-        Set<Gear> out = gearRepository.findByNameInAndScenario(gear, scenario);
-        out.addAll(gearRepository.findByNameInAndScenario(gear, null));
-        Set<String> outNames = getNamesFromGear(out);
-        for(String it : gear){
+    public List<GearAmount> getGearFromEQAmounts(List<EquipmentAmountDto> gear, CharacterEquipment characterEquipment,
+                                                 Scenario scenario) throws Exception {
+        gear.forEach(it -> {
+            if(it.getAmount() <= 0) throw new ValueException("Amount cannot be lower or equal 0");
+        });
+        Set<String> eqNames = gear.stream().map(EquipmentAmountDto::getName).collect(Collectors.toSet());
+        Set<Gear> out = gearRepository.findByNameInAndScenario(eqNames, scenario);
+        out.addAll(gearRepository.findByNameInAndScenario(eqNames, null));
+        Set<String> outNames = out.stream().map(Gear::getName).collect(Collectors.toSet());
+        Map<String, Gear> outMap = out.stream().collect(Collectors.toMap(Gear::getName, Function.identity()));
+        for(String it : eqNames){
             if (!outNames.contains(it))
                 throw new InvalidDataException("Gear " + it + " does not exist");
         }
-        return out;
+        return gear.stream()
+                .map(it -> new GearAmount(outMap.get(it.getName()), characterEquipment, it.getAmount()))
+                .collect(Collectors.toList());
     }
 
-    public Set<Weapon> getWeaponsFromNames(Set<String> weapons, Scenario scenario) throws Exception {
-        Set<Weapon> out = weaponsRepository.findByNameInAndScenario(weapons, scenario);
-        out.addAll(weaponsRepository.findByNameInAndScenario(weapons, null));
-        Set<String> outNames = getNamesFromWeapons(out);
-        for(String it : weapons){
+    public List<WeaponAmount> getWeaponsFromEQAmounts(List<EquipmentAmountDto> weapons, CharacterEquipment characterEquipment,
+                                                      Scenario scenario) throws Exception {
+        weapons.forEach(it -> {
+            if(it.getAmount() <= 0) throw new ValueException("Amount cannot be lower or equal 0");
+        });
+        Set<String> eqNames = weapons.stream().map(EquipmentAmountDto::getName).collect(Collectors.toSet());
+        Set<Weapon> out = weaponsRepository.findByNameInAndScenario(eqNames, scenario);
+        out.addAll(weaponsRepository.findByNameInAndScenario(eqNames, null));
+        Set<String> outNames = out.stream().map(Weapon::getName).collect(Collectors.toSet());
+        Map<String, Weapon> outMap = out.stream().collect(Collectors.toMap(Weapon::getName, Function.identity()));
+        for(String it : eqNames){
             if (!outNames.contains(it))
                 throw new InvalidDataException("Weapon " + it + " does not exist");
         }
-        return out;
+        return weapons.stream()
+                .map(it -> new WeaponAmount(outMap.get(it.getName()), characterEquipment, it.getAmount()))
+                .collect(Collectors.toList());
     }
 
-    public Set<Vehicle> getVehiclesFromNames(Set<String> vehicles, Scenario scenario) throws Exception {
-        Set<Vehicle> out = vehiclesRepository.findByNameInAndScenario(vehicles, scenario);
-        out.addAll(vehiclesRepository.findByNameInAndScenario(vehicles, null));
-        Set<String> outNames = getNamesFromVehicles(out);
-        for(String it : vehicles){
+    public List<VehicleAmount> getVehiclesFromEQAmounts(List<EquipmentAmountDto> vehicles, CharacterEquipment characterEquipment,
+                                                        Scenario scenario) throws Exception {
+        vehicles.forEach(it -> {
+            if(it.getAmount() <= 0) throw new ValueException("Amount cannot be lower or equal 0");
+        });
+        Set<String> eqNames = vehicles.stream().map(EquipmentAmountDto::getName).collect(Collectors.toSet());
+        Set<Vehicle> out = vehiclesRepository.findByNameInAndScenario(eqNames, scenario);
+        out.addAll(vehiclesRepository.findByNameInAndScenario(eqNames, null));
+        Set<String> outNames = out.stream().map(Vehicle::getName).collect(Collectors.toSet());
+        Map<String, Vehicle> outMap = out.stream().collect(Collectors.toMap(Vehicle::getName, Function.identity()));
+        for(String it : eqNames){
             if (!outNames.contains(it))
                 throw new InvalidDataException("Vehicle " + it + " does not exist");
         }
-        return out;
+        return vehicles.stream()
+                .map(it -> new VehicleAmount(outMap.get(it.getName()), characterEquipment, it.getAmount()))
+                .collect(Collectors.toList());
     }
 
-    public Set<Tool> getToolsFromNames(Set<String> tools, Scenario scenario) throws Exception {
-        Set<Tool> out = toolsRepository.findByNameInAndScenario(tools, scenario);
-        out.addAll(toolsRepository.findByNameInAndScenario(tools, null));
-        Set<String> outNames = getNamesFromTools(out);
-        for(String it : tools){
+    public List<ToolAmount> getToolsFromEQAmounts(List<EquipmentAmountDto> tools, CharacterEquipment characterEquipment,
+                                                  Scenario scenario) throws Exception {
+        tools.forEach(it -> {
+            if(it.getAmount() <= 0) throw new ValueException("Amount cannot be lower or equal 0");
+        });
+        Set<String> eqNames = tools.stream().map(EquipmentAmountDto::getName).collect(Collectors.toSet());
+        Set<Tool> out = toolsRepository.findByNameInAndScenario(eqNames, scenario);
+        out.addAll(toolsRepository.findByNameInAndScenario(eqNames, null));
+        Set<String> outNames = out.stream().map(Tool::getName).collect(Collectors.toSet());
+        Map<String, Tool> outMap = out.stream().collect(Collectors.toMap(Tool::getName, Function.identity()));
+        for(String it : eqNames){
             if (!outNames.contains(it))
                 throw new InvalidDataException("Tool " + it + " does not exist");
         }
-        return out;
+        return tools.stream()
+                .map(it -> new ToolAmount(outMap.get(it.getName()), characterEquipment, it.getAmount()))
+                .collect(Collectors.toList());
     }
 
     public Currency createCurrency(CurrencyDto currency) {

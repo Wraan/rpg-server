@@ -3,17 +3,20 @@ package com.rpg.service.converter;
 import com.rpg.dto.dnd.character.*;
 import com.rpg.dto.application.NoteResponse;
 import com.rpg.dto.application.ScenarioResponse;
+import com.rpg.dto.dnd.character.equipment.CharacterEquipmentResponse;
+import com.rpg.dto.dnd.character.equipment.EquipmentAmountDto;
 import com.rpg.model.dnd.character.*;
 import com.rpg.model.application.Note;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.character.Character;
+import com.rpg.model.dnd.character.equipment.Attack;
+import com.rpg.model.dnd.character.equipment.CharacterEquipment;
 import com.rpg.service.application.ScenarioSessionService;
 import com.rpg.service.dnd.AbilitiesService;
 import com.rpg.service.dnd.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.management.Attribute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -71,12 +74,13 @@ public class ApplicationConverter {
     }
 
     public CharacterEquipmentResponse characterEquipmentToResponse(CharacterEquipment characterEquipment){
-        Set<String> armors = equipmentService.getNamesFromArmors(characterEquipment.getArmors());
-        Set<String> gear = equipmentService.getNamesFromGear(characterEquipment.getGear());
-        Set<String> weapons = equipmentService.getNamesFromWeapons(characterEquipment.getWeapons());
-        Set<String> vehicles = equipmentService.getNamesFromVehicles(characterEquipment.getVehicles());
-        Set<String> tools = equipmentService.getNamesFromTools(characterEquipment.getTools());
+        List<EquipmentAmountDto> armors = equipmentService.getEQAmountFromArmors(characterEquipment.getArmors());
+        List<EquipmentAmountDto> gear = equipmentService.getEQAmountFromGear(characterEquipment.getGear());
+        List<EquipmentAmountDto> weapons = equipmentService.getEQAmountFromWeapons(characterEquipment.getWeapons());
+        List<EquipmentAmountDto> vehicles = equipmentService.getEQAmountFromVehicles(characterEquipment.getVehicles());
+        List<EquipmentAmountDto> tools = equipmentService.getEQAmountFromTools(characterEquipment.getTools());
         List<AttackDto> attacks = attacksToResponse(characterEquipment.getAttacks());
+
         return new CharacterEquipmentResponse(characterEquipment.getArmorClass(), armors, gear, vehicles, tools,
                 weapons, attacks, equipmentService.convertCurrency(characterEquipment.getCurrency()));
     }
@@ -110,7 +114,7 @@ public class ApplicationConverter {
     }
 
 
-    public List<AttackDto> attacksToResponse(Set<Attack> attacks) {
+    public List<AttackDto> attacksToResponse(List<Attack> attacks) {
         List<AttackDto> convertedAttacks = new ArrayList<>();
         attacks.forEach(attack -> {
             convertedAttacks.add(new AttackDto(attack.getName(), attack.getBonus(), attack.getDamage(), attack.getDamageType().getName()));

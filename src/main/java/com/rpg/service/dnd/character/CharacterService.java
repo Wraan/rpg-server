@@ -2,11 +2,12 @@ package com.rpg.service.dnd.character;
 
 import com.rpg.dto.application.ChangeCharacterOwnerDto;
 import com.rpg.dto.dnd.character.*;
+import com.rpg.dto.dnd.character.equipment.CharacterEquipmentDto;
 import com.rpg.exception.*;
 import com.rpg.model.dnd.character.*;
 import com.rpg.model.application.Scenario;
 import com.rpg.model.dnd.character.Character;
-import com.rpg.model.dnd.types.DamageType;
+import com.rpg.model.dnd.character.equipment.CharacterEquipment;
 import com.rpg.model.security.User;
 import com.rpg.repository.dnd.character.CharacterAbilitiesRepository;
 import com.rpg.repository.dnd.character.CharacterEquipmentRepository;
@@ -150,11 +151,16 @@ public class CharacterService {
     public void updateCharacterEquipment(Character character, CharacterEquipmentDto dto) throws Exception {
         CharacterEquipment characterEquipment = character.getEquipment();
         characterEquipment.setArmorClass(dto.getArmorClass());
-        characterEquipment.setArmors(equipmentService.getArmorsFromNames(dto.getArmors(), character.getScenario()));
-        characterEquipment.setGear(equipmentService.getGearFromNames(dto.getGear(), character.getScenario()));
-        characterEquipment.setWeapons(equipmentService.getWeaponsFromNames(dto.getWeapons(), character.getScenario()));
-        characterEquipment.setVehicles(equipmentService.getVehiclesFromNames(dto.getVehicles(), character.getScenario()));
-        characterEquipment.setTools(equipmentService.getToolsFromNames(dto.getTools(), character.getScenario()));
+        characterEquipment.getArmors().clear();
+        characterEquipment.getArmors().addAll(equipmentService.getArmorsFromEQAmounts(dto.getArmors(), characterEquipment, character.getScenario()));
+        characterEquipment.getGear().clear();
+        characterEquipment.getGear().addAll(equipmentService.getGearFromEQAmounts(dto.getGear(), characterEquipment, character.getScenario()));
+        characterEquipment.getWeapons().clear();
+        characterEquipment.getWeapons().addAll(equipmentService.getWeaponsFromEQAmounts(dto.getWeapons(), characterEquipment, character.getScenario()));
+        characterEquipment.getVehicles().clear();
+        characterEquipment.getVehicles().addAll(equipmentService.getVehiclesFromEQAmounts(dto.getVehicles(), characterEquipment, character.getScenario()));
+        characterEquipment.getTools().clear();
+        characterEquipment.getTools().addAll(equipmentService.getToolsFromEQAmounts(dto.getTools(), characterEquipment, character.getScenario()));
         characterEquipment.getAttacks().clear();
         characterEquipment.getAttacks().addAll(equipmentService.createAttacks(dto.getAttacks(), characterEquipment, character.getScenario()));
         characterEquipment.setCurrency(equipmentService.createCurrency(dto.getCurrency()));
@@ -177,7 +183,6 @@ public class CharacterService {
         characterSpells.setSpells(abilitiesService.getSpellsFromNames(dto.getSpells(), character.getScenario()));
         characterSpells.getSpellSlots().clear();
         characterSpells.getSpellSlots().addAll(abilitiesService.createSpellSlots(dto.getSpellSlots(), characterSpells));
-        System.out.println(characterSpells.getSpellSlots().size());
         characterSpells.setSpellSaveDc(dto.getSpellSaveDc());
         characterSpells.setBaseStat(dto.getBaseStat());
         characterSpells.setSpellAttackBonus(dto.getSpellAttackBonus());
