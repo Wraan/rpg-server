@@ -47,7 +47,7 @@ public class CharacterService {
     @Autowired
     private EquipmentService equipmentService;
 
-    private final static String NAME_REGEX = "^[a-zA-Z0-9 ]{2,24}$";
+    private final static String NAME_REGEX = "^[a-zA-Z0-9]{2,24}$";
 
     public List<Character> findByScenario(Scenario scenario) {
         return characterRepository.findByScenario(scenario);
@@ -86,7 +86,7 @@ public class CharacterService {
             throw new CharacterException("Character with that name already exists");
         Pattern nameReg = Pattern.compile(NAME_REGEX);
         if (!nameReg.matcher(dto.getName()).matches())
-            throw new RegexException("Character name must be simple - only letters, numbers and spaces 2-24 characters");
+            throw new RegexException("Character name must be simple - only letters and numbers 2-24 characters");
         if(Objects.isNull(dto.getAttributes()) || Objects.isNull(dto.getHealth()) || Objects.isNull(dto.getHitDices()))
             throw new InvalidDataException("Missing required value: attributes, health or hit dices");
 
